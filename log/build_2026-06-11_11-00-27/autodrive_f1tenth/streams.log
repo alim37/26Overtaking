@@ -1,0 +1,44 @@
+[0.572s] Invoking command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build
+[0.812s] running develop
+[0.974s] Removing /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth.egg-link (link to .)
+[1.005s] Invoked command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build
+[1.006s] Invoking command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data --force
+[1.228s] running egg_info
+[1.228s] writing ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[1.230s] writing dependency_links to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[1.231s] writing entry points to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[1.231s] writing requirements to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[1.231s] writing top-level names to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[1.231s] reading manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.239s] writing manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.239s] running build
+[1.239s] running build_py
+[1.239s] copying autodrive_f1tenth/dl_slot.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.239s] copying autodrive_f1tenth/pure_pursuit.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.239s] copying autodrive_f1tenth/plot_pure_pursuit_runs.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.239s] running install
+[1.239s] running install_lib
+[1.239s] creating /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/dl_slot.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/plot_ethz_scaled_reference.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/__init__.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/pure_pursuit.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/pure_pursuit_ethz_scaled.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/plot_pure_pursuit_runs.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.240s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/dl_slot.py to dl_slot.cpython-310.pyc
+[1.242s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/plot_ethz_scaled_reference.py to plot_ethz_scaled_reference.cpython-310.pyc
+[1.242s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/__init__.py to __init__.cpython-310.pyc
+[1.245s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/pure_pursuit.py to pure_pursuit.cpython-310.pyc
+[1.245s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/pure_pursuit_ethz_scaled.py to pure_pursuit_ethz_scaled.cpython-310.pyc
+[1.247s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/plot_pure_pursuit_runs.py to plot_pure_pursuit_runs.cpython-310.pyc
+[1.248s] running install_data
+[1.248s] copying resource/autodrive_f1tenth -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+[1.248s] copying package.xml -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth
+[1.248s] running install_egg_info
+[1.250s] Copying ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[1.251s] running install_scripts
+[1.268s] Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.268s] Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.268s] Installing pure_pursuit_ethz_scaled script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.268s] writing list of installed files to '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log'
+[1.295s] Invoked command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data --force

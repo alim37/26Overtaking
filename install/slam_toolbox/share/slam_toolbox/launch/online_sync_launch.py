@@ -1,0 +1,1 @@
+/home/malik/ros2_ws/slam_toolbox/launch/online_sync_launch.py

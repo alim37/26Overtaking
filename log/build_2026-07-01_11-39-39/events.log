@@ -1,0 +1,535 @@
+[0.000000] (-) TimerEvent: {}
+[0.000046] (slam_toolbox) JobQueued: {'identifier': 'slam_toolbox', 'dependencies': OrderedDict()}
+[0.000089] (autodrive_f1tenth) JobQueued: {'identifier': 'autodrive_f1tenth', 'dependencies': OrderedDict([('slam_toolbox', '/home/malik/controller-benchmarks/ros2/install/slam_toolbox')])}
+[0.000120] (slam_toolbox) JobStarted: {'identifier': 'slam_toolbox'}
+[0.006623] (slam_toolbox) JobProgress: {'identifier': 'slam_toolbox', 'progress': 'cmake'}
+[0.007393] (slam_toolbox) Command: {'cmd': ['/usr/bin/cmake', '/home/malik/controller-benchmarks/ros2/slam_toolbox', '-DCMAKE_INSTALL_PREFIX=/home/malik/controller-benchmarks/ros2/install/slam_toolbox'], 'cwd': '/home/malik/controller-benchmarks/ros2/build/slam_toolbox', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/malik/controller-benchmarks'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'malik'), ('SNAP_COMMON', '/var/snap/code/common'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/247/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('FONTCONFIG_PATH', '/etc/fonts'), ('GIO_MODULE_DIR', '/home/malik/snap/code/common/.cache/gio-modules'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/malik'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32'), ('OLDPWD', '/home/malik'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/malik/snap/code/247'), ('GTK_PATH', '/snap/code/247/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-4c2860f4-1.12-main.sock'), ('GTK_IM_MODULE_FILE', '/home/malik/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1409'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '5562'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '247'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3'), ('_CONDA_ROOT', '/home/malik/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '6826'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/malik/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'malik'), ('SNAP_CONTEXT', 'kfTluzUL5uxnZKtqkXAz3NReyLofD6Rk3M71Lv7i8z79knMM7rDY'), ('JOURNAL_STREAM', '8:72390'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '1b50d58d'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/usr/share/ubuntu:/home/malik/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('RUST_LOG', 'warn'), ('USERNAME', 'malik'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'code'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/malik/.local/bin:/home/malik/.codex/tmp/arg0/codex-arg0M1OtMS:/home/malik/miniconda3/condabin:/opt/ros/humble/bin:/home/malik/.local/bin:/home/malik/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/malik/.vscode/extensions/openai.chatgpt-26.616.81150-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/malik-System-Product-Name:@/tmp/.ICE-unix/5537,unix/malik-System-Product-Name:/tmp/.ICE-unix/5537'), ('GTK_EXE_PREFIX', '/snap/code/247/usr'), ('INVOCATION_ID', 'b075604a8391438ea917198707f8ed3d'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/code/247'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/247/usr/lib/locale'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XDG_DATA_HOME', '/home/malik/snap/code/247/.local/share'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.S7J1R3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/malik/snap/code/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/malik/snap/code/247/.local/share/glib-2.0/schemas'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble'), ('SNAP_COOKIE', 'kfTluzUL5uxnZKtqkXAz3NReyLofD6Rk3M71Lv7i8z79knMM7rDY'), ('CONDA_PYTHON_EXE', '/home/malik/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:d879508f-ff42-4195-b39c-22765fb60071'), ('GDK_PIXBUF_MODULEDIR', '/snap/code/247/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'code'), ('FONTCONFIG_FILE', '/etc/fonts/fonts.conf'), ('CODEX_THREAD_ID', '019eb72e-f991-74a1-9c80-6be9c279f04b'), ('GDK_PIXBUF_MODULE_FILE', '/home/malik/snap/code/common/.cache/gdk-pixbuf-loaders.cache'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('_CONDA_EXE', '/home/malik/miniconda3/bin/conda'), ('SNAP_LAUNCHER_ARCH_TRIPLET', 'x86_64-linux-gnu'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/malik/controller-benchmarks/ros2/build/slam_toolbox'), ('VSCODE_CLI', '1'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/malik/miniconda3/bin/conda'), ('SNAP_REAL_HOME', '/home/malik'), ('VSCODE_CODE_CACHE_PATH', '/home/malik/.config/Code/CachedData/1b50d58d73426c9171299ec4037d01365d995b78'), ('XDG_DATA_DIRS', '/home/malik/snap/code/247/.local/share/flatpak/exports/share:/home/malik/snap/code/247/.local/share:/home/malik/snap/code/247:/snap/code/247/usr/share:/usr/share/ubuntu:/home/malik/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/code/247'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '9965'), ('CMAKE_PREFIX_PATH', '/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble')]), 'shell': False}
+[0.076401] (slam_toolbox) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099515] (-) TimerEvent: {}
+[0.153830] (slam_toolbox) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.164076] (slam_toolbox) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.199603] (-) TimerEvent: {}
+[0.221935] (slam_toolbox) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.229537] (slam_toolbox) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.229931] (slam_toolbox) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.230455] (slam_toolbox) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.233902] (slam_toolbox) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.299727] (-) TimerEvent: {}
+[0.304939] (slam_toolbox) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.313036] (slam_toolbox) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.313276] (slam_toolbox) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.313725] (slam_toolbox) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.316206] (slam_toolbox) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.399830] (-) TimerEvent: {}
+[0.444848] (slam_toolbox) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.499916] (-) TimerEvent: {}
+[0.520737] (slam_toolbox) StdoutLine: {'line': b'-- Found message_filters: 4.3.8 (/opt/ros/humble/share/message_filters/cmake)\n'}
+[0.562697] (slam_toolbox) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.566998] (slam_toolbox) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.575248] (slam_toolbox) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.586652] (slam_toolbox) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.600029] (-) TimerEvent: {}
+[0.601230] (slam_toolbox) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.644486] (slam_toolbox) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.647090] (slam_toolbox) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.700126] (-) TimerEvent: {}
+[0.713957] (slam_toolbox) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.735330] (slam_toolbox) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.765568] (slam_toolbox) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.773717] (slam_toolbox) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.800253] (-) TimerEvent: {}
+[0.826759] (slam_toolbox) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.826959] (slam_toolbox) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.877696] (slam_toolbox) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.878500] (slam_toolbox) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.900373] (-) TimerEvent: {}
+[0.931951] (slam_toolbox) StdoutLine: {'line': b'-- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)\n'}
+[0.961961] (slam_toolbox) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.979154] (slam_toolbox) StdoutLine: {'line': b'-- Found tf2: 0.25.16 (/opt/ros/humble/share/tf2/cmake)\n'}
+[0.989075] (slam_toolbox) StdoutLine: {'line': b'-- Found tf2_ros: 0.25.16 (/opt/ros/humble/share/tf2_ros/cmake)\n'}
+[1.000493] (-) TimerEvent: {}
+[1.077007] (slam_toolbox) StdoutLine: {'line': b'-- Found visualization_msgs: 4.9.0 (/opt/ros/humble/share/visualization_msgs/cmake)\n'}
+[1.096352] (slam_toolbox) StdoutLine: {'line': b'-- Found pluginlib: 5.1.0 (/opt/ros/humble/share/pluginlib/cmake)\n'}
+[1.100557] (-) TimerEvent: {}
+[1.109990] (slam_toolbox) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.25.16 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)\n'}
+[1.121691] (slam_toolbox) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)\n'}
+[1.122990] (slam_toolbox) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[1.123080] (slam_toolbox) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[1.125179] (slam_toolbox) StdoutLine: {'line': b'-- Found tf2_sensor_msgs: 0.25.16 (/opt/ros/humble/share/tf2_sensor_msgs/cmake)\n'}
+[1.130178] (slam_toolbox) StdoutLine: {'line': b'-- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)\n'}
+[1.141153] (slam_toolbox) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[1.149482] (slam_toolbox) StdoutLine: {'line': b'-- Found lifecycle_msgs: 1.2.2 (/opt/ros/humble/share/lifecycle_msgs/cmake)\n'}
+[1.160163] (slam_toolbox) StdoutLine: {'line': b'-- Found bondcpp: 4.1.2 (/opt/ros/humble/share/bondcpp/cmake)\n'}
+[1.191917] (slam_toolbox) StdoutLine: {'line': b'-- Found rviz_common: 11.2.19 (/opt/ros/humble/share/rviz_common/cmake)\n'}
+[1.200637] (-) TimerEvent: {}
+[1.207541] (slam_toolbox) StdoutLine: {'line': b"-- Setting assimp_DIR to: '/opt/ros/humble/share/rviz_assimp_vendor/cmake/../../../opt/rviz_assimp_vendor/lib/cmake/assimp-4.1'\n"}
+[1.213305] (slam_toolbox) StdoutLine: {'line': b"-- Setting OGRE_DIR to: '/opt/ros/humble/share/rviz_ogre_vendor/cmake/../../../opt/rviz_ogre_vendor/lib/OGRE/cmake'\n"}
+[1.214781] (slam_toolbox) StdoutLine: {'line': b'-- Found OGRE\n'}
+[1.214858] (slam_toolbox) StdoutLine: {'line': b'--   static     : OFF\n'}
+[1.214909] (slam_toolbox) StdoutLine: {'line': b'--   components : HLMS;MeshLodGenerator;Overlay;Paging;Property;RTShaderSystem;Terrain;Volume\n'}
+[1.215099] (slam_toolbox) StdoutLine: {'line': b'--   plugins    : Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI\n'}
+[1.215157] (slam_toolbox) StdoutLine: {'line': b'--   media      : /opt/ros/humble/opt/rviz_ogre_vendor/share/OGRE/Media\n'}
+[1.215204] (slam_toolbox) StdoutLine: {'line': b'-- OGRE_LIBRARIES: OgreHLMS;OgreMeshLodGenerator;OgreOverlay;OgrePaging;OgreProperty;OgreRTShaderSystem;OgreTerrain;OgreVolume;OgreMain\n'}
+[1.215249] (slam_toolbox) StdoutLine: {'line': b'-- OGRE_LIBRARY_DIRS: /opt/ros/humble/opt/rviz_ogre_vendor/lib\n'}
+[1.215292] (slam_toolbox) StdoutLine: {'line': b'-- OGRE_PLUGINS: Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI\n'}
+[1.215336] (slam_toolbox) StdoutLine: {'line': b'-- OGRE_PLUGIN_DIR: /opt/ros/humble/opt/rviz_ogre_vendor/lib/OGRE\n'}
+[1.215380] (slam_toolbox) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so\n'}
+[1.215443] (slam_toolbox) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so\n'}
+[1.215498] (slam_toolbox) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so\n'}
+[1.215542] (slam_toolbox) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so\n'}
+[1.216083] (slam_toolbox) StdoutLine: {'line': b'-- Could not find freeimage library\n'}
+[1.230459] (slam_toolbox) StdoutLine: {'line': b'-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") \n'}
+[1.233897] (slam_toolbox) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   \n'}
+[1.292895] (slam_toolbox) StdoutLine: {'line': b'-- Found X11: /usr/include   \n'}
+[1.293239] (slam_toolbox) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so\n'}
+[1.300721] (-) TimerEvent: {}
+[1.346503] (slam_toolbox) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found\n'}
+[1.346637] (slam_toolbox) StdoutLine: {'line': b'-- Looking for gethostbyname\n'}
+[1.398082] (slam_toolbox) StdoutLine: {'line': b'-- Looking for gethostbyname - found\n'}
+[1.398221] (slam_toolbox) StdoutLine: {'line': b'-- Looking for connect\n'}
+[1.400791] (-) TimerEvent: {}
+[1.450084] (slam_toolbox) StdoutLine: {'line': b'-- Looking for connect - found\n'}
+[1.450239] (slam_toolbox) StdoutLine: {'line': b'-- Looking for remove\n'}
+[1.500886] (-) TimerEvent: {}
+[1.502242] (slam_toolbox) StdoutLine: {'line': b'-- Looking for remove - found\n'}
+[1.502431] (slam_toolbox) StdoutLine: {'line': b'-- Looking for shmat\n'}
+[1.557444] (slam_toolbox) StdoutLine: {'line': b'-- Looking for shmat - found\n'}
+[1.557590] (slam_toolbox) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE\n'}
+[1.601011] (-) TimerEvent: {}
+[1.620995] (slam_toolbox) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE - found\n'}
+[1.699882] (slam_toolbox) StdoutLine: {'line': b'-- library: /usr/lib/x86_64-linux-gnu/libcurl.so\n'}
+[1.701114] (-) TimerEvent: {}
+[1.728806] (slam_toolbox) StdoutLine: {'line': b'-- Found rviz_default_plugins: 11.2.19 (/opt/ros/humble/share/rviz_default_plugins/cmake)\n'}
+[1.794218] (slam_toolbox) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: serialization filesystem thread \n'}
+[1.799944] (slam_toolbox) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") \n'}
+[1.801206] (-) TimerEvent: {}
+[1.805708] (slam_toolbox) StdoutLine: {'line': b'-- Found CHOLMOD: /usr/include/suitesparse  \n'}
+[1.806928] (slam_toolbox) StdoutLine: {'line': b'-- Found CSparse: /usr/include/suitesparse  \n'}
+[1.833129] (slam_toolbox) StdoutLine: {'line': b'-- Looking for sgemm_\n'}
+[1.879016] (slam_toolbox) StdoutLine: {'line': b'-- Looking for sgemm_ - not found\n'}
+[1.901325] (-) TimerEvent: {}
+[1.907599] (slam_toolbox) StdoutLine: {'line': b'-- Looking for sgemm_\n'}
+[1.955281] (slam_toolbox) StdoutLine: {'line': b'-- Looking for sgemm_ - found\n'}
+[1.955579] (slam_toolbox) StdoutLine: {'line': b'-- Found BLAS: /usr/lib/x86_64-linux-gnu/libblas.so  \n'}
+[1.957181] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_\n'}
+[2.001446] (-) TimerEvent: {}
+[2.006706] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_ - not found\n'}
+[2.015168] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_\n'}
+[2.058060] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_ - not found\n'}
+[2.058508] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_\n'}
+[2.101531] (-) TimerEvent: {}
+[2.143861] (slam_toolbox) StdoutLine: {'line': b'-- Looking for cheev_ - found\n'}
+[2.144291] (slam_toolbox) StdoutLine: {'line': b'-- Found LAPACK: /usr/lib/x86_64-linux-gnu/liblapack.so;/usr/lib/x86_64-linux-gnu/libblas.so  \n'}
+[2.201626] (-) TimerEvent: {}
+[2.301813] (-) TimerEvent: {}
+[2.381951] (slam_toolbox) StdoutLine: {'line': b'-- Found OpenMP_C: -fopenmp (found version "4.5") \n'}
+[2.401929] (-) TimerEvent: {}
+[2.457258] (slam_toolbox) StdoutLine: {'line': b'-- Found OpenMP_CXX: -fopenmp (found version "4.5") \n'}
+[2.457441] (slam_toolbox) StdoutLine: {'line': b'-- Found OpenMP: TRUE (found version "4.5")  \n'}
+[2.461863] (slam_toolbox) StdoutLine: {'line': b'-- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3\n'}
+[2.467135] (slam_toolbox) StdoutLine: {'line': b'-- Found required Ceres dependency: glog\n'}
+[2.467621] (slam_toolbox) StdoutLine: {'line': b'-- Found required Ceres dependency: gflags\n'}
+[2.468190] (slam_toolbox) StdoutLine: {'line': b'-- Found Ceres version: 2.0.0 installed in: /usr with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, SchurSpecializations, Multithreading]\n'}
+[2.502030] (-) TimerEvent: {}
+[2.602165] (-) TimerEvent: {}
+[2.702319] (-) TimerEvent: {}
+[2.802488] (-) TimerEvent: {}
+[2.828115] (slam_toolbox) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[2.902675] (-) TimerEvent: {}
+[3.002846] (-) TimerEvent: {}
+[3.103022] (-) TimerEvent: {}
+[3.203179] (-) TimerEvent: {}
+[3.228566] (slam_toolbox) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.303287] (-) TimerEvent: {}
+[3.384240] (slam_toolbox) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[3.402395] (slam_toolbox) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[3.403378] (-) TimerEvent: {}
+[3.403800] (slam_toolbox) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[3.424231] (slam_toolbox) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[3.424358] (slam_toolbox) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[3.424410] (slam_toolbox) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[3.424465] (slam_toolbox) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[3.440649] (slam_toolbox) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[3.503505] (-) TimerEvent: {}
+[3.521483] (slam_toolbox) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.541125] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:133 (add_library):\n'}
+[3.541333] (slam_toolbox) StderrLine: {'line': b'  Target "SlamToolboxPlugin" links to target\n'}
+[3.541390] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.541448] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.541498] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.541543] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.541721] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.541862] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:175 (add_library):\n'}
+[3.541907] (slam_toolbox) StderrLine: {'line': b'  Target "ceres_solver_plugin" links to target\n'}
+[3.542000] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.542093] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.542186] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.542278] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.542323] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.542413] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:212 (add_library):\n'}
+[3.542514] (slam_toolbox) StderrLine: {'line': b'  Target "toolbox_common" links to target "tf2_sensor_msgs::tf2_sensor_msgs"\n'}
+[3.542607] (slam_toolbox) StderrLine: {'line': b'  but the target was not found.  Perhaps a find_package() call is missing for\n'}
+[3.542654] (slam_toolbox) StderrLine: {'line': b'  an IMPORTED target, or an ALIAS target is missing?\n'}
+[3.542750] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.542793] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.542837] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:245 (add_library):\n'}
+[3.542880] (slam_toolbox) StderrLine: {'line': b'  Target "decentralized_multirobot_slam_toolbox" links to target\n'}
+[3.542926] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.542970] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.543013] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.543056] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543099] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543142] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:247 (add_executable):\n'}
+[3.543186] (slam_toolbox) StderrLine: {'line': b'  Target "decentralized_multirobot_slam_toolbox_node" links to target\n'}
+[3.543229] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.543272] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.543316] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.543360] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543404] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543455] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:250 (add_library):\n'}
+[3.543500] (slam_toolbox) StderrLine: {'line': b'  Target "async_slam_toolbox" links to target\n'}
+[3.543544] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.543588] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.543631] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.543675] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543718] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.543761] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:252 (add_executable):\n'}
+[3.543803] (slam_toolbox) StderrLine: {'line': b'  Target "async_slam_toolbox_node" links to target\n'}
+[3.543846] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.543889] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.543932] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.543975] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544018] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544063] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:255 (add_library):\n'}
+[3.544106] (slam_toolbox) StderrLine: {'line': b'  Target "sync_slam_toolbox" links to target\n'}
+[3.544150] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.544194] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.544238] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.544281] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544324] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544367] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:257 (add_executable):\n'}
+[3.544411] (slam_toolbox) StderrLine: {'line': b'  Target "sync_slam_toolbox_node" links to target\n'}
+[3.544461] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.544510] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.544554] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.544598] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544642] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544685] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:260 (add_library):\n'}
+[3.544729] (slam_toolbox) StderrLine: {'line': b'  Target "localization_slam_toolbox" links to target\n'}
+[3.544773] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.544817] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.544860] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.544903] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544946] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.544989] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:262 (add_executable):\n'}
+[3.545032] (slam_toolbox) StderrLine: {'line': b'  Target "localization_slam_toolbox_node" links to target\n'}
+[3.545075] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.545118] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.545165] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.545209] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545252] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545295] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:265 (add_library):\n'}
+[3.545338] (slam_toolbox) StderrLine: {'line': b'  Target "lifelong_slam_toolbox" links to target\n'}
+[3.545382] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.545428] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.545478] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.545522] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545566] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545608] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:267 (add_executable):\n'}
+[3.545652] (slam_toolbox) StderrLine: {'line': b'  Target "lifelong_slam_toolbox_node" links to target\n'}
+[3.545694] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.545737] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.545779] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.545821] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545864] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.545906] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:270 (add_library):\n'}
+[3.545948] (slam_toolbox) StderrLine: {'line': b'  Target "map_and_localization_slam_toolbox" links to target\n'}
+[3.545990] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.546032] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.546074] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.546116] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.546158] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.546200] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:272 (add_executable):\n'}
+[3.546242] (slam_toolbox) StderrLine: {'line': b'  Target "map_and_localization_slam_toolbox_node" links to target\n'}
+[3.546285] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.546327] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.546370] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.546423] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.546471] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.546513] (slam_toolbox) StderrLine: {'line': b'CMake Error at CMakeLists.txt:276 (add_executable):\n'}
+[3.546556] (slam_toolbox) StderrLine: {'line': b'  Target "merge_maps_kinematic" links to target\n'}
+[3.546598] (slam_toolbox) StderrLine: {'line': b'  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a\n'}
+[3.546641] (slam_toolbox) StderrLine: {'line': b'  find_package() call is missing for an IMPORTED target, or an ALIAS target\n'}
+[3.546683] (slam_toolbox) StderrLine: {'line': b'  is missing?\n'}
+[3.546726] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.546769] (slam_toolbox) StderrLine: {'line': b'\n'}
+[3.603592] (-) TimerEvent: {}
+[3.703732] (-) TimerEvent: {}
+[3.718438] (slam_toolbox) StdoutLine: {'line': b'-- Generating done\n'}
+[3.721971] (slam_toolbox) StderrLine: {'line': b'CMake Generate step failed.  Build files cannot be regenerated correctly.\n'}
+[3.738894] (slam_toolbox) CommandEnded: {'returncode': 1}
+[3.803826] (-) TimerEvent: {}
+[3.904067] (-) TimerEvent: {}
+[4.004333] (-) TimerEvent: {}
+[4.104731] (-) TimerEvent: {}
+[4.205107] (-) TimerEvent: {}
+[4.305464] (-) TimerEvent: {}
+[4.405691] (-) TimerEvent: {}
+[4.506074] (-) TimerEvent: {}
+[4.606478] (-) TimerEvent: {}
+[4.706855] (-) TimerEvent: {}
+[4.807200] (-) TimerEvent: {}
+[4.907602] (-) TimerEvent: {}
+[5.007949] (-) TimerEvent: {}
+[5.108285] (-) TimerEvent: {}
+[5.208521] (-) TimerEvent: {}
+[5.308824] (-) TimerEvent: {}
+[5.409119] (-) TimerEvent: {}
+[5.509293] (-) TimerEvent: {}
+[5.609540] (-) TimerEvent: {}
+[5.709731] (-) TimerEvent: {}
+[5.809997] (-) TimerEvent: {}
+[5.910176] (-) TimerEvent: {}
+[6.010431] (-) TimerEvent: {}
+[6.110581] (-) TimerEvent: {}
+[6.210770] (-) TimerEvent: {}
+[6.311037] (-) TimerEvent: {}
+[6.411371] (-) TimerEvent: {}
+[6.511627] (-) TimerEvent: {}
+[6.612032] (-) TimerEvent: {}
+[6.712377] (-) TimerEvent: {}
+[6.812691] (-) TimerEvent: {}
+[6.912996] (-) TimerEvent: {}
+[7.013350] (-) TimerEvent: {}
+[7.113717] (-) TimerEvent: {}
+[7.214094] (-) TimerEvent: {}
+[7.314497] (-) TimerEvent: {}
+[7.414808] (-) TimerEvent: {}
+[7.515117] (-) TimerEvent: {}
+[7.615515] (-) TimerEvent: {}
+[7.715895] (-) TimerEvent: {}
+[7.816286] (-) TimerEvent: {}
+[7.916697] (-) TimerEvent: {}
+[8.017084] (-) TimerEvent: {}
+[8.117477] (-) TimerEvent: {}
+[8.217829] (-) TimerEvent: {}
+[8.318198] (-) TimerEvent: {}
+[8.418551] (-) TimerEvent: {}
+[8.518820] (-) TimerEvent: {}
+[8.619190] (-) TimerEvent: {}
+[8.719602] (-) TimerEvent: {}
+[8.819981] (-) TimerEvent: {}
+[8.920359] (-) TimerEvent: {}
+[9.020706] (-) TimerEvent: {}
+[9.121080] (-) TimerEvent: {}
+[9.221481] (-) TimerEvent: {}
+[9.321863] (-) TimerEvent: {}
+[9.422236] (-) TimerEvent: {}
+[9.522598] (-) TimerEvent: {}
+[9.623116] (-) TimerEvent: {}
+[9.723515] (-) TimerEvent: {}
+[9.823870] (-) TimerEvent: {}
+[9.924250] (-) TimerEvent: {}
+[10.024634] (-) TimerEvent: {}
+[10.125031] (-) TimerEvent: {}
+[10.225411] (-) TimerEvent: {}
+[10.325805] (-) TimerEvent: {}
+[10.426181] (-) TimerEvent: {}
+[10.526575] (-) TimerEvent: {}
+[10.626926] (-) TimerEvent: {}
+[10.727192] (-) TimerEvent: {}
+[10.827581] (-) TimerEvent: {}
+[10.927972] (-) TimerEvent: {}
+[11.028345] (-) TimerEvent: {}
+[11.128705] (-) TimerEvent: {}
+[11.229070] (-) TimerEvent: {}
+[11.329461] (-) TimerEvent: {}
+[11.429845] (-) TimerEvent: {}
+[11.530226] (-) TimerEvent: {}
+[11.630598] (-) TimerEvent: {}
+[11.730963] (-) TimerEvent: {}
+[11.831316] (-) TimerEvent: {}
+[11.931599] (-) TimerEvent: {}
+[12.031951] (-) TimerEvent: {}
+[12.132328] (-) TimerEvent: {}
+[12.232687] (-) TimerEvent: {}
+[12.333066] (-) TimerEvent: {}
+[12.433396] (-) TimerEvent: {}
+[12.533684] (-) TimerEvent: {}
+[12.634064] (-) TimerEvent: {}
+[12.734445] (-) TimerEvent: {}
+[12.834856] (-) TimerEvent: {}
+[12.935239] (-) TimerEvent: {}
+[13.035606] (-) TimerEvent: {}
+[13.136009] (-) TimerEvent: {}
+[13.236414] (-) TimerEvent: {}
+[13.336744] (-) TimerEvent: {}
+[13.437022] (-) TimerEvent: {}
+[13.537405] (-) TimerEvent: {}
+[13.637765] (-) TimerEvent: {}
+[13.738191] (-) TimerEvent: {}
+[13.838539] (-) TimerEvent: {}
+[13.938898] (-) TimerEvent: {}
+[14.039278] (-) TimerEvent: {}
+[14.139616] (-) TimerEvent: {}
+[14.239993] (-) TimerEvent: {}
+[14.340378] (-) TimerEvent: {}
+[14.440725] (-) TimerEvent: {}
+[14.541038] (-) TimerEvent: {}
+[14.641359] (-) TimerEvent: {}
+[14.741659] (-) TimerEvent: {}
+[14.841998] (-) TimerEvent: {}
+[14.942399] (-) TimerEvent: {}
+[15.042762] (-) TimerEvent: {}
+[15.143143] (-) TimerEvent: {}
+[15.243536] (-) TimerEvent: {}
+[15.343814] (-) TimerEvent: {}
+[15.444065] (-) TimerEvent: {}
+[15.544354] (-) TimerEvent: {}
+[15.644708] (-) TimerEvent: {}
+[15.745009] (-) TimerEvent: {}
+[15.845209] (-) TimerEvent: {}
+[15.945390] (-) TimerEvent: {}
+[16.045511] (-) TimerEvent: {}
+[16.145659] (-) TimerEvent: {}
+[16.245848] (-) TimerEvent: {}
+[16.346160] (-) TimerEvent: {}
+[16.446520] (-) TimerEvent: {}
+[16.546820] (-) TimerEvent: {}
+[16.647195] (-) TimerEvent: {}
+[16.747617] (-) TimerEvent: {}
+[16.847891] (-) TimerEvent: {}
+[16.948198] (-) TimerEvent: {}
+[17.048608] (-) TimerEvent: {}
+[17.148993] (-) TimerEvent: {}
+[17.249371] (-) TimerEvent: {}
+[17.349732] (-) TimerEvent: {}
+[17.450111] (-) TimerEvent: {}
+[17.550497] (-) TimerEvent: {}
+[17.650821] (-) TimerEvent: {}
+[17.751056] (-) TimerEvent: {}
+[17.851287] (-) TimerEvent: {}
+[17.951797] (-) TimerEvent: {}
+[18.052172] (-) TimerEvent: {}
+[18.152586] (-) TimerEvent: {}
+[18.252957] (-) TimerEvent: {}
+[18.353336] (-) TimerEvent: {}
+[18.453713] (-) TimerEvent: {}
+[18.554058] (-) TimerEvent: {}
+[18.654441] (-) TimerEvent: {}
+[18.754787] (-) TimerEvent: {}
+[18.855168] (-) TimerEvent: {}
+[18.955522] (-) TimerEvent: {}
+[19.055921] (-) TimerEvent: {}
+[19.156300] (-) TimerEvent: {}
+[19.256721] (-) TimerEvent: {}
+[19.357094] (-) TimerEvent: {}
+[19.457491] (-) TimerEvent: {}
+[19.557857] (-) TimerEvent: {}
+[19.658230] (-) TimerEvent: {}
+[19.758616] (-) TimerEvent: {}
+[19.858979] (-) TimerEvent: {}
+[19.959354] (-) TimerEvent: {}
+[20.059709] (-) TimerEvent: {}
+[20.160084] (-) TimerEvent: {}
+[20.260482] (-) TimerEvent: {}
+[20.360780] (-) TimerEvent: {}
+[20.461074] (-) TimerEvent: {}
+[20.561518] (-) TimerEvent: {}
+[20.661891] (-) TimerEvent: {}
+[20.762305] (-) TimerEvent: {}
+[20.862676] (-) TimerEvent: {}
+[20.963024] (-) TimerEvent: {}
+[21.063409] (-) TimerEvent: {}
+[21.163765] (-) TimerEvent: {}
+[21.264141] (-) TimerEvent: {}
+[21.364541] (-) TimerEvent: {}
+[21.464887] (-) TimerEvent: {}
+[21.565259] (-) TimerEvent: {}
+[21.665788] (-) TimerEvent: {}
+[21.766171] (-) TimerEvent: {}
+[21.866562] (-) TimerEvent: {}
+[21.966915] (-) TimerEvent: {}
+[22.067261] (-) TimerEvent: {}
+[22.167617] (-) TimerEvent: {}
+[22.267958] (-) TimerEvent: {}
+[22.368341] (-) TimerEvent: {}
+[22.468906] (-) TimerEvent: {}
+[22.569278] (-) TimerEvent: {}
+[22.669614] (-) TimerEvent: {}
+[22.769987] (-) TimerEvent: {}
+[22.870358] (-) TimerEvent: {}
+[22.970706] (-) TimerEvent: {}
+[23.071105] (-) TimerEvent: {}
+[23.171525] (-) TimerEvent: {}
+[23.271909] (-) TimerEvent: {}
+[23.372341] (-) TimerEvent: {}
+[23.472761] (-) TimerEvent: {}
+[23.573149] (-) TimerEvent: {}
+[23.673549] (-) TimerEvent: {}
+[23.773924] (-) TimerEvent: {}
+[23.874301] (-) TimerEvent: {}
+[23.974713] (-) TimerEvent: {}
+[24.075098] (-) TimerEvent: {}
+[24.175506] (-) TimerEvent: {}
+[24.275895] (-) TimerEvent: {}
+[24.376277] (-) TimerEvent: {}
+[24.476647] (-) TimerEvent: {}
+[24.577033] (-) TimerEvent: {}
+[24.677456] (-) TimerEvent: {}
+[24.777829] (-) TimerEvent: {}
+[24.878214] (-) TimerEvent: {}
+[24.978621] (-) TimerEvent: {}
+[25.079004] (-) TimerEvent: {}
+[25.179394] (-) TimerEvent: {}
+[25.279784] (-) TimerEvent: {}
+[25.380169] (-) TimerEvent: {}
+[25.480565] (-) TimerEvent: {}
+[25.580966] (-) TimerEvent: {}
+[25.681346] (-) TimerEvent: {}
+[25.781757] (-) TimerEvent: {}
+[25.882143] (-) TimerEvent: {}
+[25.982541] (-) TimerEvent: {}
+[26.082917] (-) TimerEvent: {}
+[26.183302] (-) TimerEvent: {}
+[26.283676] (-) TimerEvent: {}
+[26.384052] (-) TimerEvent: {}
+[26.484460] (-) TimerEvent: {}
+[26.584806] (-) TimerEvent: {}
+[26.685181] (-) TimerEvent: {}
+[26.785571] (-) TimerEvent: {}
+[26.885945] (-) TimerEvent: {}
+[26.986346] (-) TimerEvent: {}
+[27.086704] (-) TimerEvent: {}
+[27.187076] (-) TimerEvent: {}
+[27.287465] (-) TimerEvent: {}
+[27.387815] (-) TimerEvent: {}
+[27.488185] (-) TimerEvent: {}
+[27.588577] (-) TimerEvent: {}
+[27.688888] (-) TimerEvent: {}
+[27.789158] (-) TimerEvent: {}
+[27.889549] (-) TimerEvent: {}
+[27.989946] (-) TimerEvent: {}
+[28.090324] (-) TimerEvent: {}
+[28.190686] (-) TimerEvent: {}
+[28.291063] (-) TimerEvent: {}
+[28.391461] (-) TimerEvent: {}
+[28.491855] (-) TimerEvent: {}
+[28.592238] (-) TimerEvent: {}
+[28.692544] (-) TimerEvent: {}
+[28.792950] (-) TimerEvent: {}
+[28.893328] (-) TimerEvent: {}
+[28.993696] (-) TimerEvent: {}
+[29.094086] (-) TimerEvent: {}
+[29.194474] (-) TimerEvent: {}
+[29.294791] (-) TimerEvent: {}
+[29.395137] (-) TimerEvent: {}
+[29.495541] (-) TimerEvent: {}
+[29.595903] (-) TimerEvent: {}
+[29.696272] (-) TimerEvent: {}
+[29.796605] (-) TimerEvent: {}
+[29.896986] (-) TimerEvent: {}
+[29.997366] (-) TimerEvent: {}
+[30.066764] (slam_toolbox) JobEnded: {'identifier': 'slam_toolbox', 'rc': 1}
+[30.068689] (autodrive_f1tenth) JobSkipped: {'identifier': 'autodrive_f1tenth'}
+[30.068781] (-) EventReactorShutdown: {}

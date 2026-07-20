@@ -1,0 +1,23 @@
+[console_scripts]
+autodrive_incoming_bridge = autodrive_f1tenth.autodrive_incoming_bridge:main
+autodrive_incoming_bridge_2 = autodrive_f1tenth.autodrive_incoming_bridge_2:main
+autodrive_outgoing_bridge = autodrive_f1tenth.autodrive_outgoing_bridge:main
+autodrive_outgoing_bridge_2 = autodrive_f1tenth.autodrive_outgoing_bridge_2:main
+confidence_log = autodrive_f1tenth.confidence_log:main
+dl_slot = autodrive_f1tenth.dl_slot:main
+dl_slot_scan = autodrive_f1tenth.dl_slot_scan:main
+follow_stack = autodrive_f1tenth.follow_stack:main
+overtake_decision = autodrive_f1tenth.overtake_decision:main
+plot_pure_pursuit_runs = autodrive_f1tenth.plot_pure_pursuit_runs:main
+pure_pursuit = autodrive_f1tenth.pure_pursuit:main
+pure_pursuit_target = autodrive_f1tenth.pure_pursuit_target:main
+safety = autodrive_f1tenth.safety:main
+slam = autodrive_f1tenth.slam:main
+slam_tf_logger = autodrive_f1tenth.slam_tf_logger:main
+slam_toolbox_bridge = autodrive_f1tenth.slam_toolbox_bridge:main
+slam_toolbox_map_logger = autodrive_f1tenth.slam_toolbox_map_logger:main
+target_vehicle_tracker = autodrive_f1tenth.target_vehicle_tracker:main
+target_vehicle_tracker_foreground = autodrive_f1tenth.target_vehicle_tracker_foreground:main
+teleop_keyboard = autodrive_f1tenth.teleop_keyboard:main
+thesis = autodrive_f1tenth.thesis:main
+

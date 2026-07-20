@@ -1,0 +1,5 @@
+slam_toolbox::AsynchronousSlamToolbox;lib/libasync_slam_toolbox.so
+slam_toolbox::SynchronousSlamToolbox;lib/libsync_slam_toolbox.so
+slam_toolbox::LocalizationSlamToolbox;lib/liblocalization_slam_toolbox.so
+slam_toolbox::LifelongSlamToolbox;lib/liblifelong_slam_toolbox.so
+slam_toolbox::MapAndLocalizationSlamToolbox;lib/libmap_and_localization_slam_toolbox.so

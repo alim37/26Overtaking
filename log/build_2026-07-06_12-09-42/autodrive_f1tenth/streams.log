@@ -1,0 +1,27 @@
+[0.622s] Invoking command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build --no-deps symlink_data
+[0.880s] running develop
+[1.051s] running egg_info
+[1.051s] writing autodrive_f1tenth_bench.egg-info/PKG-INFO
+[1.051s] writing dependency_links to autodrive_f1tenth_bench.egg-info/dependency_links.txt
+[1.052s] writing entry points to autodrive_f1tenth_bench.egg-info/entry_points.txt
+[1.052s] writing requirements to autodrive_f1tenth_bench.egg-info/requires.txt
+[1.052s] writing top-level names to autodrive_f1tenth_bench.egg-info/top_level.txt
+[1.055s] reading manifest file 'autodrive_f1tenth_bench.egg-info/SOURCES.txt'
+[1.057s] writing manifest file 'autodrive_f1tenth_bench.egg-info/SOURCES.txt'
+[1.059s] running build_ext
+[1.059s] Creating /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth-bench.egg-link (link to .)
+[1.060s] Installing confidence_log script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.060s] Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.060s] Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.060s] Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.064s] Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing pure_pursuit script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing pure_pursuit_target script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing safety script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing slam script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing slam_toolbox_bridge script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.065s] 
+[1.065s] Installed /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth
+[1.065s] running symlink_data
+[1.096s] Invoked command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build --no-deps symlink_data

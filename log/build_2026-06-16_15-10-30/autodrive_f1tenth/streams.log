@@ -1,0 +1,29 @@
+[30.615s] Invoking command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data
+[30.859s] running egg_info
+[30.860s] writing ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[30.860s] writing dependency_links to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[30.861s] writing entry points to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[30.861s] writing requirements to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[30.861s] writing top-level names to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[30.864s] reading manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[30.865s] writing manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[30.865s] running build
+[30.865s] running build_py
+[30.865s] copying autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[30.865s] running install
+[30.866s] running install_lib
+[30.867s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[30.868s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/target_vehicle_tracker.py to target_vehicle_tracker.cpython-310.pyc
+[30.872s] running install_data
+[30.872s] running install_egg_info
+[30.873s] removing '/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info' (and everything under it)
+[30.873s] Copying ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[30.874s] running install_scripts
+[30.893s] Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] Installing pure_pursuit script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.894s] writing list of installed files to '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log'
+[30.937s] Invoked command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data

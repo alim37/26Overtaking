@@ -1,0 +1,43 @@
+running develop
+Removing /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth.egg-link (link to .)
+running egg_info
+writing ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+writing dependency_links to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+writing entry points to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+writing requirements to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+writing top-level names to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+reading manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+writing manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+running install
+running install_lib
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/dl_slot.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/__init__.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/pure_pursuit.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/dl_slot_scan.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/follow_stack.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/plot_pure_pursuit_runs.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/dl_slot.py to dl_slot.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/target_vehicle_tracker.py to target_vehicle_tracker.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/pure_pursuit.py to pure_pursuit.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/dl_slot_scan.py to dl_slot_scan.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/follow_stack.py to follow_stack.cpython-310.pyc
+byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/plot_pure_pursuit_runs.py to plot_pure_pursuit_runs.cpython-310.pyc
+running install_data
+copying resource/autodrive_f1tenth -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+copying package.xml -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth
+copying launch/follow_stack.launch.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+running install_egg_info
+Copying ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+running install_scripts
+Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+Installing pure_pursuit_ethz_scaled script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+writing list of installed files to '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log'

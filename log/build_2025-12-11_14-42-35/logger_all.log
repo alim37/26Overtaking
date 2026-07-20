@@ -1,0 +1,233 @@
+[0.113s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.113s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7e14b696e7a0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7e14b696e2f0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7e14b696e2f0>>, mixin_verb=('build',))
+[0.274s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.274s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.275s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.275s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.275s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.275s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.275s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/malik/ros2_ws'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'ignore'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'ignore_ament_install'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['colcon_pkg']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'colcon_pkg'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['colcon_meta']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'colcon_meta'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['ros']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'ros'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['cmake', 'python']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'cmake'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'python'
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extensions ['python_setup_py']
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2) by extension 'python_setup_py'
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extensions ['ignore', 'ignore_ament_install']
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extension 'ignore'
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extension 'ignore_ament_install'
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extensions ['colcon_pkg']
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extension 'colcon_pkg'
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extensions ['colcon_meta']
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extension 'colcon_meta'
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extensions ['ros']
+[0.287s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_f1tenth) by extension 'ros'
+[0.290s] DEBUG:colcon.colcon_core.package_identification:Package 'src/autodrive_ros2/autodrive_f1tenth' with type 'ros.ament_python' and name 'autodrive_f1tenth'
+[0.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extensions ['ignore', 'ignore_ament_install']
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extension 'ignore'
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extension 'ignore_ament_install'
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extensions ['colcon_pkg']
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extension 'colcon_pkg'
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extensions ['colcon_meta']
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extension 'colcon_meta'
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extensions ['ros']
+[0.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/autodrive_ros2/autodrive_nigel) by extension 'ros'
+[0.292s] DEBUG:colcon.colcon_core.package_identification:Package 'src/autodrive_ros2/autodrive_nigel' with type 'ros.ament_python' and name 'autodrive_nigel'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extensions ['ignore', 'ignore_ament_install']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extension 'ignore'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) ignored
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extensions ['ignore', 'ignore_ament_install']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extension 'ignore'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) ignored
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extensions ['ignore', 'ignore_ament_install']
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extension 'ignore'
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) ignored
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.293s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.326s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.326s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.328s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/malik/ros2_ws/install
+[0.330s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 305 installed packages in /opt/ros/humble
+[0.331s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_args' from command line to 'None'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_target' from command line to 'None'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_clean_cache' from command line to 'False'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_clean_first' from command line to 'False'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'cmake_force_configure' from command line to 'False'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'ament_cmake_args' from command line to 'None'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'catkin_cmake_args' from command line to 'None'
+[0.365s] Level 5:colcon.colcon_core.verb:set package 'autodrive_f1tenth' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.366s] DEBUG:colcon.colcon_core.verb:Building package 'autodrive_f1tenth' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/malik/ros2_ws/build/autodrive_f1tenth', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/malik/ros2_ws/install/autodrive_f1tenth', 'merge_install': False, 'path': '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth', 'symlink_install': True, 'test_result_base': None}
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_args' from command line to 'None'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_target' from command line to 'None'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_clean_cache' from command line to 'False'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_clean_first' from command line to 'False'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'cmake_force_configure' from command line to 'False'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'ament_cmake_args' from command line to 'None'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'catkin_cmake_args' from command line to 'None'
+[0.366s] Level 5:colcon.colcon_core.verb:set package 'autodrive_nigel' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.366s] DEBUG:colcon.colcon_core.verb:Building package 'autodrive_nigel' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/malik/ros2_ws/build/autodrive_nigel', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/malik/ros2_ws/install/autodrive_nigel', 'merge_install': False, 'path': '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel', 'symlink_install': True, 'test_result_base': None}
+[0.366s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.367s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.368s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth' with build type 'ament_python'
+[0.368s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_f1tenth', 'ament_prefix_path')
+[0.370s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.370s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/ament_prefix_path.ps1'
+[0.371s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/ament_prefix_path.dsv'
+[0.371s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/ament_prefix_path.sh'
+[0.372s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.372s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.378s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel' with build type 'ament_python'
+[0.379s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_nigel', 'ament_prefix_path')
+[0.379s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/ament_prefix_path.ps1'
+[0.380s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/ament_prefix_path.dsv'
+[0.380s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/ament_prefix_path.sh'
+[0.381s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.381s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.650s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth'
+[0.650s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.650s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.900s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel'
+[0.901s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.901s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.264s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index/resource_index/packages/autodrive_f1tenth
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.xml
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch/simulator_bringup_rviz.launch.py
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch/simulator_bringup_rviz_2.launch.py
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch/thesis.launch.py
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch/simulator_bringup_headless.launch.py
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz/simulator.rviz
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz/simulator_2.rviz
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/autodrive_incoming_bridge
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/autodrive_incoming_bridge_2
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/autodrive_outgoing_bridge
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/autodrive_outgoing_bridge_2
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/pure_pursuit
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/teleop_keyboard
+[1.265s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth/thesis
+[1.269s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/malik/ros2_ws/build/autodrive_f1tenth': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data --force
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/ament_index/resource_index/packages/autodrive_nigel
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.xml
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/launch/simulator/simulator_bringup_rviz.launch.py
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/launch/simulator/simulator_bringup_headless.launch.py
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/launch/testbed
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/rviz/simulator/simulator.rviz
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/rviz/testbed
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel/autodrive_incoming_bridge
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel/autodrive_outgoing_bridge
+[1.271s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel/teleop_keyboard
+[1.275s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/malik/ros2_ws/build/autodrive_nigel': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_nigel/build --no-deps symlink_data --force
+[1.706s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_f1tenth', 'pythonpath_develop')
+[1.707s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.ps1'
+[1.707s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/malik/ros2_ws/build/autodrive_f1tenth' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data --force
+[1.708s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.dsv'
+[1.709s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.sh'
+[1.712s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth' for CMake module files
+[1.713s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth' for CMake config files
+[1.715s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth/lib'
+[1.716s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth/bin'
+[1.716s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth/lib/pkgconfig/autodrive_f1tenth.pc'
+[1.716s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages'
+[1.716s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_f1tenth', 'pythonpath')
+[1.716s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath.ps1'
+[1.717s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath.dsv'
+[1.717s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath.sh'
+[1.717s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_f1tenth/bin'
+[1.717s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(autodrive_f1tenth)
+[1.718s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.ps1'
+[1.718s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.dsv'
+[1.719s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.sh'
+[1.720s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.bash'
+[1.721s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/package.zsh'
+[1.722s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/malik/ros2_ws/install/autodrive_f1tenth/share/colcon-core/packages/autodrive_f1tenth)
+[1.724s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_nigel', 'pythonpath_develop')
+[1.724s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/build/autodrive_nigel/share/autodrive_nigel/hook/pythonpath_develop.ps1'
+[1.724s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/malik/ros2_ws/build/autodrive_nigel' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_nigel/build --no-deps symlink_data --force
+[1.725s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/build/autodrive_nigel/share/autodrive_nigel/hook/pythonpath_develop.dsv'
+[1.725s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/build/autodrive_nigel/share/autodrive_nigel/hook/pythonpath_develop.sh'
+[1.726s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel' for CMake module files
+[1.726s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel' for CMake config files
+[1.728s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel/lib'
+[1.728s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel/bin'
+[1.728s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel/lib/pkgconfig/autodrive_nigel.pc'
+[1.728s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages'
+[1.728s] Level 1:colcon.colcon_core.shell:create_environment_hook('autodrive_nigel', 'pythonpath')
+[1.728s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/pythonpath.ps1'
+[1.729s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/pythonpath.dsv'
+[1.729s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/hook/pythonpath.sh'
+[1.730s] Level 1:colcon.colcon_core.environment:checking '/home/malik/ros2_ws/install/autodrive_nigel/bin'
+[1.730s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(autodrive_nigel)
+[1.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.ps1'
+[1.730s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.dsv'
+[1.731s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.sh'
+[1.731s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.bash'
+[1.731s] INFO:colcon.colcon_core.shell:Creating package script '/home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/package.zsh'
+[1.732s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/malik/ros2_ws/install/autodrive_nigel/share/colcon-core/packages/autodrive_nigel)
+[1.732s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.732s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.732s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.732s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.737s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.737s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.737s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.745s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.746s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/malik/ros2_ws/install/local_setup.ps1'
+[1.747s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/malik/ros2_ws/install/_local_setup_util_ps1.py'
+[1.748s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/malik/ros2_ws/install/setup.ps1'
+[1.748s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/malik/ros2_ws/install/local_setup.sh'
+[1.749s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/malik/ros2_ws/install/_local_setup_util_sh.py'
+[1.749s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/malik/ros2_ws/install/setup.sh'
+[1.750s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/malik/ros2_ws/install/local_setup.bash'
+[1.751s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/malik/ros2_ws/install/setup.bash'
+[1.752s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/malik/ros2_ws/install/local_setup.zsh'
+[1.752s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/malik/ros2_ws/install/setup.zsh'

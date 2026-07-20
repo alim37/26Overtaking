@@ -1,0 +1,112 @@
+CMake Error at CMakeLists.txt:133 (add_library):
+  Target "SlamToolboxPlugin" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:175 (add_library):
+  Target "ceres_solver_plugin" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:212 (add_library):
+  Target "toolbox_common" links to target "tf2_sensor_msgs::tf2_sensor_msgs"
+  but the target was not found.  Perhaps a find_package() call is missing for
+  an IMPORTED target, or an ALIAS target is missing?
+
+
+CMake Error at CMakeLists.txt:245 (add_library):
+  Target "decentralized_multirobot_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:247 (add_executable):
+  Target "decentralized_multirobot_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:250 (add_library):
+  Target "async_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:252 (add_executable):
+  Target "async_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:255 (add_library):
+  Target "sync_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:257 (add_executable):
+  Target "sync_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:260 (add_library):
+  Target "localization_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:262 (add_executable):
+  Target "localization_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:265 (add_library):
+  Target "lifelong_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:267 (add_executable):
+  Target "lifelong_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:270 (add_library):
+  Target "map_and_localization_slam_toolbox" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:272 (add_executable):
+  Target "map_and_localization_slam_toolbox_node" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:276 (add_executable):
+  Target "merge_maps_kinematic" links to target
+  "tf2_sensor_msgs::tf2_sensor_msgs" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

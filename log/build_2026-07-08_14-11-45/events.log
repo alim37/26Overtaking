@@ -1,0 +1,344 @@
+[0.000000] (-) TimerEvent: {}
+[0.000149] (-) JobUnselected: {'identifier': 'slam_toolbox'}
+[0.000196] (autodrive_f1tenth) JobQueued: {'identifier': 'autodrive_f1tenth', 'dependencies': OrderedDict([('slam_toolbox', '/home/malik/controller-benchmarks/ros2/install/slam_toolbox')])}
+[0.000231] (autodrive_f1tenth) JobStarted: {'identifier': 'autodrive_f1tenth'}
+[0.099506] (-) TimerEvent: {}
+[0.199714] (-) TimerEvent: {}
+[0.299881] (-) TimerEvent: {}
+[0.400088] (-) TimerEvent: {}
+[0.500313] (-) TimerEvent: {}
+[0.600585] (-) TimerEvent: {}
+[0.700779] (-) TimerEvent: {}
+[0.801026] (-) TimerEvent: {}
+[0.901297] (-) TimerEvent: {}
+[1.001548] (-) TimerEvent: {}
+[1.101744] (-) TimerEvent: {}
+[1.202004] (-) TimerEvent: {}
+[1.302305] (-) TimerEvent: {}
+[1.402564] (-) TimerEvent: {}
+[1.502776] (-) TimerEvent: {}
+[1.602960] (-) TimerEvent: {}
+[1.703213] (-) TimerEvent: {}
+[1.803454] (-) TimerEvent: {}
+[1.903659] (-) TimerEvent: {}
+[2.003850] (-) TimerEvent: {}
+[2.104017] (-) TimerEvent: {}
+[2.204197] (-) TimerEvent: {}
+[2.304498] (-) TimerEvent: {}
+[2.404684] (-) TimerEvent: {}
+[2.504929] (-) TimerEvent: {}
+[2.605128] (-) TimerEvent: {}
+[2.705338] (-) TimerEvent: {}
+[2.805586] (-) TimerEvent: {}
+[2.905758] (-) TimerEvent: {}
+[3.006003] (-) TimerEvent: {}
+[3.106211] (-) TimerEvent: {}
+[3.206662] (-) TimerEvent: {}
+[3.306943] (-) TimerEvent: {}
+[3.407310] (-) TimerEvent: {}
+[3.507544] (-) TimerEvent: {}
+[3.607745] (-) TimerEvent: {}
+[3.708163] (-) TimerEvent: {}
+[3.808381] (-) TimerEvent: {}
+[3.908537] (-) TimerEvent: {}
+[4.008836] (-) TimerEvent: {}
+[4.109115] (-) TimerEvent: {}
+[4.209404] (-) TimerEvent: {}
+[4.309595] (-) TimerEvent: {}
+[4.410000] (-) TimerEvent: {}
+[4.510197] (-) TimerEvent: {}
+[4.610427] (-) TimerEvent: {}
+[4.710530] (-) TimerEvent: {}
+[4.810786] (-) TimerEvent: {}
+[4.911149] (-) TimerEvent: {}
+[5.011527] (-) TimerEvent: {}
+[5.111717] (-) TimerEvent: {}
+[5.211890] (-) TimerEvent: {}
+[5.312096] (-) TimerEvent: {}
+[5.412410] (-) TimerEvent: {}
+[5.513000] (-) TimerEvent: {}
+[5.613298] (-) TimerEvent: {}
+[5.713548] (-) TimerEvent: {}
+[5.813755] (-) TimerEvent: {}
+[5.914053] (-) TimerEvent: {}
+[6.014432] (-) TimerEvent: {}
+[6.114749] (-) TimerEvent: {}
+[6.215046] (-) TimerEvent: {}
+[6.315273] (-) TimerEvent: {}
+[6.415575] (-) TimerEvent: {}
+[6.515727] (-) TimerEvent: {}
+[6.615931] (-) TimerEvent: {}
+[6.716309] (-) TimerEvent: {}
+[6.816577] (-) TimerEvent: {}
+[6.916735] (-) TimerEvent: {}
+[7.016950] (-) TimerEvent: {}
+[7.117258] (-) TimerEvent: {}
+[7.217471] (-) TimerEvent: {}
+[7.317766] (-) TimerEvent: {}
+[7.418116] (-) TimerEvent: {}
+[7.518383] (-) TimerEvent: {}
+[7.618611] (-) TimerEvent: {}
+[7.718944] (-) TimerEvent: {}
+[7.819179] (-) TimerEvent: {}
+[7.919464] (-) TimerEvent: {}
+[8.019877] (-) TimerEvent: {}
+[8.120261] (-) TimerEvent: {}
+[8.220437] (-) TimerEvent: {}
+[8.320630] (-) TimerEvent: {}
+[8.420949] (-) TimerEvent: {}
+[8.521226] (-) TimerEvent: {}
+[8.621441] (-) TimerEvent: {}
+[8.721718] (-) TimerEvent: {}
+[8.821995] (-) TimerEvent: {}
+[8.922369] (-) TimerEvent: {}
+[9.022641] (-) TimerEvent: {}
+[9.122799] (-) TimerEvent: {}
+[9.225744] (-) TimerEvent: {}
+[9.326047] (-) TimerEvent: {}
+[9.426206] (-) TimerEvent: {}
+[9.526433] (-) TimerEvent: {}
+[9.626753] (-) TimerEvent: {}
+[9.727030] (-) TimerEvent: {}
+[9.827292] (-) TimerEvent: {}
+[9.927479] (-) TimerEvent: {}
+[10.027702] (-) TimerEvent: {}
+[10.127906] (-) TimerEvent: {}
+[10.228225] (-) TimerEvent: {}
+[10.328480] (-) TimerEvent: {}
+[10.428838] (-) TimerEvent: {}
+[10.529149] (-) TimerEvent: {}
+[10.629443] (-) TimerEvent: {}
+[10.729639] (-) TimerEvent: {}
+[10.829969] (-) TimerEvent: {}
+[10.930273] (-) TimerEvent: {}
+[11.030517] (-) TimerEvent: {}
+[11.130801] (-) TimerEvent: {}
+[11.231134] (-) TimerEvent: {}
+[11.331464] (-) TimerEvent: {}
+[11.431755] (-) TimerEvent: {}
+[11.532161] (-) TimerEvent: {}
+[11.632461] (-) TimerEvent: {}
+[11.732766] (-) TimerEvent: {}
+[11.833088] (-) TimerEvent: {}
+[11.933303] (-) TimerEvent: {}
+[12.033513] (-) TimerEvent: {}
+[12.133771] (-) TimerEvent: {}
+[12.234045] (-) TimerEvent: {}
+[12.334310] (-) TimerEvent: {}
+[12.434744] (-) TimerEvent: {}
+[12.535075] (-) TimerEvent: {}
+[12.635304] (-) TimerEvent: {}
+[12.735483] (-) TimerEvent: {}
+[12.835825] (-) TimerEvent: {}
+[12.936202] (-) TimerEvent: {}
+[13.036418] (-) TimerEvent: {}
+[13.136676] (-) TimerEvent: {}
+[13.236970] (-) TimerEvent: {}
+[13.337240] (-) TimerEvent: {}
+[13.437496] (-) TimerEvent: {}
+[13.537777] (-) TimerEvent: {}
+[13.638088] (-) TimerEvent: {}
+[13.738280] (-) TimerEvent: {}
+[13.838547] (-) TimerEvent: {}
+[13.938737] (-) TimerEvent: {}
+[14.039076] (-) TimerEvent: {}
+[14.139520] (-) TimerEvent: {}
+[14.239819] (-) TimerEvent: {}
+[14.340189] (-) TimerEvent: {}
+[14.440447] (-) TimerEvent: {}
+[14.540756] (-) TimerEvent: {}
+[14.641218] (-) TimerEvent: {}
+[14.741603] (-) TimerEvent: {}
+[14.841864] (-) TimerEvent: {}
+[14.942225] (-) TimerEvent: {}
+[15.042408] (-) TimerEvent: {}
+[15.142588] (-) TimerEvent: {}
+[15.242834] (-) TimerEvent: {}
+[15.343110] (-) TimerEvent: {}
+[15.443411] (-) TimerEvent: {}
+[15.543793] (-) TimerEvent: {}
+[15.643984] (-) TimerEvent: {}
+[15.744214] (-) TimerEvent: {}
+[15.844620] (-) TimerEvent: {}
+[15.944890] (-) TimerEvent: {}
+[16.045384] (-) TimerEvent: {}
+[16.145690] (-) TimerEvent: {}
+[16.245919] (-) TimerEvent: {}
+[16.346256] (-) TimerEvent: {}
+[16.446573] (-) TimerEvent: {}
+[16.546754] (-) TimerEvent: {}
+[16.647075] (-) TimerEvent: {}
+[16.747337] (-) TimerEvent: {}
+[16.847593] (-) TimerEvent: {}
+[16.947826] (-) TimerEvent: {}
+[17.048041] (-) TimerEvent: {}
+[17.148295] (-) TimerEvent: {}
+[17.248624] (-) TimerEvent: {}
+[17.348790] (-) TimerEvent: {}
+[17.448971] (-) TimerEvent: {}
+[17.549215] (-) TimerEvent: {}
+[17.649538] (-) TimerEvent: {}
+[17.749725] (-) TimerEvent: {}
+[17.849981] (-) TimerEvent: {}
+[17.950265] (-) TimerEvent: {}
+[18.050644] (-) TimerEvent: {}
+[18.150808] (-) TimerEvent: {}
+[18.251038] (-) TimerEvent: {}
+[18.351298] (-) TimerEvent: {}
+[18.451665] (-) TimerEvent: {}
+[18.551827] (-) TimerEvent: {}
+[18.652011] (-) TimerEvent: {}
+[18.752270] (-) TimerEvent: {}
+[18.852517] (-) TimerEvent: {}
+[18.952702] (-) TimerEvent: {}
+[19.053016] (-) TimerEvent: {}
+[19.153323] (-) TimerEvent: {}
+[19.253542] (-) TimerEvent: {}
+[19.353704] (-) TimerEvent: {}
+[19.453964] (-) TimerEvent: {}
+[19.554535] (-) TimerEvent: {}
+[19.655614] (-) TimerEvent: {}
+[19.755890] (-) TimerEvent: {}
+[19.856087] (-) TimerEvent: {}
+[19.956360] (-) TimerEvent: {}
+[20.056703] (-) TimerEvent: {}
+[20.157047] (-) TimerEvent: {}
+[20.257268] (-) TimerEvent: {}
+[20.357628] (-) TimerEvent: {}
+[20.457878] (-) TimerEvent: {}
+[20.558037] (-) TimerEvent: {}
+[20.658291] (-) TimerEvent: {}
+[20.758540] (-) TimerEvent: {}
+[20.858773] (-) TimerEvent: {}
+[20.958933] (-) TimerEvent: {}
+[21.059108] (-) TimerEvent: {}
+[21.159350] (-) TimerEvent: {}
+[21.259632] (-) TimerEvent: {}
+[21.359913] (-) TimerEvent: {}
+[21.460101] (-) TimerEvent: {}
+[21.560326] (-) TimerEvent: {}
+[21.660604] (-) TimerEvent: {}
+[21.760835] (-) TimerEvent: {}
+[21.861192] (-) TimerEvent: {}
+[21.961457] (-) TimerEvent: {}
+[22.061740] (-) TimerEvent: {}
+[22.161977] (-) TimerEvent: {}
+[22.262224] (-) TimerEvent: {}
+[22.362574] (-) TimerEvent: {}
+[22.462822] (-) TimerEvent: {}
+[22.562990] (-) TimerEvent: {}
+[22.663216] (-) TimerEvent: {}
+[22.763387] (-) TimerEvent: {}
+[22.863743] (-) TimerEvent: {}
+[22.964204] (-) TimerEvent: {}
+[23.064524] (-) TimerEvent: {}
+[23.164724] (-) TimerEvent: {}
+[23.264963] (-) TimerEvent: {}
+[23.365207] (-) TimerEvent: {}
+[23.465434] (-) TimerEvent: {}
+[23.565652] (-) TimerEvent: {}
+[23.665980] (-) TimerEvent: {}
+[23.766206] (-) TimerEvent: {}
+[23.866507] (-) TimerEvent: {}
+[23.966694] (-) TimerEvent: {}
+[24.066947] (-) TimerEvent: {}
+[24.167384] (-) TimerEvent: {}
+[24.267717] (-) TimerEvent: {}
+[24.367959] (-) TimerEvent: {}
+[24.468190] (-) TimerEvent: {}
+[24.568464] (-) TimerEvent: {}
+[24.668675] (-) TimerEvent: {}
+[24.768955] (-) TimerEvent: {}
+[24.869198] (-) TimerEvent: {}
+[24.969410] (-) TimerEvent: {}
+[25.069635] (-) TimerEvent: {}
+[25.169816] (-) TimerEvent: {}
+[25.270023] (-) TimerEvent: {}
+[25.370354] (-) TimerEvent: {}
+[25.470799] (-) TimerEvent: {}
+[25.571155] (-) TimerEvent: {}
+[25.671350] (-) TimerEvent: {}
+[25.771567] (-) TimerEvent: {}
+[25.871734] (-) TimerEvent: {}
+[25.971963] (-) TimerEvent: {}
+[26.072200] (-) TimerEvent: {}
+[26.172526] (-) TimerEvent: {}
+[26.272815] (-) TimerEvent: {}
+[26.373077] (-) TimerEvent: {}
+[26.473578] (-) TimerEvent: {}
+[26.573939] (-) TimerEvent: {}
+[26.674148] (-) TimerEvent: {}
+[26.774376] (-) TimerEvent: {}
+[26.874626] (-) TimerEvent: {}
+[26.974867] (-) TimerEvent: {}
+[27.075142] (-) TimerEvent: {}
+[27.175618] (-) TimerEvent: {}
+[27.275924] (-) TimerEvent: {}
+[27.376177] (-) TimerEvent: {}
+[27.476406] (-) TimerEvent: {}
+[27.576621] (-) TimerEvent: {}
+[27.676970] (-) TimerEvent: {}
+[27.777282] (-) TimerEvent: {}
+[27.877538] (-) TimerEvent: {}
+[27.977871] (-) TimerEvent: {}
+[28.078184] (-) TimerEvent: {}
+[28.178481] (-) TimerEvent: {}
+[28.278811] (-) TimerEvent: {}
+[28.379144] (-) TimerEvent: {}
+[28.479407] (-) TimerEvent: {}
+[28.579612] (-) TimerEvent: {}
+[28.679840] (-) TimerEvent: {}
+[28.780119] (-) TimerEvent: {}
+[28.880384] (-) TimerEvent: {}
+[28.980755] (-) TimerEvent: {}
+[29.081160] (-) TimerEvent: {}
+[29.181349] (-) TimerEvent: {}
+[29.281520] (-) TimerEvent: {}
+[29.381782] (-) TimerEvent: {}
+[29.482284] (-) TimerEvent: {}
+[29.582573] (-) TimerEvent: {}
+[29.682835] (-) TimerEvent: {}
+[29.783076] (-) TimerEvent: {}
+[29.883361] (-) TimerEvent: {}
+[29.983584] (-) TimerEvent: {}
+[30.083789] (-) TimerEvent: {}
+[30.184047] (-) TimerEvent: {}
+[30.284217] (-) TimerEvent: {}
+[30.384482] (-) TimerEvent: {}
+[30.402401] (autodrive_f1tenth) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build', '--no-deps', 'symlink_data'], 'cwd': '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/malik/controller-benchmarks', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'USER': 'malik', 'SNAP_COMMON': '/var/snap/code/common', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/247/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'FONTCONFIG_PATH': '/etc/fonts', 'GIO_MODULE_DIR': '/home/malik/snap/code/common/.cache/gio-modules', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'wayland', 'DEBUG': 'release', 'SNAP_UID': '1000', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/malik', 'CHROME_DESKTOP': 'code.desktop', 'CONDA_SHLVL': '0', 'SNAP_LIBRARY_PATH': '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32', 'OLDPWD': '/home/malik', 'DESKTOP_SESSION': 'ubuntu', 'SNAP_USER_DATA': '/home/malik/snap/code/247', 'GTK_PATH': '/snap/code/247/usr/lib/x86_64-linux-gnu/gtk-3.0', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-4c2860f4-1.12-main.sock', 'GTK_IM_MODULE_FILE': '/home/malik/snap/code/common/.cache/immodules/immodules.cache', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'MANAGERPID': '6250', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '6448', 'IM_CONFIG_CHECK_ENV': '1', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SNAP_REVISION': '247', 'COLORTERM': '', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3', '_CONDA_ROOT': '/home/malik/miniconda3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '7712', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/malik/ros2_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'malik', 'SNAP_CONTEXT': 'kfTluzUL5uxnZKtqkXAz3NReyLofD6Rk3M71Lv7i8z79knMM7rDY', 'JOURNAL_STREAM': '8:110241', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_SESSION_CLASS': 'user', 'SNAP_VERSION': '1b50d58d', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/ubuntu:/home/malik/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'RUST_LOG': 'warn', 'USERNAME': 'malik', 'TERM': 'dumb', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'SNAP_INSTANCE_NAME': 'code', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/malik/.local/bin:/home/malik/.codex/tmp/arg0/codex-arg0wuFRwf:/home/malik/miniconda3/condabin:/opt/ros/humble/bin:/home/malik/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/malik/.vscode/extensions/openai.chatgpt-26.623.101652-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/malik-System-Product-Name:@/tmp/.ICE-unix/6423,unix/malik-System-Product-Name:/tmp/.ICE-unix/6423', 'GTK_EXE_PREFIX': '/snap/code/247/usr', 'INVOCATION_ID': 'fbca02157e4a477ba8c96793306f899c', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_SETUP_DISPLAY': ':1', 'SNAP_DATA': '/var/snap/code/247', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/247/usr/lib/locale', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'XDG_DATA_HOME': '/home/malik/snap/code/247/.local/share', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.0NUUR3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SNAP_USER_COMMON': '/home/malik/snap/code/common', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'GSETTINGS_SCHEMA_DIR': '/home/malik/snap/code/247/.local/share/glib-2.0/schemas', 'SNAP_ARCH': 'amd64', 'AMENT_PREFIX_PATH': '/home/malik/controller-benchmarks/ros2/install/slam_toolbox:/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble', 'SNAP_COOKIE': 'kfTluzUL5uxnZKtqkXAz3NReyLofD6Rk3M71Lv7i8z79knMM7rDY', 'CONDA_PYTHON_EXE': '/home/malik/miniconda3/bin/python', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:2c2a9a9c-d34b-49d8-95d1-f19f848e78ff', 'GDK_PIXBUF_MODULEDIR': '/snap/code/247/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'SNAP_NAME': 'code', 'FONTCONFIG_FILE': '/etc/fonts/fonts.conf', 'CODEX_THREAD_ID': '019eb72e-f991-74a1-9c80-6be9c279f04b', 'GDK_PIXBUF_MODULE_FILE': '/home/malik/snap/code/common/.cache/gdk-pixbuf-loaders.cache', 'GJS_DEBUG_OUTPUT': 'stderr', '_CONDA_EXE': '/home/malik/miniconda3/bin/conda', 'SNAP_LAUNCHER_ARCH_TRIPLET': 'x86_64-linux-gnu', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth', 'VSCODE_CLI': '1', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/malik/miniconda3/bin/conda', 'SNAP_REAL_HOME': '/home/malik', 'VSCODE_CODE_CACHE_PATH': '/home/malik/.config/Code/CachedData/1b50d58d73426c9171299ec4037d01365d995b78', 'XDG_DATA_DIRS': '/home/malik/snap/code/247/.local/share/flatpak/exports/share:/home/malik/snap/code/247/.local/share:/home/malik/snap/code/247:/snap/code/247/usr/share:/usr/share/ubuntu:/home/malik/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'SNAP_EUID': '1000', 'PYTHONPATH': '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:/home/malik/ros2_ws/build/autodrive_f1tenth:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'SNAP': '/snap/code/247', 'COLCON': '1', 'VTE_VERSION': '6800', 'ELECTRON_NO_ATTACH_CONSOLE': '1', 'VSCODE_PID': '9407', 'CMAKE_PREFIX_PATH': '/home/malik/controller-benchmarks/ros2/install/slam_toolbox'}, 'shell': False}
+[30.484580] (-) TimerEvent: {}
+[30.584722] (-) TimerEvent: {}
+[30.681677] (autodrive_f1tenth) StdoutLine: {'line': b'running develop\n'}
+[30.684811] (-) TimerEvent: {}
+[30.785006] (-) TimerEvent: {}
+[30.857150] (autodrive_f1tenth) StdoutLine: {'line': b'running egg_info\n'}
+[30.857660] (autodrive_f1tenth) StdoutLine: {'line': b'writing autodrive_f1tenth_bench.egg-info/PKG-INFO\n'}
+[30.858442] (autodrive_f1tenth) StdoutLine: {'line': b'writing dependency_links to autodrive_f1tenth_bench.egg-info/dependency_links.txt\n'}
+[30.858573] (autodrive_f1tenth) StdoutLine: {'line': b'writing entry points to autodrive_f1tenth_bench.egg-info/entry_points.txt\n'}
+[30.858631] (autodrive_f1tenth) StdoutLine: {'line': b'writing requirements to autodrive_f1tenth_bench.egg-info/requires.txt\n'}
+[30.858680] (autodrive_f1tenth) StdoutLine: {'line': b'writing top-level names to autodrive_f1tenth_bench.egg-info/top_level.txt\n'}
+[30.860390] (autodrive_f1tenth) StdoutLine: {'line': b"reading manifest file 'autodrive_f1tenth_bench.egg-info/SOURCES.txt'\n"}
+[30.861465] (autodrive_f1tenth) StdoutLine: {'line': b"writing manifest file 'autodrive_f1tenth_bench.egg-info/SOURCES.txt'\n"}
+[30.862713] (autodrive_f1tenth) StdoutLine: {'line': b'running build_ext\n'}
+[30.862942] (autodrive_f1tenth) StdoutLine: {'line': b'Creating /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth-bench.egg-link (link to .)\n'}
+[30.863639] (autodrive_f1tenth) StdoutLine: {'line': b'Installing confidence_log script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.863835] (autodrive_f1tenth) StdoutLine: {'line': b'Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.863982] (autodrive_f1tenth) StdoutLine: {'line': b'Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864360] (autodrive_f1tenth) StdoutLine: {'line': b'Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864525] (autodrive_f1tenth) StdoutLine: {'line': b'Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864674] (autodrive_f1tenth) StdoutLine: {'line': b'Installing pure_pursuit script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864722] (autodrive_f1tenth) StdoutLine: {'line': b'Installing pure_pursuit_target script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864768] (autodrive_f1tenth) StdoutLine: {'line': b'Installing safety script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864813] (autodrive_f1tenth) StdoutLine: {'line': b'Installing slam script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864859] (autodrive_f1tenth) StdoutLine: {'line': b'Installing slam_tf_logger script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864952] (autodrive_f1tenth) StdoutLine: {'line': b'Installing slam_toolbox_bridge script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.864999] (autodrive_f1tenth) StdoutLine: {'line': b'Installing slam_toolbox_map_logger script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.865108] (autodrive_f1tenth) StdoutLine: {'line': b'Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.865153] (autodrive_f1tenth) StdoutLine: {'line': b'Installing target_vehicle_tracker_foreground script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth\n'}
+[30.865197] (autodrive_f1tenth) StdoutLine: {'line': b'\n'}
+[30.865240] (autodrive_f1tenth) StdoutLine: {'line': b'Installed /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth\n'}
+[30.865284] (autodrive_f1tenth) StdoutLine: {'line': b'running symlink_data\n'}
+[30.885133] (-) TimerEvent: {}
+[30.913059] (autodrive_f1tenth) CommandEnded: {'returncode': 0}
+[30.925739] (autodrive_f1tenth) JobEnded: {'identifier': 'autodrive_f1tenth', 'rc': 0}
+[30.926005] (-) EventReactorShutdown: {}

@@ -1,0 +1,32 @@
+[0.748s] Invoking command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/autodrive_f1tenth build --build-base /home/malik/ros2_ws/build/autodrive_f1tenth/build install --record /home/malik/ros2_ws/build/autodrive_f1tenth/install.log --install-scripts $base/lib/autodrive_f1tenth --single-version-externally-managed install_data
+[0.944s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.944s]   warnings.warn(
+[0.951s] running egg_info
+[0.952s] writing ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[0.952s] writing dependency_links to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[0.952s] writing entry points to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[0.952s] writing requirements to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[0.952s] writing top-level names to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[0.954s] reading manifest file '../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[0.955s] writing manifest file '../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[0.955s] running build
+[0.955s] running build_py
+[0.955s] copying autodrive_f1tenth/data_recorder.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[0.955s] running install
+[0.956s] running install_lib
+[0.956s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/data_recorder.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[0.957s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/data_recorder.py to data_recorder.cpython-310.pyc
+[0.958s] running install_data
+[0.959s] running install_egg_info
+[0.960s] removing '/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info' (and everything under it)
+[0.960s] Copying ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[0.961s] running install_scripts
+[0.978s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing autodrive_incoming_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing autodrive_outgoing_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing pure_pursuit script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.978s] Installing thesis script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[0.979s] writing list of installed files to '/home/malik/ros2_ws/build/autodrive_f1tenth/install.log'
+[1.008s] Invoked command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/autodrive_f1tenth build --build-base /home/malik/ros2_ws/build/autodrive_f1tenth/build install --record /home/malik/ros2_ws/build/autodrive_f1tenth/install.log --install-scripts $base/lib/autodrive_f1tenth --single-version-externally-managed install_data

@@ -1,0 +1,9 @@
+source;share/autodrive_f1tenth/hook/pythonpath.ps1
+source;share/autodrive_f1tenth/hook/pythonpath.dsv
+source;share/autodrive_f1tenth/hook/pythonpath.sh
+source;share/autodrive_f1tenth/hook/ament_prefix_path.ps1
+source;share/autodrive_f1tenth/hook/ament_prefix_path.dsv
+source;share/autodrive_f1tenth/hook/ament_prefix_path.sh
+source;../../build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.ps1
+source;../../build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.dsv
+source;../../build/autodrive_f1tenth/share/autodrive_f1tenth/hook/pythonpath_develop.sh

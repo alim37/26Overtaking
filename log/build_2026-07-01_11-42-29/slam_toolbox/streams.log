@@ -1,0 +1,821 @@
+[0.009s] Invoking command in '/home/malik/controller-benchmarks/ros2/build/slam_toolbox': CMAKE_PREFIX_PATH=/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble /usr/bin/cmake --build /home/malik/controller-benchmarks/ros2/build/slam_toolbox -- -j8 -l8
+[0.032s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.131s] -- Found message_filters: 4.3.8 (/opt/ros/humble/share/message_filters/cmake)
+[0.156s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.158s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.163s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.171s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.180s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.207s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.208s] -- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.286s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.328s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.352s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.366s] -- Found tf2: 0.25.16 (/opt/ros/humble/share/tf2/cmake)
+[0.369s] -- Found tf2_ros: 0.25.16 (/opt/ros/humble/share/tf2_ros/cmake)
+[0.432s] -- Found visualization_msgs: 4.9.0 (/opt/ros/humble/share/visualization_msgs/cmake)
+[0.448s] -- Found pluginlib: 5.1.0 (/opt/ros/humble/share/pluginlib/cmake)
+[0.458s] -- Found tf2_geometry_msgs: 0.25.16 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[0.461s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.462s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.463s] -- Found tf2_sensor_msgs: 0.25.16 (/opt/ros/humble/share/tf2_sensor_msgs/cmake)
+[0.466s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[0.474s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.480s] -- Found rviz_common: 11.2.19 (/opt/ros/humble/share/rviz_common/cmake)
+[0.488s] -- Setting assimp_DIR to: '/opt/ros/humble/share/rviz_assimp_vendor/cmake/../../../opt/rviz_assimp_vendor/lib/cmake/assimp-4.1'
+[0.491s] -- Setting OGRE_DIR to: '/opt/ros/humble/share/rviz_ogre_vendor/cmake/../../../opt/rviz_ogre_vendor/lib/OGRE/cmake'
+[0.492s] -- Found OGRE
+[0.492s] --   static     : OFF
+[0.492s] --   components : HLMS;MeshLodGenerator;Overlay;Paging;Property;RTShaderSystem;Terrain;Volume
+[0.492s] --   plugins    : Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI
+[0.492s] --   media      : /opt/ros/humble/opt/rviz_ogre_vendor/share/OGRE/Media
+[0.492s] -- OGRE_LIBRARIES: OgreHLMS;OgreMeshLodGenerator;OgreOverlay;OgrePaging;OgreProperty;OgreRTShaderSystem;OgreTerrain;OgreVolume;OgreMain
+[0.492s] -- OGRE_LIBRARY_DIRS: /opt/ros/humble/opt/rviz_ogre_vendor/lib
+[0.492s] -- OGRE_PLUGINS: Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI
+[0.492s] -- OGRE_PLUGIN_DIR: /opt/ros/humble/opt/rviz_ogre_vendor/lib/OGRE
+[0.492s] -- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so
+[0.492s] -- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so
+[0.492s] -- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so
+[0.493s] -- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so
+[0.493s] -- Could not find freeimage library
+[0.545s] -- library: /usr/lib/x86_64-linux-gnu/libcurl.so
+[0.558s] -- Found rviz_default_plugins: 11.2.19 (/opt/ros/humble/share/rviz_default_plugins/cmake)
+[0.606s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system serialization filesystem thread 
+[0.683s] -- Found required Ceres dependency: Eigen version 3.4.0 in /usr/include/eigen3
+[0.684s] -- Found required Ceres dependency: glog
+[0.685s] -- Found required Ceres dependency: gflags
+[0.685s] -- Found Ceres version: 2.0.0 installed in: /usr with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, CXSparse, SchurSpecializations, Multithreading]
+[0.996s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.391s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.547s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.564s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.582s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.582s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[1.582s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[1.659s] -- Configuring done
+[1.852s] -- Generating done
+[1.901s] -- Build files have been written to: /home/malik/controller-benchmarks/ros2/build/slam_toolbox
+[1.931s] [  1%] Generating C code for ROS interfaces
+[1.939s] [  2%] Generating C++ code for ROS interfaces
+[1.940s] Consolidate compiler generated dependencies of target kartoSlamToolbox
+[1.947s] [  2%] Built target ament_cmake_python_copy_slam_toolbox
+[1.955s] [  2%] Building CXX object lib/karto_sdk/CMakeFiles/kartoSlamToolbox.dir/src/Karto.cpp.o
+[1.957s] [  3%] Building CXX object lib/karto_sdk/CMakeFiles/kartoSlamToolbox.dir/src/Mapper.cpp.o
+[2.167s] running egg_info
+[2.167s] writing slam_toolbox.egg-info/PKG-INFO
+[2.167s] writing dependency_links to slam_toolbox.egg-info/dependency_links.txt
+[2.167s] writing top-level names to slam_toolbox.egg-info/top_level.txt
+[2.167s] reading manifest file 'slam_toolbox.egg-info/SOURCES.txt'
+[2.168s] writing manifest file 'slam_toolbox.egg-info/SOURCES.txt'
+[2.191s] [  3%] Built target ament_cmake_python_build_slam_toolbox_egg
+[2.820s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_generator_c
+[2.826s] [  3%] Built target slam_toolbox__cpp
+[2.830s] [  3%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/clear_queue__functions.c.o
+[2.832s] [  4%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/pause__functions.c.o
+[2.833s] [  5%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/save_map__functions.c.o
+[2.833s] [  6%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/toggle_interactive__functions.c.o
+[2.839s] [  7%] Generating C++ type support dispatch for ROS interfaces
+[2.841s] [  7%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/clear__functions.c.o
+[2.931s] [  7%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/loop_closure__functions.c.o
+[2.939s] [  8%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/merge_maps__functions.c.o
+[2.940s] [  9%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/add_submap__functions.c.o
+[2.957s] [  9%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/deserialize_pose_graph__functions.c.o
+[2.990s] [ 10%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_c.dir/rosidl_generator_c/slam_toolbox/srv/detail/serialize_pose_graph__functions.c.o
+[3.033s] [ 11%] Generating C++ type support for eProsima Fast-RTPS
+[3.047s] [ 12%] Generating C++ introspection for ROS interfaces
+[3.113s] [ 13%] Linking C shared library libslam_toolbox__rosidl_generator_c.so
+[3.148s] [ 13%] Built target slam_toolbox__rosidl_generator_c
+[3.163s] [ 13%] Generating C type support dispatch for ROS interfaces
+[3.163s] [ 14%] Generating C type support for eProsima Fast-RTPS
+[3.164s] [ 15%] Generating C introspection for ROS interfaces
+[3.451s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_cpp
+[3.458s] [ 16%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/pause__type_support.cpp.o
+[3.681s] [ 17%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/clear_queue__type_support.cpp.o
+[3.744s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_c
+[3.753s] [ 18%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/pause__type_support.cpp.o
+[3.780s] [ 19%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/clear_queue__type_support.cpp.o
+[3.806s] [ 20%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/toggle_interactive__type_support.cpp.o
+[3.836s] [ 20%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/clear__type_support.cpp.o
+[3.858s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_introspection_cpp
+[3.861s] [ 21%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/save_map__type_support.cpp.o
+[3.872s] [ 21%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/pause__type_support.cpp.o
+[3.894s] [ 22%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/loop_closure__type_support.cpp.o
+[3.918s] [ 23%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/toggle_interactive__type_support.cpp.o
+[3.938s] [ 23%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/merge_maps__type_support.cpp.o
+[3.987s] [ 24%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/add_submap__type_support.cpp.o
+[4.027s] [ 25%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/deserialize_pose_graph__type_support.cpp.o
+[4.056s] [ 26%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_c.dir/rosidl_typesupport_c/slam_toolbox/srv/serialize_pose_graph__type_support.cpp.o
+[4.059s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_introspection_c
+[4.069s] [ 26%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/pause__type_support.c.o
+[4.104s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_fastrtps_c
+[4.109s] [ 27%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/clear_queue__type_support.c.o
+[4.116s] [ 27%] Linking CXX shared library libslam_toolbox__rosidl_typesupport_c.so
+[4.122s] [ 28%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/pause__type_support_c.cpp.o
+[4.151s] [ 29%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/toggle_interactive__type_support.c.o
+[4.155s] [ 29%] Built target slam_toolbox__rosidl_typesupport_c
+[4.164s] [ 29%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/clear_queue__type_support_c.cpp.o
+[4.174s] [ 29%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/clear__type_support.cpp.o
+[4.188s] [ 29%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/clear__type_support.c.o
+[4.192s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_fastrtps_cpp
+[4.213s] [ 30%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/pause__type_support.cpp.o
+[4.235s] [ 31%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/save_map__type_support.c.o
+[4.253s] [ 32%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/clear_queue__type_support.cpp.o
+[4.279s] [ 33%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/loop_closure__type_support.c.o
+[4.317s] [ 34%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/merge_maps__type_support.c.o
+[4.354s] [ 34%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/add_submap__type_support.c.o
+[4.392s] [ 35%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.c.o
+[4.409s] [ 36%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/save_map__type_support.cpp.o
+[4.437s] [ 37%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/slam_toolbox/srv/detail/serialize_pose_graph__type_support.c.o
+[4.466s] [ 37%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/clear_queue__type_support.cpp.o
+[4.476s] [ 37%] Linking C shared library libslam_toolbox__rosidl_typesupport_introspection_c.so
+[4.508s] [ 37%] Built target slam_toolbox__rosidl_typesupport_introspection_c
+[4.514s] [ 38%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/toggle_interactive__type_support_c.cpp.o
+[4.585s] [ 39%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/toggle_interactive__type_support.cpp.o
+[4.591s] [ 40%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/toggle_interactive__type_support.cpp.o
+[4.646s] [ 41%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/loop_closure__type_support.cpp.o
+[4.877s] [ 41%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/merge_maps__type_support.cpp.o
+[4.946s] [ 42%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/clear__type_support_c.cpp.o
+[4.963s] [ 43%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/add_submap__type_support.cpp.o
+[4.971s] [ 43%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/clear__type_support.cpp.o
+[4.980s] [ 44%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/save_map__type_support.cpp.o
+[5.089s] [ 45%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/clear__type_support.cpp.o
+[5.145s] [ 46%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/save_map__type_support_c.cpp.o
+[5.313s] [ 47%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/deserialize_pose_graph__type_support.cpp.o
+[5.341s] [ 48%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/slam_toolbox/srv/serialize_pose_graph__type_support.cpp.o
+[5.460s] [ 49%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/loop_closure__type_support.cpp.o
+[5.501s] [ 50%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/save_map__type_support.cpp.o
+[5.515s] [ 50%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/loop_closure__type_support_c.cpp.o
+[5.591s] [ 51%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/merge_maps__type_support.cpp.o
+[5.637s] [ 51%] Linking CXX shared library libslam_toolbox__rosidl_typesupport_cpp.so
+[5.700s] [ 51%] Built target slam_toolbox__rosidl_typesupport_cpp
+[5.709s] [ 52%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/merge_maps__type_support_c.cpp.o
+[5.734s] Consolidate compiler generated dependencies of target SlamToolboxPlugin
+[5.752s] [ 53%] Building CXX object CMakeFiles/SlamToolboxPlugin.dir/rviz_plugin/slam_toolbox_rviz_plugin.cpp.o
+[5.848s] [ 53%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/loop_closure__type_support.cpp.o
+[5.920s] [ 53%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/add_submap__type_support.cpp.o
+[5.960s] [ 55%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/add_submap__type_support_c.cpp.o
+[5.960s] [ 55%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.cpp.o
+[6.116s] [ 56%] Building CXX object CMakeFiles/SlamToolboxPlugin.dir/rviz_plugin/moc_slam_toolbox_rviz_plugin.cpp.o
+[6.255s] [ 57%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/merge_maps__type_support.cpp.o
+[6.266s] [ 58%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/add_submap__type_support.cpp.o
+[6.327s] [ 58%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/deserialize_pose_graph__type_support_c.cpp.o
+[6.497s] [ 59%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/slam_toolbox/srv/detail/serialize_pose_graph__type_support.cpp.o
+[6.630s] [ 60%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/slam_toolbox/srv/detail/serialize_pose_graph__type_support_c.cpp.o
+[6.665s] [ 60%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/deserialize_pose_graph__type_support.cpp.o
+[6.671s] [ 61%] Building CXX object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/slam_toolbox/srv/detail/dds_fastrtps/serialize_pose_graph__type_support.cpp.o
+[6.847s] [ 61%] Linking CXX shared library libslam_toolbox__rosidl_typesupport_introspection_cpp.so
+[6.952s] [ 61%] Built target slam_toolbox__rosidl_typesupport_introspection_cpp
+[6.970s] [ 62%] Linking CXX shared library libslam_toolbox__rosidl_typesupport_fastrtps_c.so
+[7.058s] [ 62%] Built target slam_toolbox__rosidl_typesupport_fastrtps_c
+[7.058s] [ 63%] Linking CXX shared library libslam_toolbox__rosidl_typesupport_fastrtps_cpp.so
+[7.135s] [ 63%] Built target slam_toolbox__rosidl_typesupport_fastrtps_cpp
+[7.150s] [ 63%] Built target slam_toolbox
+[7.168s] [ 63%] Generating Python code for ROS interfaces
+[8.642s] [ 63%] Built target slam_toolbox__py
+[8.660s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_generator_py
+[8.668s] [ 64%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_toggle_interactive_s.c.o
+[8.668s] [ 64%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_clear_queue_s.c.o
+[8.671s] [ 65%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_pause_s.c.o
+[8.674s] [ 66%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_clear_s.c.o
+[8.778s] [ 66%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_save_map_s.c.o
+[8.783s] [ 67%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_loop_closure_s.c.o
+[8.800s] [ 68%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_merge_maps_s.c.o
+[8.849s] [ 69%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_add_submap_s.c.o
+[8.905s] [ 69%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_deserialize_pose_graph_s.c.o
+[8.906s] [ 70%] Building C object CMakeFiles/slam_toolbox__rosidl_generator_py.dir/rosidl_generator_py/slam_toolbox/srv/_serialize_pose_graph_s.c.o
+[9.019s] [ 71%] Linking C shared library rosidl_generator_py/slam_toolbox/libslam_toolbox__rosidl_generator_py.so
+[9.057s] [ 71%] Built target slam_toolbox__rosidl_generator_py
+[9.068s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_fastrtps_c__pyext
+[9.068s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_introspection_c__pyext
+[9.069s] Consolidate compiler generated dependencies of target slam_toolbox__rosidl_typesupport_c__pyext
+[9.080s] [ 72%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_introspection_c.c.o
+[9.084s] [ 73%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_c.c.o
+[9.084s] [ 74%] Building C object CMakeFiles/slam_toolbox__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_fastrtps_c.c.o
+[9.376s] [ 75%] Linking C shared library rosidl_generator_py/slam_toolbox/slam_toolbox_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[9.380s] [ 76%] Linking C shared library rosidl_generator_py/slam_toolbox/slam_toolbox_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[9.413s] [ 76%] Linking C shared library rosidl_generator_py/slam_toolbox/slam_toolbox_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[9.418s] [ 76%] Built target slam_toolbox__rosidl_typesupport_c__pyext
+[9.425s] [ 76%] Built target slam_toolbox__rosidl_typesupport_introspection_c__pyext
+[9.455s] [ 76%] Built target slam_toolbox__rosidl_typesupport_fastrtps_c__pyext
+[19.561s] [ 77%] Linking CXX shared library libkartoSlamToolbox.so
+[19.882s] [ 77%] Built target kartoSlamToolbox
+[19.899s] [ 78%] Building CXX object CMakeFiles/ceres_solver_plugin.dir/solvers/ceres_solver.cpp.o
+[19.921s] Consolidate compiler generated dependencies of target toolbox_common
+[19.946s] [ 80%] Building CXX object CMakeFiles/toolbox_common.dir/src/map_saver.cpp.o
+[19.946s] [ 80%] Building CXX object CMakeFiles/toolbox_common.dir/src/slam_toolbox_common.cpp.o
+[19.951s] [ 80%] Building CXX object CMakeFiles/toolbox_common.dir/src/loop_closure_assistant.cpp.o
+[19.951s] [ 81%] Building CXX object CMakeFiles/toolbox_common.dir/src/laser_utils.cpp.o
+[19.953s] [ 82%] Building CXX object CMakeFiles/toolbox_common.dir/src/slam_mapper.cpp.o
+[24.065s] [ 82%] Linking CXX shared library libSlamToolboxPlugin.so
+[25.775s] [ 82%] Built target SlamToolboxPlugin
+[32.950s] [ 83%] Linking CXX shared library libceres_solver_plugin.so
+[33.278s] [ 83%] Built target ceres_solver_plugin
+[48.013s] [ 84%] Linking CXX shared library libtoolbox_common.so
+[48.509s] [ 84%] Built target toolbox_common
+[48.524s] [ 88%] Building CXX object CMakeFiles/lifelong_slam_toolbox.dir/src/experimental/slam_toolbox_lifelong.cpp.o
+[48.524s] [ 88%] Building CXX object CMakeFiles/localization_slam_toolbox.dir/src/slam_toolbox_localization.cpp.o
+[48.524s] [ 88%] Building CXX object CMakeFiles/sync_slam_toolbox.dir/src/slam_toolbox_sync.cpp.o
+[48.524s] [ 88%] Building CXX object CMakeFiles/merge_maps_kinematic.dir/src/merge_maps_kinematic.cpp.o
+[48.524s] [ 88%] Building CXX object CMakeFiles/async_slam_toolbox.dir/src/slam_toolbox_async.cpp.o
+[59.409s] [ 89%] Linking CXX shared library libasync_slam_toolbox.so
+[59.876s] [ 89%] Built target async_slam_toolbox
+[59.892s] [ 90%] Building CXX object CMakeFiles/async_slam_toolbox_node.dir/src/slam_toolbox_async_node.cpp.o
+[59.895s] [ 90%] Linking CXX shared library liblifelong_slam_toolbox.so
+[60.417s] [ 90%] Built target lifelong_slam_toolbox
+[60.436s] [ 91%] Building CXX object CMakeFiles/lifelong_slam_toolbox_node.dir/src/experimental/slam_toolbox_lifelong_node.cpp.o
+[60.463s] [ 92%] Linking CXX shared library libsync_slam_toolbox.so
+[60.962s] [ 92%] Built target sync_slam_toolbox
+[60.980s] [ 93%] Building CXX object CMakeFiles/sync_slam_toolbox_node.dir/src/slam_toolbox_sync_node.cpp.o
+[63.417s] [ 94%] Linking CXX executable merge_maps_kinematic
+[63.991s] [ 94%] Built target merge_maps_kinematic
+[66.074s] [ 95%] Linking CXX shared library liblocalization_slam_toolbox.so
+[66.554s] [ 95%] Built target localization_slam_toolbox
+[66.570s] [ 96%] Building CXX object CMakeFiles/localization_slam_toolbox_node.dir/src/slam_toolbox_localization_node.cpp.o
+[66.570s] [ 96%] Building CXX object CMakeFiles/map_and_localization_slam_toolbox.dir/src/experimental/slam_toolbox_map_and_localization.cpp.o
+[70.789s] [ 96%] Linking CXX executable async_slam_toolbox_node
+[71.139s] [ 96%] Built target async_slam_toolbox_node
+[71.304s] [ 97%] Linking CXX executable lifelong_slam_toolbox_node
+[71.644s] [ 97%] Built target lifelong_slam_toolbox_node
+[72.027s] [ 97%] Linking CXX executable sync_slam_toolbox_node
+[72.351s] [ 97%] Built target sync_slam_toolbox_node
+[77.092s] [ 98%] Linking CXX executable localization_slam_toolbox_node
+[77.383s] [ 98%] Built target localization_slam_toolbox_node
+[83.567s] [ 99%] Linking CXX shared library libmap_and_localization_slam_toolbox.so
+[83.929s] [ 99%] Built target map_and_localization_slam_toolbox
+[83.944s] [100%] Building CXX object CMakeFiles/map_and_localization_slam_toolbox_node.dir/src/experimental/slam_toolbox_map_and_localization_node.cpp.o
+[93.485s] [100%] Linking CXX executable map_and_localization_slam_toolbox_node
+[93.765s] [100%] Built target map_and_localization_slam_toolbox_node
+[120.040s] Invoked command in '/home/malik/controller-benchmarks/ros2/build/slam_toolbox' returned '0': CMAKE_PREFIX_PATH=/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble /usr/bin/cmake --build /home/malik/controller-benchmarks/ros2/build/slam_toolbox -- -j8 -l8
+[120.070s] Invoking command in '/home/malik/controller-benchmarks/ros2/build/slam_toolbox': CMAKE_PREFIX_PATH=/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble /usr/bin/cmake --install /home/malik/controller-benchmarks/ros2/build/slam_toolbox
+[120.082s] -- Install configuration: "Release"
+[120.082s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/rosidl_interfaces/slam_toolbox
+[120.082s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.082s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/merge_maps.h
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/reset.h
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/deserialize_pose_graph.h
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/add_submap.h
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/serialize_pose_graph.h
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.083s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__functions.c
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__functions.h
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__functions.c
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__functions.h
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__functions.c
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__struct.h
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__struct.h
+[120.084s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__functions.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__struct.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__functions.c
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__type_support.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__type_support.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__functions.c
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__functions.h
+[120.085s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__struct.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__struct.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__type_support.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__struct.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__struct.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__type_support.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__functions.c
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__type_support.h
+[120.086s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__functions.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__functions.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__functions.c
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__type_support.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__struct.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__type_support.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__functions.h
+[120.087s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__struct.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__functions.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__type_support.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__functions.c
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__struct.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__functions.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__struct.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__functions.h
+[120.088s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__functions.c
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__functions.c
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__type_support.h
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__functions.h
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__type_support.h
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__functions.c
+[120.089s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/toggle_interactive.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/pause.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/clear.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/loop_closure.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/clear_queue.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/save_map.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/graph_edge.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/rosidl_generator_c__visibility_control.h
+[120.090s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__functions.c
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__functions.c
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__functions.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__type_support.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__struct.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__type_support.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__struct.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__type_support.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__functions.h
+[120.091s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__functions.c
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__struct.h
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__type_support.h
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__struct.h
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__functions.h
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__functions.c
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__functions.c
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__functions.h
+[120.092s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__functions.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__struct.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__struct.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__functions.c
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__type_support.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__type_support.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__functions.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/pose_graph.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/localized_laser_scan.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/graph_node.h
+[120.093s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/loop_closure_event.h
+[120.094s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/new_node_event.h
+[120.094s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/library_path.sh
+[120.094s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/library_path.dsv
+[120.094s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_generator_c.so
+[120.094s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_generator_c.so" to ""
+[120.095s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.095s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.095s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__rosidl_typesupport_fastrtps_c.h
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__rosidl_typesupport_fastrtps_c.h
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__rosidl_typesupport_fastrtps_c.h
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__rosidl_typesupport_fastrtps_c.h
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__rosidl_typesupport_fastrtps_c.h
+[120.095s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.096s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__rosidl_typesupport_fastrtps_c.h
+[120.096s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__rosidl_typesupport_fastrtps_c.h
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__rosidl_typesupport_fastrtps_c.h
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__rosidl_typesupport_fastrtps_c.h
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__rosidl_typesupport_fastrtps_c.h
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_fastrtps_c.so
+[120.097s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_fastrtps_c.so" to ""
+[120.097s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.097s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/reset.hpp
+[120.097s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/pause.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/deserialize_pose_graph.hpp
+[120.098s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__builder.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__builder.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__type_support.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__traits.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__traits.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__struct.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__struct.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__traits.hpp
+[120.098s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__builder.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__struct.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__type_support.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__struct.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__traits.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__builder.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__traits.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__struct.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__struct.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__struct.hpp
+[120.099s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__struct.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__builder.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__traits.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__type_support.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__traits.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__struct.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__traits.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__struct.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__builder.hpp
+[120.100s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__type_support.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__type_support.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__traits.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__traits.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__builder.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__builder.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__type_support.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__traits.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__builder.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__type_support.hpp
+[120.101s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__type_support.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__type_support.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__builder.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__struct.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__type_support.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__builder.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/clear.hpp
+[120.102s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/loop_closure.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/add_submap.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/merge_maps.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/toggle_interactive.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/save_map.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/serialize_pose_graph.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/clear_queue.hpp
+[120.103s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/graph_node.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/pose_graph.hpp
+[120.103s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__traits.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__traits.hpp
+[120.103s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__struct.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__struct.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__type_support.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__type_support.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__struct.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__builder.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__traits.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__builder.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__type_support.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__traits.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__struct.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__builder.hpp
+[120.104s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__builder.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__type_support.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__traits.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__struct.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__type_support.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__struct.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__builder.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__builder.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__traits.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__type_support.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/loop_closure_event.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/graph_edge.hpp
+[120.105s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/new_node_event.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/rosidl_generator_cpp__visibility_control.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/localized_laser_scan.hpp
+[120.106s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.106s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.106s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__rosidl_typesupport_fastrtps_cpp.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__rosidl_typesupport_fastrtps_cpp.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__rosidl_typesupport_fastrtps_cpp.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__rosidl_typesupport_fastrtps_cpp.hpp
+[120.106s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/dds_fastrtps
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__rosidl_typesupport_fastrtps_cpp.hpp
+[120.107s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.107s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.107s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/dds_fastrtps
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__rosidl_typesupport_fastrtps_cpp.hpp
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[120.108s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_fastrtps_cpp.so
+[120.108s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_fastrtps_cpp.so" to ""
+[120.108s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.109s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.109s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__rosidl_typesupport_introspection_c.h
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__type_support.c
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__rosidl_typesupport_introspection_c.h
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__type_support.c
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__rosidl_typesupport_introspection_c.h
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__type_support.c
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__rosidl_typesupport_introspection_c.h
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__type_support.c
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__rosidl_typesupport_introspection_c.h
+[120.109s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__rosidl_typesupport_introspection_c.h
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__rosidl_typesupport_introspection_c.h
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__type_support.c
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__rosidl_typesupport_introspection_c.h
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__rosidl_typesupport_introspection_c.h
+[120.110s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__rosidl_typesupport_introspection_c.h
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.c
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__rosidl_typesupport_introspection_c.h
+[120.111s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.111s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__rosidl_typesupport_introspection_c.h
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__rosidl_typesupport_introspection_c.h
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__type_support.c
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__type_support.c
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__type_support.c
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__rosidl_typesupport_introspection_c.h
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__rosidl_typesupport_introspection_c.h
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__type_support.c
+[120.111s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__rosidl_typesupport_introspection_c.h
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__type_support.c
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__rosidl_typesupport_introspection_c.h
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__type_support.c
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_introspection_c.so
+[120.112s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_introspection_c.so" to ""
+[120.112s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_c.so
+[120.113s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_c.so" to ""
+[120.113s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox
+[120.113s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv
+[120.113s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__rosidl_typesupport_introspection_cpp.hpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__rosidl_typesupport_introspection_cpp.hpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/toggle_interactive__type_support.cpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__rosidl_typesupport_introspection_cpp.hpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__type_support.cpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__rosidl_typesupport_introspection_cpp.hpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__type_support.cpp
+[120.113s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__rosidl_typesupport_introspection_cpp.hpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__rosidl_typesupport_introspection_cpp.hpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/deserialize_pose_graph__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/pause__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__rosidl_typesupport_introspection_cpp.hpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear_queue__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/reset__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/clear__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__type_support.cpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/loop_closure__rosidl_typesupport_introspection_cpp.hpp
+[120.114s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/add_submap__type_support.cpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__type_support.cpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/merge_maps__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/serialize_pose_graph__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/srv/detail/save_map__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg
+[120.115s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__type_support.cpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/new_node_event__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__rosidl_typesupport_introspection_cpp.hpp
+[120.115s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/loop_closure_event__type_support.cpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/pose_graph__type_support.cpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__type_support.cpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__rosidl_typesupport_introspection_cpp.hpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_edge__type_support.cpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__type_support.cpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/localized_laser_scan__rosidl_typesupport_introspection_cpp.hpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox/msg/detail/graph_node__rosidl_typesupport_introspection_cpp.hpp
+[120.116s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_introspection_cpp.so
+[120.117s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_introspection_cpp.so" to ""
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_cpp.so
+[120.117s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_typesupport_cpp.so" to ""
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/pythonpath.sh
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/pythonpath.dsv
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox-2.6.10-py3.10.egg-info
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox-2.6.10-py3.10.egg-info/dependency_links.txt
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox-2.6.10-py3.10.egg-info/SOURCES.txt
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox-2.6.10-py3.10.egg-info/PKG-INFO
+[120.117s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox-2.6.10-py3.10.egg-info/top_level.txt
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_fastrtps_c.c
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/__init__.py
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_c.c
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_pause_s.c
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear_queue.py
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_loop_closure_s.c
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_toggle_interactive.py
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_pause.py
+[120.118s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_serialize_pose_graph.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_merge_maps_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_toggle_interactive_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/__init__.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_add_submap.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_reset_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_save_map.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_add_submap_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_save_map_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_deserialize_pose_graph.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_reset.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_serialize_pose_graph_s.c
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear.py
+[120.119s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear_s.c
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_loop_closure.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_merge_maps.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear_queue_s.c
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_deserialize_pose_graph_s.c
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/libslam_toolbox__rosidl_generator_py.so
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_pose_graph.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/__init__.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_new_node_event.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_node.py
+[120.120s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_node_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_loop_closure_event.py
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_pose_graph_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_localized_laser_scan.py
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_loop_closure_event_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_localized_laser_scan_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_new_node_event_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_edge_s.c
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_edge.py
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[120.121s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/_slam_toolbox_s.ep.rosidl_typesupport_introspection_c.c
+[120.172s] Listing '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/__init__.py'...
+[120.172s] Listing '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/__init__.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_edge.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_graph_node.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_localized_laser_scan.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_loop_closure_event.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_new_node_event.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/msg/_pose_graph.py'...
+[120.172s] Listing '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/__init__.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_add_submap.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_clear_queue.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_deserialize_pose_graph.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_loop_closure.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_merge_maps.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_pause.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_reset.py'...
+[120.172s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_save_map.py'...
+[120.173s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_serialize_pose_graph.py'...
+[120.173s] Compiling '/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/srv/_toggle_interactive.py'...
+[120.176s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[120.176s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[120.176s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[120.177s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[120.177s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[120.177s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages/slam_toolbox/slam_toolbox_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[120.177s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_generator_py.so
+[120.177s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libslam_toolbox__rosidl_generator_py.so" to ""
+[120.177s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Pause.idl
+[120.177s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ClearQueue.idl
+[120.177s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ToggleInteractive.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Clear.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SaveMap.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/LoopClosure.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/MergeMaps.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/AddSubmap.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/DeserializePoseGraph.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SerializePoseGraph.idl
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Pause.srv
+[120.178s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Pause_Request.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Pause_Response.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ClearQueue.srv
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ClearQueue_Request.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ClearQueue_Response.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ToggleInteractive.srv
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ToggleInteractive_Request.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/ToggleInteractive_Response.msg
+[120.179s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Clear.srv
+[120.182s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Clear_Request.msg
+[120.182s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/Clear_Response.msg
+[120.182s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SaveMap.srv
+[120.182s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SaveMap_Request.msg
+[120.182s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SaveMap_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/LoopClosure.srv
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/LoopClosure_Request.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/LoopClosure_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/MergeMaps.srv
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/MergeMaps_Request.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/MergeMaps_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/AddSubmap.srv
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/AddSubmap_Request.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/AddSubmap_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/DeserializePoseGraph.srv
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/DeserializePoseGraph_Request.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/DeserializePoseGraph_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SerializePoseGraph.srv
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SerializePoseGraph_Request.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/srv/SerializePoseGraph_Response.msg
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/rviz_plugins.xml
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/solver_plugins.xml
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/async_slam_toolbox_node
+[120.183s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/async_slam_toolbox_node" to ""
+[120.183s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/sync_slam_toolbox_node
+[120.184s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/sync_slam_toolbox_node" to ""
+[120.184s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/localization_slam_toolbox_node
+[120.185s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/localization_slam_toolbox_node" to ""
+[120.185s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/map_and_localization_slam_toolbox_node
+[120.185s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/map_and_localization_slam_toolbox_node" to ""
+[120.185s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/merge_maps_kinematic
+[120.186s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/slam_toolbox/merge_maps_kinematic" to ""
+[120.187s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libtoolbox_common.so
+[120.189s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libtoolbox_common.so" to ""
+[120.189s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libSlamToolboxPlugin.so
+[120.191s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libSlamToolboxPlugin.so" to ""
+[120.191s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libceres_solver_plugin.so
+[120.191s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libceres_solver_plugin.so" to ""
+[120.192s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libasync_slam_toolbox.so
+[120.192s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libasync_slam_toolbox.so" to ""
+[120.192s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libsync_slam_toolbox.so
+[120.193s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libsync_slam_toolbox.so" to ""
+[120.193s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/liblocalization_slam_toolbox.so
+[120.195s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/liblocalization_slam_toolbox.so" to ""
+[120.195s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/liblifelong_slam_toolbox.so
+[120.196s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/liblifelong_slam_toolbox.so" to ""
+[120.196s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libmap_and_localization_slam_toolbox.so
+[120.197s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libmap_and_localization_slam_toolbox.so" to ""
+[120.197s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libkartoSlamToolbox.so
+[120.200s] -- Set runtime path of "/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libkartoSlamToolbox.so" to ""
+[120.200s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib/libSlamToolboxPlugin.so
+[120.200s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include
+[120.200s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox
+[120.200s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/toolbox_msgs.hpp
+[120.200s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/experimental
+[120.200s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/experimental/slam_toolbox_lifelong.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/experimental/slam_toolbox_map_and_localization.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/merge_maps_kinematic.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/loop_closure_assistant.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/visualization_utils.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/map_saver.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox_localization.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox_async.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/get_pose_helper.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox_sync.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/serialization.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_toolbox_common.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/slam_mapper.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/laser_utils.hpp
+[120.201s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/snap_utils.hpp
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/slam_toolbox/toolbox_types.hpp
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch/merge_maps_kinematic_launch.py
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch/online_async_launch.py
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch/localization_launch.py
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch/offline_launch.py
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/launch/online_sync_launch.py
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/mapper_params_offline.yaml
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/mapper_params_lifelong.yaml
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/mapper_params_online_sync.yaml
+[120.202s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/mapper_params_localization.yaml
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/mapper_params_online_async.yaml
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/config/slam_toolbox_default.rviz
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/solver_plugins.xml
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/rviz_plugins.xml
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/package_run_dependencies/slam_toolbox
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/parent_prefix_path/slam_toolbox
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/ament_prefix_path.sh
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/ament_prefix_path.dsv
+[120.203s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/path.sh
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/environment/path.dsv
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/local_setup.bash
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/local_setup.sh
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/local_setup.zsh
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/local_setup.dsv
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/package.dsv
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/packages/slam_toolbox
+[120.204s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/rviz_common__pluginlib__plugin/slam_toolbox
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/slam_toolbox__pluginlib__plugin/slam_toolbox
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_generator_cExport.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_generator_cExport-release.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_typesupport_fastrtps_cExport.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_typesupport_fastrtps_cExport-release.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_generator_cppExport.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_typesupport_fastrtps_cppExport.cmake
+[120.205s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_typesupport_fastrtps_cppExport-release.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_introspection_cExport.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_introspection_cExport-release.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_cExport.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_cExport-release.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_introspection_cppExport.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_introspection_cppExport-release.cmake
+[120.206s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_cppExport.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolbox__rosidl_typesupport_cppExport-release.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_generator_pyExport.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/export_slam_toolbox__rosidl_generator_pyExport-release.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/SlamToolboxPluginExport.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/SlamToolboxPluginExport-release.cmake
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/ament_index/resource_index/rclcpp_components/slam_toolbox
+[120.207s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/rosidl_cmake-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/ament_cmake_export_dependencies-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/ament_cmake_export_include_directories-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/ament_cmake_export_libraries-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/ament_cmake_export_targets-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolboxConfig.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/cmake/slam_toolboxConfig-version.cmake
+[120.208s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/share/slam_toolbox/package.xml
+[120.209s] -- Up-to-date: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include/
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/Math.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/Types.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/nanoflann_adaptors.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/Mapper.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/Macros.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/Karto.h
+[120.209s] -- Installing: /home/malik/controller-benchmarks/ros2/install/slam_toolbox/include//karto_sdk/nanoflann.hpp
+[120.211s] Invoked command in '/home/malik/controller-benchmarks/ros2/build/slam_toolbox' returned '0': CMAKE_PREFIX_PATH=/home/malik/ros2_ws/install/autodrive_nigel:/home/malik/ros2_ws/install/autodrive_f1tenth:/opt/ros/humble /usr/bin/cmake --install /home/malik/controller-benchmarks/ros2/build/slam_toolbox

@@ -1,0 +1,86 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Name: Tool Properties
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Plane: XY
+      Plane Cell Count: 100
+      Color: 160; 160; 164
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: V1 LIDAR
+      Enabled: true
+      Topic: /autodrive/f1tenth_1/lidar
+      Color Transformer: Intensity
+      Style: Flat Squares
+      Size (Pixels): 3
+      Position Transformer: XYZ
+      Use rainbow: true
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: V2 LIDAR
+      Enabled: true
+      Topic: /autodrive/f1tenth_2/lidar
+      Color Transformer: Intensity
+      Style: Flat Squares
+      Size (Pixels): 3
+      Position Transformer: XYZ
+      Use rainbow: true
+
+    - Class: rviz_default_plugins/Image
+      Name: V1 Camera
+      Enabled: true
+      Topic: /autodrive/f1tenth_1/front_camera
+      Normalize Range: true
+      Median window: 5
+
+    - Class: rviz_default_plugins/Image
+      Name: V2 Camera
+      Enabled: true
+      Topic: /autodrive/f1tenth_2/front_camera
+      Normalize Range: true
+      Median window: 5
+
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+
+  Global Options:
+    Fixed Frame: map
+    Background Color: 48; 48; 48
+    Frame Rate: 30
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz_default_plugins/SetGoal
+      Topic: /goal_pose
+    - Class: rviz_default_plugins/PublishPoint
+      Topic: /clicked_point
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 20
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Name: Orbit View

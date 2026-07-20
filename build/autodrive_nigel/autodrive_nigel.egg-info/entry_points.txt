@@ -1,0 +1,5 @@
+[console_scripts]
+autodrive_incoming_bridge = autodrive_nigel.autodrive_incoming_bridge:main
+autodrive_outgoing_bridge = autodrive_nigel.autodrive_outgoing_bridge:main
+teleop_keyboard = autodrive_nigel.teleop_keyboard:main
+

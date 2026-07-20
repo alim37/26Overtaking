@@ -1,0 +1,55 @@
+[0.892s] Invoking command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth': PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/autodrive_f1tenth build --build-base /home/malik/ros2_ws/build/autodrive_f1tenth/build install --record /home/malik/ros2_ws/build/autodrive_f1tenth/install.log --install-scripts $base/lib/autodrive_f1tenth --single-version-externally-managed install_data
+[1.104s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.104s]   warnings.warn(
+[1.114s] running egg_info
+[1.115s] creating ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info
+[1.116s] writing ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[1.116s] writing dependency_links to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[1.116s] writing entry points to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[1.116s] writing requirements to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[1.116s] writing top-level names to ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[1.116s] writing manifest file '../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.118s] reading manifest file '../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.118s] writing manifest file '../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.118s] running build
+[1.118s] running build_py
+[1.119s] creating /home/malik/ros2_ws/build/autodrive_f1tenth/build
+[1.119s] creating /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib
+[1.119s] creating /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] copying autodrive_f1tenth/__init__.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] copying autodrive_f1tenth/teleop_keyboard.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] copying autodrive_f1tenth/config.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] copying autodrive_f1tenth/autodrive_outgoing_bridge.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] copying autodrive_f1tenth/autodrive_incoming_bridge.py -> /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[1.119s] running install
+[1.120s] running install_lib
+[1.122s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.122s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/__init__.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.122s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/teleop_keyboard.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.122s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/config.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.123s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/autodrive_outgoing_bridge.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.123s] copying /home/malik/ros2_ws/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/autodrive_incoming_bridge.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[1.123s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/__init__.py to __init__.cpython-310.pyc
+[1.123s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/teleop_keyboard.py to teleop_keyboard.cpython-310.pyc
+[1.123s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/config.py to config.cpython-310.pyc
+[1.124s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/autodrive_outgoing_bridge.py to autodrive_outgoing_bridge.cpython-310.pyc
+[1.124s] byte-compiling /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/autodrive_incoming_bridge.py to autodrive_incoming_bridge.cpython-310.pyc
+[1.126s] running install_data
+[1.126s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index
+[1.126s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index/resource_index
+[1.126s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+[1.126s] copying resource/autodrive_f1tenth -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+[1.126s] copying package.xml -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth
+[1.126s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.127s] copying launch/simulator_bringup_rviz.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.127s] copying launch/simulator_bringup_headless.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.127s] creating /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz
+[1.127s] copying rviz/simulator.rviz -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz
+[1.127s] running install_egg_info
+[1.128s] Copying ../../../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[1.129s] running install_scripts
+[1.149s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.149s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.149s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.149s] writing list of installed files to '/home/malik/ros2_ws/build/autodrive_f1tenth/install.log'
+[1.206s] Invoked command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/autodrive_f1tenth build --build-base /home/malik/ros2_ws/build/autodrive_f1tenth/build install --record /home/malik/ros2_ws/build/autodrive_f1tenth/install.log --install-scripts $base/lib/autodrive_f1tenth --single-version-externally-managed install_data

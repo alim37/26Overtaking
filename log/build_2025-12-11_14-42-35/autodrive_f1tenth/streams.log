@@ -1,0 +1,33 @@
+[0.901s] Invoking command in '/home/malik/ros2_ws/build/autodrive_f1tenth': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data --force
+[1.111s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.111s]   warnings.warn(
+[1.138s] running develop
+[1.293s] running egg_info
+[1.293s] writing autodrive_f1tenth.egg-info/PKG-INFO
+[1.293s] writing dependency_links to autodrive_f1tenth.egg-info/dependency_links.txt
+[1.294s] writing entry points to autodrive_f1tenth.egg-info/entry_points.txt
+[1.294s] writing requirements to autodrive_f1tenth.egg-info/requires.txt
+[1.294s] writing top-level names to autodrive_f1tenth.egg-info/top_level.txt
+[1.295s] reading manifest file 'autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.296s] writing manifest file 'autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.297s] running build_ext
+[1.297s] Creating /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth.egg-link (link to .)
+[1.298s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing autodrive_incoming_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing autodrive_outgoing_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing pure_pursuit script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] Installing thesis script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.298s] 
+[1.299s] Installed /home/malik/ros2_ws/build/autodrive_f1tenth
+[1.299s] running symlink_data
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/resource/autodrive_f1tenth -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/package.xml -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/launch/simulator_bringup_rviz.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/launch/simulator_bringup_rviz_2.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/launch/thesis.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.299s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/launch/simulator_bringup_headless.launch.py -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[1.300s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/rviz/simulator.rviz -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz
+[1.300s] symbolically linking /home/malik/ros2_ws/build/autodrive_f1tenth/rviz/simulator_2.rviz -> /home/malik/ros2_ws/install/autodrive_f1tenth/share/autodrive_f1tenth/rviz
+[1.339s] Invoked command in '/home/malik/ros2_ws/build/autodrive_f1tenth' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data --force

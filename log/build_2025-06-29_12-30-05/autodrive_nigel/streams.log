@@ -1,0 +1,21 @@
+[0.715s] Invoking command in '/home/malik/ros2_ws/build/autodrive_nigel': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_nigel/build --no-deps symlink_data
+[0.905s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.905s]   warnings.warn(
+[0.926s] running develop
+[1.068s] running egg_info
+[1.068s] writing autodrive_nigel.egg-info/PKG-INFO
+[1.069s] writing dependency_links to autodrive_nigel.egg-info/dependency_links.txt
+[1.069s] writing entry points to autodrive_nigel.egg-info/entry_points.txt
+[1.069s] writing requirements to autodrive_nigel.egg-info/requires.txt
+[1.069s] writing top-level names to autodrive_nigel.egg-info/top_level.txt
+[1.070s] reading manifest file 'autodrive_nigel.egg-info/SOURCES.txt'
+[1.071s] writing manifest file 'autodrive_nigel.egg-info/SOURCES.txt'
+[1.072s] running build_ext
+[1.072s] Creating /home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages/autodrive-nigel.egg-link (link to .)
+[1.072s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[1.073s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[1.073s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[1.073s] 
+[1.073s] Installed /home/malik/ros2_ws/build/autodrive_nigel
+[1.073s] running symlink_data
+[1.098s] Invoked command in '/home/malik/ros2_ws/build/autodrive_nigel' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_nigel/build --no-deps symlink_data

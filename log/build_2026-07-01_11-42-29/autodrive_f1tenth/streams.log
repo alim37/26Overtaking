@@ -1,0 +1,73 @@
+[90.096s] Invoking command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth': AMENT_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox LD_LIBRARY_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build
+[90.357s] running develop
+[90.516s] Removing /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth.egg-link (link to .)
+[90.536s] Invoked command in '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth' returned '0': AMENT_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox LD_LIBRARY_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build
+[90.537s] Invoking command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth': AMENT_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox LD_LIBRARY_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data --force
+[90.746s] running egg_info
+[90.747s] writing ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[90.747s] writing dependency_links to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[90.747s] writing entry points to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[90.748s] writing requirements to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[90.748s] writing top-level names to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[90.749s] reading manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[90.750s] writing manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[90.750s] running build
+[90.750s] running build_py
+[90.750s] copying autodrive_f1tenth/safety.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/confidence_log.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/pure_pursuit.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/follow_stack.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/slam.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.751s] copying autodrive_f1tenth/slam_toolbox_bridge.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.752s] copying autodrive_f1tenth/pure_pursuit_target.py -> /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth
+[90.752s] running install
+[90.752s] running install_lib
+[90.753s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/dl_slot.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/safety.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/__init__.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/target_vehicle_tracker.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/confidence_log.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/pure_pursuit.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/dl_slot_scan.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/follow_stack.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/slam.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/slam_toolbox_bridge.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/pure_pursuit_target.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.754s] copying /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build/lib/autodrive_f1tenth/plot_pure_pursuit_runs.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth
+[90.755s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/dl_slot.py to dl_slot.cpython-310.pyc
+[90.757s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/safety.py to safety.cpython-310.pyc
+[90.758s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/__init__.py to __init__.cpython-310.pyc
+[90.758s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/target_vehicle_tracker.py to target_vehicle_tracker.cpython-310.pyc
+[90.762s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/confidence_log.py to confidence_log.cpython-310.pyc
+[90.763s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/pure_pursuit.py to pure_pursuit.cpython-310.pyc
+[90.766s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/dl_slot_scan.py to dl_slot_scan.cpython-310.pyc
+[90.767s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/follow_stack.py to follow_stack.cpython-310.pyc
+[90.767s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/slam.py to slam.cpython-310.pyc
+[90.768s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/slam_toolbox_bridge.py to slam_toolbox_bridge.cpython-310.pyc
+[90.769s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/pure_pursuit_target.py to pure_pursuit_target.cpython-310.pyc
+[90.770s] byte-compiling /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth/plot_pure_pursuit_runs.py to plot_pure_pursuit_runs.cpython-310.pyc
+[90.771s] running install_data
+[90.771s] copying resource/autodrive_f1tenth -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/ament_index/resource_index/packages
+[90.772s] copying package.xml -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth
+[90.772s] copying launch/slam_stack.launch.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[90.772s] copying launch/follow_stack.launch.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[90.772s] copying launch/slam_toolbox_stack.launch.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[90.772s] creating /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/config
+[90.772s] copying config/slam_toolbox_f1tenth.yaml -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/config
+[90.772s] running install_egg_info
+[90.774s] Copying ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[90.775s] running install_scripts
+[90.791s] Installing confidence_log script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing pure_pursuit script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing pure_pursuit_target script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing safety script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.791s] Installing slam script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.792s] Installing slam_toolbox_bridge script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.792s] Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[90.792s] writing list of installed files to '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log'
+[120.121s] Invoked command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth' returned '0': AMENT_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox LD_LIBRARY_PATH=/home/malik/controller-benchmarks/ros2/install/slam_toolbox/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:/home/malik/controller-benchmarks/ros2/install/slam_toolbox/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data --force

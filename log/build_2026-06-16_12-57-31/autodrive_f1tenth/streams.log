@@ -1,0 +1,29 @@
+[30.611s] Invoking command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data
+[30.846s] running egg_info
+[30.847s] writing ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/PKG-INFO
+[30.847s] writing dependency_links to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/dependency_links.txt
+[30.847s] writing entry points to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/entry_points.txt
+[30.847s] writing requirements to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/requires.txt
+[30.847s] writing top-level names to ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/top_level.txt
+[30.849s] reading manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[30.849s] writing manifest file '../build/autodrive_f1tenth/autodrive_f1tenth.egg-info/SOURCES.txt'
+[30.849s] running build
+[30.849s] running build_py
+[30.850s] running install
+[30.850s] running install_lib
+[30.851s] running install_data
+[30.852s] copying package.xml -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth
+[30.852s] creating /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[30.852s] copying launch/follow_stack.launch.py -> /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/share/autodrive_f1tenth/launch
+[30.852s] running install_egg_info
+[30.853s] removing '/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info' (and everything under it)
+[30.854s] Copying ../build/autodrive_f1tenth/autodrive_f1tenth.egg-info to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive_f1tenth-0.1.0-py3.10.egg-info
+[30.854s] running install_scripts
+[30.872s] Installing dl_slot script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] Installing dl_slot_scan script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] Installing follow_stack script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] Installing plot_pure_pursuit_runs script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] Installing pure_pursuit_ethz_scaled script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] Installing target_vehicle_tracker script to /home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[30.872s] writing list of installed files to '/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log'
+[30.904s] Invoked command in '/home/malik/controller-benchmarks/ros2/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/controller-benchmarks/ros2/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/autodrive_f1tenth build --build-base /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/build install --record /home/malik/controller-benchmarks/ros2/build/autodrive_f1tenth/install.log --single-version-externally-managed install_data

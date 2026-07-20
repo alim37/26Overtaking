@@ -1,0 +1,24 @@
+/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  warnings.warn(
+running develop
+running egg_info
+writing autodrive_nigel.egg-info/PKG-INFO
+writing dependency_links to autodrive_nigel.egg-info/dependency_links.txt
+writing entry points to autodrive_nigel.egg-info/entry_points.txt
+writing requirements to autodrive_nigel.egg-info/requires.txt
+writing top-level names to autodrive_nigel.egg-info/top_level.txt
+reading manifest file 'autodrive_nigel.egg-info/SOURCES.txt'
+writing manifest file 'autodrive_nigel.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages/autodrive-nigel.egg-link (link to .)
+Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+
+Installed /home/malik/ros2_ws/build/autodrive_nigel
+running symlink_data
+symbolically linking /home/malik/ros2_ws/build/autodrive_nigel/resource/autodrive_nigel -> /home/malik/ros2_ws/install/autodrive_nigel/share/ament_index/resource_index/packages
+symbolically linking /home/malik/ros2_ws/build/autodrive_nigel/package.xml -> /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel
+symbolically linking /home/malik/ros2_ws/build/autodrive_nigel/launch/simulator/simulator_bringup_rviz.launch.py -> /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/launch/simulator
+symbolically linking /home/malik/ros2_ws/build/autodrive_nigel/launch/simulator/simulator_bringup_headless.launch.py -> /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/launch/simulator
+symbolically linking /home/malik/ros2_ws/build/autodrive_nigel/rviz/simulator/simulator.rviz -> /home/malik/ros2_ws/install/autodrive_nigel/share/autodrive_nigel/rviz/simulator

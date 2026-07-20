@@ -1,0 +1,25 @@
+[0.671s] Invoking command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/autodrive_nigel build --build-base /home/malik/ros2_ws/build/autodrive_nigel/build install --record /home/malik/ros2_ws/build/autodrive_nigel/install.log --install-scripts $base/lib/autodrive_nigel --single-version-externally-managed install_data
+[0.855s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.855s]   warnings.warn(
+[0.862s] running egg_info
+[0.862s] writing ../../../build/autodrive_nigel/autodrive_nigel.egg-info/PKG-INFO
+[0.862s] writing dependency_links to ../../../build/autodrive_nigel/autodrive_nigel.egg-info/dependency_links.txt
+[0.862s] writing entry points to ../../../build/autodrive_nigel/autodrive_nigel.egg-info/entry_points.txt
+[0.862s] writing requirements to ../../../build/autodrive_nigel/autodrive_nigel.egg-info/requires.txt
+[0.862s] writing top-level names to ../../../build/autodrive_nigel/autodrive_nigel.egg-info/top_level.txt
+[0.864s] reading manifest file '../../../build/autodrive_nigel/autodrive_nigel.egg-info/SOURCES.txt'
+[0.864s] writing manifest file '../../../build/autodrive_nigel/autodrive_nigel.egg-info/SOURCES.txt'
+[0.864s] running build
+[0.864s] running build_py
+[0.864s] running install
+[0.865s] running install_lib
+[0.866s] running install_data
+[0.866s] running install_egg_info
+[0.867s] removing '/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages/autodrive_nigel-0.1.0-py3.10.egg-info' (and everything under it)
+[0.867s] Copying ../../../build/autodrive_nigel/autodrive_nigel.egg-info to /home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages/autodrive_nigel-0.1.0-py3.10.egg-info
+[0.868s] running install_scripts
+[0.883s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[0.884s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[0.884s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_nigel/lib/autodrive_nigel
+[0.884s] writing list of installed files to '/home/malik/ros2_ws/build/autodrive_nigel/install.log'
+[0.902s] Invoked command in '/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel' returned '0': PS1=\[\e[38;5;81m\]\u@\h \[\e[38;5;226m\]\w \[\e[0m\]$ PYTHONPATH=/home/malik/ros2_ws/build/autodrive_nigel/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_nigel/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/autodrive_nigel build --build-base /home/malik/ros2_ws/build/autodrive_nigel/build install --record /home/malik/ros2_ws/build/autodrive_nigel/install.log --install-scripts $base/lib/autodrive_nigel --single-version-externally-managed install_data
