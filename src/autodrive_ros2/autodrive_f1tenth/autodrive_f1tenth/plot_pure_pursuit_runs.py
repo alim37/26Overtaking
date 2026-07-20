@@ -8,12 +8,7 @@ import numpy as np
 
 
 def get_repo_root() -> Path:
-    for parent in Path(__file__).resolve().parents:
-        if (parent / "package.xml").exists():
-            return parent
-        if (parent / ".git").exists() or (parent / "tracks" / "src").exists():
-            return parent
-    return Path(__file__).resolve().parents[1]
+    return Path(__file__).resolve().parents[3]
 
 
 def latest_two_runs(run_dir: Path) -> tuple[Path, Path]:

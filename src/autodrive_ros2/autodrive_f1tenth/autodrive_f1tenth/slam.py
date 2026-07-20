@@ -19,11 +19,9 @@ from tf2_ros import Buffer, TransformException, TransformListener
 
 def get_repo_root() -> Path:
     for parent in Path(__file__).resolve().parents:
-        if (parent / "package.xml").exists():
-            return parent
         if (parent / ".git").exists() or (parent / "tracks" / "src").exists():
             return parent
-    return Path(__file__).resolve().parents[1]
+    return Path.cwd()
 
 
 def quaternion_to_yaw(x: float, y: float, z: float, w: float) -> float:

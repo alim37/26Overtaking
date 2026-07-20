@@ -52,11 +52,9 @@ def quaternion_to_yaw(x: float, y: float, z: float, w: float) -> float:
 
 def find_repo_root() -> Path:
     for parent in Path(__file__).resolve().parents:
-        if (parent / "package.xml").exists():
-            return parent
         if (parent / ".git").exists() or (parent / "tracks" / "src").exists():
             return parent
-    return Path(__file__).resolve().parents[1]
+    return Path.cwd()
 
 
 @dataclass

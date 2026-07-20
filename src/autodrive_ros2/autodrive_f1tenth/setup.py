@@ -33,6 +33,7 @@ setup(
             "autodrive_outgoing_bridge_2 = autodrive_f1tenth.autodrive_outgoing_bridge_2:main",
             "teleop_keyboard = autodrive_f1tenth.teleop_keyboard:main",
             "pure_pursuit = autodrive_f1tenth.pure_pursuit:main",
+            "gap_follow = autodrive_f1tenth.gap_follow:main",
             "pure_pursuit_target = autodrive_f1tenth.pure_pursuit_target:main",
             "confidence_log = autodrive_f1tenth.confidence_log:main",
             "safety = autodrive_f1tenth.safety:main",

@@ -7,6 +7,7 @@ confidence_log = autodrive_f1tenth.confidence_log:main
 dl_slot = autodrive_f1tenth.dl_slot:main
 dl_slot_scan = autodrive_f1tenth.dl_slot_scan:main
 follow_stack = autodrive_f1tenth.follow_stack:main
+gap_follow = autodrive_f1tenth.gap_follow:main
 overtake_decision = autodrive_f1tenth.overtake_decision:main
 plot_pure_pursuit_runs = autodrive_f1tenth.plot_pure_pursuit_runs:main
 pure_pursuit = autodrive_f1tenth.pure_pursuit:main

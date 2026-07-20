@@ -19,11 +19,9 @@ from visualization_msgs.msg import Marker
 
 def find_repo_root() -> Path:
     for parent in Path(__file__).resolve().parents:
-        if (parent / "package.xml").exists():
-            return parent
         if (parent / ".git").exists() or (parent / "tracks" / "src").exists():
             return parent
-    return Path(__file__).resolve().parents[1]
+    return Path.cwd()
 
 
 def normalize_angle(angle: float) -> float:

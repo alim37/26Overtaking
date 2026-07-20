@@ -119,12 +119,7 @@ def catmull_rom_chain(points: np.ndarray, num_points: int = 400) -> np.ndarray:
 def get_benchmark_root(default_root: str | None = None) -> Path:
     if default_root is not None:
         return Path(default_root).expanduser()
-    for parent in Path(__file__).resolve().parents:
-        if (parent / "package.xml").exists():
-            return parent
-        if (parent / ".git").exists() or (parent / "tracks" / "src").exists():
-            return parent
-    return Path(__file__).resolve().parents[1]
+    return Path(__file__).resolve().parents[3]
 
 
 def load_manual_reference_line(num_points: int = 400) -> np.ndarray:

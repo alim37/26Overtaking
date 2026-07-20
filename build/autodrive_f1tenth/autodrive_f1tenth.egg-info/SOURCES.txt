@@ -13,6 +13,7 @@ autodrive_f1tenth/data_recorder.py
 autodrive_f1tenth/dl_slot.py
 autodrive_f1tenth/dl_slot_scan.py
 autodrive_f1tenth/follow_stack.py
+autodrive_f1tenth/gap_follow.py
 autodrive_f1tenth/lepavd_control.py
 autodrive_f1tenth/overtake_decision.py
 autodrive_f1tenth/pid_controller.py
@@ -40,6 +41,7 @@ autodrive_f1tenth.egg-info/top_level.txt
 autodrive_f1tenth.egg-info/zip-safe
 config/slam_toolbox_f1tenth.yaml
 launch/follow_stack.launch.py
+launch/gap_follow.launch.py
 launch/simulator_bringup_headless.launch.py
 launch/simulator_bringup_rviz.launch.py
 launch/simulator_bringup_rviz_2.launch.py
