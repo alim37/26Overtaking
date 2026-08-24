@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/build/slam_toolbox/rosidl_cmake/srv/LoopClosure_Request.msg

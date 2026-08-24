@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/build/slam_toolbox/rosidl_generator_py/slam_toolbox/srv/_add_submap_s.c

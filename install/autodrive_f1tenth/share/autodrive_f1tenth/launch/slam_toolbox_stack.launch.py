@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/build/autodrive_f1tenth/launch/slam_toolbox_stack.launch.py

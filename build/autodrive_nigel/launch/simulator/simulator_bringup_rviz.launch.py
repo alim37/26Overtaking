@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/src/autodrive_ros2/autodrive_nigel/launch/simulator/simulator_bringup_rviz.launch.py

@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/build/slam_toolbox/rosidl_cmake/srv/ToggleInteractive_Response.msg

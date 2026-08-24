@@ -1,1 +1,0 @@
-/home/malik/ros2_ws/slam_toolbox/include/slam_toolbox/snap_utils.hpp
