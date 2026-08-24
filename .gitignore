@@ -1,9 +1,9 @@
-# ROS 2 / colcon generated artifacts
+# ROS 2 
 build/
 install/
 log/
 
-# Python generated artifacts
+# Python
 __pycache__/
 *.py[cod]
 
