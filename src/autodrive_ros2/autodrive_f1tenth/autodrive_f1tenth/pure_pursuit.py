@@ -15,7 +15,7 @@ import rclpy
 from geometry_msgs.msg import Point
 from rclpy.node import Node
 from sensor_msgs.msg import Imu
-from std_msgs.msg import Bool, Float32
+from std_msgs.msg import Bool, Float32, Int32
 
 
 MANUAL_WAYPOINTS = np.array(
@@ -85,6 +85,32 @@ MANUAL_WAYPOINTS = np.array(
     dtype=float,
 )
 
+# Paste ETHZ Mobil [x, y] waypoints here. Keep the default ETHZ points above
+# unchanged so existing launches continue to use the original track.
+
+#start -20.37, 4.34
+ETHZ_MOBIL_WAYPOINTS = np.array(
+    [
+        [-19.37, 19.84],
+        [-17.02, 19.44],
+        [-14.80, 13.84],
+        [-10.17, 19.57],
+        [-8.21, 19.27],
+        [-8.19, 9.55],
+        [-15.08, 5.96],
+        [-8.59, 1.88],
+        [-9.25, -1.08],
+        [-19.78, 0.08],
+        [-20.36, 3.03],
+    ],
+    dtype=float,
+).reshape(-1, 2)
+
+TRACK_WAYPOINTS = {
+    "ethz": MANUAL_WAYPOINTS,
+    "ethzmobil": ETHZ_MOBIL_WAYPOINTS,
+}
+
 # Edit these values for quick direct runs with:
 # python3 pure_pursuit_ethz_scaled.py
 # ROS parameter overrides still work and will take precedence when provided.
@@ -122,8 +148,27 @@ def get_benchmark_root(default_root: str | None = None) -> Path:
     return Path(__file__).resolve().parents[3]
 
 
-def load_manual_reference_line(num_points: int = 400) -> np.ndarray:
-    return catmull_rom_chain(MANUAL_WAYPOINTS, num_points=num_points)
+def get_track_waypoints(track_name: str = "ethz") -> np.ndarray:
+    normalized_name = track_name.strip().lower()
+    if normalized_name not in TRACK_WAYPOINTS:
+        raise ValueError(
+            f"Unknown track '{track_name}'. Expected one of: {', '.join(TRACK_WAYPOINTS)}"
+        )
+    waypoints = TRACK_WAYPOINTS[normalized_name]
+    if len(waypoints) < 2:
+        raise ValueError(
+            f"Track '{normalized_name}' has no usable waypoints. "
+            "Populate ETHZ_MOBIL_WAYPOINTS in pure_pursuit.py."
+        )
+    return waypoints
+
+
+def load_manual_reference_line(
+    num_points: int = 400, track_name: str = "ethz"
+) -> np.ndarray:
+    return catmull_rom_chain(
+        get_track_waypoints(track_name), num_points=num_points
+    )
 
 
 class RunLogger:
@@ -156,7 +201,7 @@ class RunLogger:
         self.meas_states.append(np.asarray(measured_state, dtype=float).copy())
         self.pred_states.append(np.asarray(predicted_state, dtype=float).copy())
 
-    def save(self, path_samples: np.ndarray) -> Path | None:
+    def save(self, path_samples: np.ndarray, waypoints: np.ndarray) -> Path | None:
         if not self.time:
             return None
 
@@ -171,7 +216,7 @@ class RunLogger:
             meas_states=np.stack(self.meas_states, axis=1),
             pred_states=np.stack(self.pred_states, axis=1),
             path=path_samples.T,
-            waypoints=MANUAL_WAYPOINTS.T,
+            waypoints=waypoints.T,
         )
         return save_path
 
@@ -196,6 +241,8 @@ class CarRuntimeState:
     run_logger: RunLogger | None = None
     start_pose_xy: tuple[float, float] | None = None
     total_distance_m: float = 0.0
+    lap_distance_start_m: float = 0.0
+    lap_count: int = 0
     left_start_zone: bool = False
     completed_lap: bool = False
 
@@ -332,6 +379,7 @@ class PurePursuitF1Tenth(Node):
         self.declare_parameter("enable_logging", LOCAL_RUN_CONFIG["enable_logging"])
         self.declare_parameter("log_dir", LOCAL_RUN_CONFIG["log_dir"])
         self.declare_parameter("log_label", LOCAL_RUN_CONFIG["log_label"])
+        self.declare_parameter("track_name", "ethz")
         self.declare_parameter("num_path_points", LOCAL_RUN_CONFIG["num_path_points"])
         self.declare_parameter("lookahead_distance", LOCAL_RUN_CONFIG["lookahead_distance"])
         self.declare_parameter("wheelbase", LOCAL_RUN_CONFIG["wheelbase"])
@@ -342,8 +390,12 @@ class PurePursuitF1Tenth(Node):
         self.declare_parameter("high_steer_speed_scale", 0.65)
         self.declare_parameter("active_car_ids", [1, 2])
         self.declare_parameter("stop_after_one_lap", False)
+        self.declare_parameter("stop_after_laps", 0)
         self.declare_parameter("lap_start_radius_m", 1.5)
         self.declare_parameter("lap_min_distance_m", 35.0)
+        self.declare_parameter("startup_gate_enabled", True)
+        self.declare_parameter("startup_gate_required_car_ids", "active")
+        self.declare_parameter("startup_gate_hold_sec", 1.0)
 
         self.repo_root = Path(str(self.get_parameter("benchmark_root").value)).expanduser()
         self.model_name = str(self.get_parameter("model_name").value)
@@ -352,6 +404,7 @@ class PurePursuitF1Tenth(Node):
         self.enable_logging = bool(self.get_parameter("enable_logging").value)
         self.log_dir = str(self.get_parameter("log_dir").value)
         self.log_label = str(self.get_parameter("log_label").value)
+        self.track_name = str(self.get_parameter("track_name").value).strip().lower()
         self.lookahead_distance = float(self.get_parameter("lookahead_distance").value)
         self.wheelbase = float(self.get_parameter("wheelbase").value)
         self.target_speed = float(self.get_parameter("target_speed").value)
@@ -361,17 +414,40 @@ class PurePursuitF1Tenth(Node):
         self.high_steer_speed_scale = float(self.get_parameter("high_steer_speed_scale").value)
         active_car_ids_raw = self.get_parameter("active_car_ids").value
         self.stop_after_one_lap = bool(self.get_parameter("stop_after_one_lap").value)
+        self.stop_after_laps = int(self.get_parameter("stop_after_laps").value)
+        if self.stop_after_one_lap and self.stop_after_laps <= 0:
+            self.stop_after_laps = 1
         self.lap_start_radius_m = float(self.get_parameter("lap_start_radius_m").value)
         self.lap_min_distance_m = float(self.get_parameter("lap_min_distance_m").value)
-        self.path = load_manual_reference_line(int(self.get_parameter("num_path_points").value))
+        self.startup_gate_enabled = bool(self.get_parameter("startup_gate_enabled").value)
+        self.startup_gate_hold_sec = float(self.get_parameter("startup_gate_hold_sec").value)
+        self.waypoints = get_track_waypoints(self.track_name)
+        self.path = load_manual_reference_line(
+            int(self.get_parameter("num_path_points").value),
+            track_name=self.track_name,
+        )
         self.follow_active_car1 = False
         self.safety_active_car1 = False
         self.active_car_ids = self._parse_active_car_ids(active_car_ids_raw)
+        required_car_ids_raw = self.get_parameter("startup_gate_required_car_ids").value
+        if str(required_car_ids_raw).strip().lower() == "active":
+            self.startup_required_car_ids = self.active_car_ids
+        else:
+            self.startup_required_car_ids = self._parse_active_car_ids(required_car_ids_raw)
+        self.startup_ips_ready = {
+            car_id: False for car_id in self.startup_required_car_ids
+        }
+        self.startup_gate_ready_since: float | None = None
+        self.startup_gate_open = not self.startup_gate_enabled
         self.car_states: dict[int, CarRuntimeState] = {
             car_id: CarRuntimeState(car_id=car_id) for car_id in self.active_car_ids
         }
         self.steer_pubs: dict[int, any] = {}
         self.throttle_pubs: dict[int, any] = {}
+        self.lap_count_pubs: dict[int, any] = {}
+        self.startup_gate_pub = self.create_publisher(
+            Bool, "/autodrive/startup_gate/open", 10
+        )
 
         for car_id, state in self.car_states.items():
             label = f"{self.log_label}_car{car_id}" if self.log_label else f"{self.model_name}_car{car_id}_{self.target_speed:.3f}".rstrip("0").rstrip(".")
@@ -406,6 +482,11 @@ class PurePursuitF1Tenth(Node):
                 f"/autodrive/f1tenth_{car_id}/throttle_command",
                 10,
             )
+            self.lap_count_pubs[car_id] = self.create_publisher(
+                Int32,
+                f"/autodrive/f1tenth_{car_id}/pure_pursuit/lap_count",
+                10,
+            )
 
             self.create_subscription(
                 Point,
@@ -428,10 +509,23 @@ class PurePursuitF1Tenth(Node):
             self.create_subscription(
                 Float32,
                 f"/autodrive/f1tenth_{car_id}/throttle",
-                lambda msg, current_car_id=car_id: self.throttle_fb_cb(current_car_id, msg),
+                lambda msg, current_car_id=car_id: self.throttle_fb_cb(
+                    current_car_id, msg
+                ),
                 10,
             )
 
+        for car_id in self.startup_required_car_ids:
+            if car_id in self.active_car_ids:
+                continue
+            self.create_subscription(
+                Point,
+                f"/autodrive/f1tenth_{car_id}/ips",
+                lambda msg, current_car_id=car_id: self.startup_ips_cb(
+                    current_car_id, msg
+                ),
+                10,
+            )
         self.create_subscription(
             Bool,
             "/autodrive/f1tenth_1/target_tracker/follow_active",
@@ -449,7 +543,8 @@ class PurePursuitF1Tenth(Node):
         self.get_logger().info(
             f"Pure pursuit ready with {len(self.path)} spline samples, lookahead={self.lookahead_distance:.2f}, "
             f"target_speed={self.target_speed:.2f}, learned_model={self.use_learned_model}, "
-            f"active_cars={self.active_car_ids}, stop_after_one_lap={self.stop_after_one_lap}"
+            f"active_cars={self.active_car_ids}, stop_after_laps={self.stop_after_laps}, "
+            f"startup_gate_cars={self.startup_required_car_ids}"
         )
         if self.enable_logging:
             self.get_logger().info(f"Logging enabled -> {(self.repo_root / self.log_dir).resolve()}")
@@ -476,6 +571,8 @@ class PurePursuitF1Tenth(Node):
         return tuple(car_ids)
 
     def ips_cb(self, car_id: int, msg: Point) -> None:
+        if car_id in self.startup_ips_ready:
+            self.startup_ips_ready[car_id] = True
         state = self.car_states[car_id]
         now = self.get_clock().now().nanoseconds * 1e-9
         current_xy = (float(msg.x), float(msg.y))
@@ -520,18 +617,58 @@ class PurePursuitF1Tenth(Node):
         if distance_to_start > self.lap_start_radius_m:
             state.left_start_zone = True
 
+        lap_distance = state.total_distance_m - state.lap_distance_start_m
         if (
-            self.stop_after_one_lap
-            and not state.completed_lap
-            and state.left_start_zone
-            and state.total_distance_m >= self.lap_min_distance_m
+            state.left_start_zone
+            and lap_distance >= self.lap_min_distance_m
             and distance_to_start <= self.lap_start_radius_m
         ):
-            state.completed_lap = True
+            state.lap_count += 1
+            state.lap_distance_start_m = state.total_distance_m
+            state.left_start_zone = False
+            self.lap_count_pubs[car_id].publish(Int32(data=state.lap_count))
             self.get_logger().info(
-                f"Car {car_id} completed one lap at distance {state.total_distance_m:.2f} m. "
-                f"Stopping pure pursuit commands for this car."
+                f"Car {car_id} completed lap {state.lap_count} at distance {state.total_distance_m:.2f} m."
             )
+            if self.stop_after_laps > 0 and state.lap_count >= self.stop_after_laps:
+                state.completed_lap = True
+                self.get_logger().info(
+                    f"Car {car_id} reached the {self.stop_after_laps}-lap limit. Stopping control commands."
+                )
+
+    def startup_ips_cb(self, car_id: int, _msg: Point) -> None:
+        self.startup_ips_ready[car_id] = True
+
+    def _update_startup_gate(self, now: float) -> bool:
+        if not self.startup_gate_enabled:
+            self.startup_gate_pub.publish(Bool(data=True))
+            return True
+
+        all_ready = all(self.startup_ips_ready.values())
+        if not all_ready:
+            self.startup_gate_ready_since = None
+            self.startup_gate_pub.publish(Bool(data=False))
+            return False
+
+        if self.startup_gate_ready_since is None:
+            self.startup_gate_ready_since = now
+            self.get_logger().info(
+                f"All required IPS streams are ready; holding zero for "
+                f"{self.startup_gate_hold_sec:.2f} s"
+            )
+
+        if now - self.startup_gate_ready_since < self.startup_gate_hold_sec:
+            self.startup_gate_pub.publish(Bool(data=False))
+            return False
+
+        if not self.startup_gate_open:
+            self.startup_gate_open = True
+            self.startup_gate_pub.publish(Bool(data=True))
+            self.get_logger().info("Startup gate open; releasing vehicle controls together")
+            return False
+
+        self.startup_gate_pub.publish(Bool(data=True))
+        return True
 
     def imu_cb(self, car_id: int, msg: Imu) -> None:
         self.car_states[car_id].yaw_rate = float(msg.angular_velocity.z)
@@ -576,6 +713,11 @@ class PurePursuitF1Tenth(Node):
 
     def control_loop(self) -> None:
         now = self.get_clock().now().nanoseconds * 1e-9
+        if not self._update_startup_gate(now):
+            for car_id in self.car_states:
+                self.steer_pubs[car_id].publish(Float32(data=0.0))
+                self.throttle_pubs[car_id].publish(Float32(data=0.0))
+            return
         for car_id, state in self.car_states.items():
             if state.completed_lap:
                 self.steer_pubs[car_id].publish(Float32(data=0.0))
@@ -662,7 +804,7 @@ class PurePursuitF1Tenth(Node):
     def destroy_node(self) -> bool:
         for car_id, state in self.car_states.items():
             if state.run_logger is not None:
-                save_path = state.run_logger.save(self.path)
+                save_path = state.run_logger.save(self.path, self.waypoints)
                 if save_path is not None:
                     self.get_logger().info(f"Saved car {car_id} run log to {save_path}")
         return super().destroy_node()

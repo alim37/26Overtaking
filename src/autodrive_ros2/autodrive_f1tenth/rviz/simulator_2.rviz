@@ -59,6 +59,21 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
 
+    - Class: rviz_default_plugins/Marker
+      Name: Target Tracking Arrow
+      Enabled: true
+      Topic: /autodrive/f1tenth_1/target_tracker/tracking_arrow
+
+    - Class: rviz_default_plugins/Marker
+      Name: Predictive Spliner RoC
+      Enabled: true
+      Topic: /autodrive/f1tenth_1/predictive_spliner/roc_marker
+
+    - Class: rviz_default_plugins/Marker
+      Name: Predictive Spliner Status
+      Enabled: true
+      Topic: /autodrive/f1tenth_1/predictive_spliner/status_marker
+
   Global Options:
     Fixed Frame: map
     Background Color: 48; 48; 48

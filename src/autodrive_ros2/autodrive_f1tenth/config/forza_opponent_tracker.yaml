@@ -1,0 +1,21 @@
+forza_opponent_tracker:
+  ros__parameters:
+    lambda_angle_deg: 10.0
+    lidar_sigma_m: 0.03
+    min_two_point_distance_m: 0.01
+    min_cluster_beams: 5
+    max_cluster_size_m: 0.70
+    opponent_length_m: 0.55
+    opponent_width_m: 0.30
+    max_viewing_distance_m: 9.0
+    boundary_inflation_m: 0.08
+    association_distance_m: 0.45
+    dynamic_association_multiplier: 1.5
+    min_classification_measurements: 6
+    static_std_threshold_m: 0.08
+    dynamic_std_threshold_m: 0.16
+    min_dynamic_speed_mps: 0.20
+    track_ttl_scans: 10
+    dynamic_hold_scans: 12
+    max_front_angle_deg: 70.0
+    confidence_green_threshold: 0.90

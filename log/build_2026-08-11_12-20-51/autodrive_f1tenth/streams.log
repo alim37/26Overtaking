@@ -1,0 +1,38 @@
+[0.665s] Invoking command in '/home/malik/ros2_ws/build/autodrive_f1tenth': PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data
+[0.927s] running develop
+[1.097s] running egg_info
+[1.098s] writing autodrive_f1tenth.egg-info/PKG-INFO
+[1.098s] writing dependency_links to autodrive_f1tenth.egg-info/dependency_links.txt
+[1.098s] writing entry points to autodrive_f1tenth.egg-info/entry_points.txt
+[1.098s] writing requirements to autodrive_f1tenth.egg-info/requires.txt
+[1.098s] writing top-level names to autodrive_f1tenth.egg-info/top_level.txt
+[1.101s] reading manifest file 'autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.103s] writing manifest file 'autodrive_f1tenth.egg-info/SOURCES.txt'
+[1.106s] running build_ext
+[1.106s] Creating /home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages/autodrive-f1tenth.egg-link (link to .)
+[1.107s] Installing autodrive_incoming_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.107s] Installing autodrive_incoming_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing autodrive_outgoing_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing autodrive_outgoing_bridge_2 script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing confidence_log script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing dl_slot script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing dl_slot_scan script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing follow_stack script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.108s] Installing gap_follow script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing overtake_decision script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing plot_pure_pursuit_runs script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing pure_pursuit script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing pure_pursuit_target script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing safety script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.109s] Installing slam script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing slam_tf_logger script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing slam_toolbox_bridge script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing slam_toolbox_map_logger script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing target_vehicle_tracker script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing target_vehicle_tracker_foreground script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing teleop_keyboard script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] Installing thesis script to /home/malik/ros2_ws/install/autodrive_f1tenth/lib/autodrive_f1tenth
+[1.111s] 
+[1.111s] Installed /home/malik/ros2_ws/build/autodrive_f1tenth
+[1.111s] running symlink_data
+[1.150s] Invoked command in '/home/malik/ros2_ws/build/autodrive_f1tenth' returned '0': PYTHONPATH=/home/malik/ros2_ws/build/autodrive_f1tenth/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/malik/ros2_ws/install/autodrive_f1tenth/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/malik/ros2_ws/build/autodrive_f1tenth/build --no-deps symlink_data
