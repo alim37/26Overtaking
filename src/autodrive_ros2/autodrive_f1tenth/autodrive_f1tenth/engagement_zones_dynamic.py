@@ -782,7 +782,15 @@ def generate(args: argparse.Namespace) -> None:
             zorder=6,
         )
     )
-    ax.plot(best.xy[:, 0], best.xy[:, 1], color=path_color, linewidth=2.8, label="Sampled dynamic-EZ path", zorder=7)
+    path_label = getattr(args, "path_label", "Sampled dynamic-EZ path")
+    planner_title = getattr(
+        args, "planner_title", "Sampling-Based Planning Around a Dynamic Evader"
+    )
+    planner_name = getattr(args, "planner_name", "dynamic")
+    ax.plot(
+        best.xy[:, 0], best.xy[:, 1], color=path_color, linewidth=2.8,
+        label=path_label, zorder=7,
+    )
     ax.scatter(best.xy[[0, -1], 0], best.xy[[0, -1], 1], s=34, color=["#9c27b0", "#d35400"], zorder=8)
     ax.annotate(r"$c_{start}$", best.xy[0], xytext=(5, 5), textcoords="offset points")
     ax.annotate(r"$c_{end}$", best.xy[-1], xytext=(5, 5), textcoords="offset points")
@@ -803,7 +811,7 @@ def generate(args: argparse.Namespace) -> None:
             Line2D([], [], color="#9a6700", linestyle="--", label="Observed ego"),
             Line2D([], [], color="#f2c94c", marker="o", linestyle="", label="Observed dynamic evader"),
             Line2D([], [], color="#d95f02", linewidth=2.0, label="Buffered target engagement box"),
-            Line2D([], [], color=path_color, linewidth=2.8, label="Sampled dynamic-EZ path"),
+            Line2D([], [], color=path_color, linewidth=2.8, label=path_label),
             Line2D([], [], color="#c77dff", linewidth=7, alpha=0.35, label="Confidence Region of Collision"),
         ],
         loc="best",
@@ -811,14 +819,14 @@ def generate(args: argparse.Namespace) -> None:
     ax.set_aspect("equal", adjustable="box")
     ax.set_xlabel("x [m]")
     ax.set_ylabel("y [m]")
-    ax.set_title("Sampling-Based Planning Around a Dynamic Evader")
+    ax.set_title(planner_title)
     ax.grid(alpha=0.2)
     fig.tight_layout()
     fig.savefig(output, dpi=220, bbox_inches="tight")
     fig.savefig(output.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)
-    print(f"Saved dynamic engagement-zone figure to {output}")
-    print(f"Saved dynamic planned path to {path_output}")
+    print(f"Saved {planner_name} engagement-zone figure to {output}")
+    print(f"Saved {planner_name} planned path to {path_output}")
     print(f"Saved feasibility report to {validation_output}")
     print(
         f"selected RoC=({c_start:.3f}, {c_end:.3f}) m "
