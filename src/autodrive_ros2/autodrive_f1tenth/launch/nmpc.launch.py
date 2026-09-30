@@ -9,7 +9,8 @@ from launch_ros.actions import Node
 # Standalone DynSSM + NMPC test knobs.
 NOMINAL_VELOCITY_MPS = 3.25
 NMPC_HORIZON = 8
-OVERTAKE_SPEED_MULTIPLIER = 1.30
+PURE_PURSUIT_WARMUP_SAMPLES = 15
+OVERTAKE_SPEED_MULTIPLIER = 1.15
 OVERTAKE_SPEED_DELAY_SEC = 0.25
 PWM_TO_SIM_SCALE = 0.27
 PURE_PURSUIT_THROTTLE_LIMIT = 0.13
@@ -39,6 +40,7 @@ def generate_launch_description():
                     "wait_for_peer_ips": True,
                     "nominal_velocity_mps": NOMINAL_VELOCITY_MPS,
                     "nmpc_horizon": NMPC_HORIZON,
+                    "startup_pure_pursuit_samples": PURE_PURSUIT_WARMUP_SAMPLES,
                     "engagement_speed_multiplier": OVERTAKE_SPEED_MULTIPLIER,
                     "engagement_speed_delay_sec": OVERTAKE_SPEED_DELAY_SEC,
                     "pwm_to_sim_scale": PWM_TO_SIM_SCALE,
@@ -65,6 +67,7 @@ def generate_launch_description():
                     "wait_for_peer_ips": True,
                     "nominal_velocity_mps": NOMINAL_VELOCITY_MPS,
                     "nmpc_horizon": NMPC_HORIZON,
+                    "startup_pure_pursuit_samples": PURE_PURSUIT_WARMUP_SAMPLES,
                     "engagement_speed_multiplier": 1.0,
                     "pwm_to_sim_scale": PWM_TO_SIM_SCALE,
                     "max_sim_throttle": PURE_PURSUIT_THROTTLE_LIMIT,

@@ -88,8 +88,11 @@ class DynSSMNMPCController(Node):
             "max_steering_rate_rad_s": 5.0,
             "corner_steering_rad": 0.175,
             "corner_throttle_scale": 0.65,
+            "startup_pure_pursuit_samples": 15,
+            "startup_pure_pursuit_lookahead_m": 2.5,
             "c_start_radius_m": 1.0,
             "c_end_radius_m": 0.8,
+            "c_end_handoff_distance_m": 1.0,
             "stop_after_laps": 1,
             "lap_start_radius_m": 1.5,
             "lap_min_distance_m": 35.0,
@@ -133,8 +136,13 @@ class DynSSMNMPCController(Node):
         self.max_steering_rate = float(value("max_steering_rate_rad_s"))
         self.corner_steering = float(value("corner_steering_rad"))
         self.corner_throttle_scale = float(value("corner_throttle_scale"))
+        self.startup_pp_samples = int(value("startup_pure_pursuit_samples"))
+        self.startup_pp_lookahead = float(
+            value("startup_pure_pursuit_lookahead_m")
+        )
         self.c_start_radius = float(value("c_start_radius_m"))
         self.c_end_radius = float(value("c_end_radius_m"))
+        self.c_end_handoff_distance = float(value("c_end_handoff_distance_m"))
         self.stop_after_laps = int(value("stop_after_laps"))
         self.lap_start_radius = float(value("lap_start_radius_m"))
         self.lap_min_distance = float(value("lap_min_distance_m"))
@@ -163,6 +171,8 @@ class DynSSMNMPCController(Node):
         self.dynssm = None
         self.dynssm_active = False
         self.model_history = deque(maxlen=5)
+        self.startup_sample_count = 0
+        self.startup_parameter_estimates = []
         if self.use_dynssm:
             self.dynssm = DynSSMRuntime(
                 Path(str(value("dynssm_checkpoint"))).expanduser(),
@@ -180,6 +190,8 @@ class DynSSMNMPCController(Node):
         self.yaw_rate = 0.0
         self.previous_control = np.zeros(2, dtype=float)
         self.mode = self.NORMAL
+        self.normal_index = 0
+        self.engagement_index = 0
         self.engagement_start_time = None
         self.engagement_complete = False
         self.start_position = None
@@ -233,7 +245,8 @@ class DynSSMNMPCController(Node):
             f"path={self.path_csv}, N={self.horizon}, dt={self.control_period:.2f}s, "
             f"speed={self.nominal_velocity:.2f}m/s, overtake={self.speed_multiplier:.2f}x, "
             f"pwm_to_sim_scale={self.pwm_to_sim_scale:.3f}, "
-            f"dynssm_loaded={self.dynssm is not None}"
+            f"dynssm_loaded={self.dynssm is not None}, "
+            f"pure_pursuit_warmup={self.startup_pp_samples} samples"
         )
 
     @staticmethod
@@ -262,6 +275,9 @@ class DynSSMNMPCController(Node):
             self.speed_sample_position = current.copy()
             self.speed_sample_time = now
             arc = self.normal_path.nearest_arc(current)
+            self.normal_index = int(
+                np.argmin(np.linalg.norm(self.normal_path.points - current, axis=1))
+            )
             _, headings = self.normal_path.sample(arc, 0.1, 2)
             self.heading = float(headings[0])
         else:
@@ -357,21 +373,128 @@ class DynSSMNMPCController(Node):
             if np.linalg.norm(self.position - self.c_start) <= self.c_start_radius:
                 self.mode = self.ENGAGEMENT
                 self.engagement_start_time = now
+                self.engagement_index = int(
+                    np.argmin(
+                        np.linalg.norm(
+                            self.engagement_path.points - self.position, axis=1
+                        )
+                    )
+                )
                 self.get_logger().info("Reached c_start; NMPC switched to Frenet reference")
         elif self.mode == self.ENGAGEMENT:
-            arc = self.engagement_path.nearest_arc(self.position)
+            remaining = self.engagement_path.length - float(
+                self.engagement_path.arc[self.engagement_index]
+            )
+            near_c_end = float(np.linalg.norm(self.position - self.c_end))
             if (
-                np.linalg.norm(self.position - self.c_end) <= self.c_end_radius
-                and arc >= 0.92 * self.engagement_path.length
+                remaining <= self.c_end_handoff_distance
+                and near_c_end <= self.c_end_radius
             ):
                 self.mode = self.COMPLETE
                 self.engagement_complete = True
-                self.get_logger().info("Reached c_end; NMPC returned to centerline")
+                self.normal_index = int(
+                    np.argmin(
+                        np.linalg.norm(self.normal_path.points - self.position, axis=1)
+                    )
+                )
+                self.get_logger().info(
+                    "Reached c_end; switching from NMPC to pure pursuit for the finish"
+                )
+
+    def _advance_path_index(self, path, current_index, closed):
+        # Local progress prevents nearby branches and start/finish overlap from
+        # causing reference jumps and steering reversals.
+        offsets = np.arange(-4, 45, dtype=int)
+        if closed:
+            candidates = (current_index + offsets) % len(path.points)
+        else:
+            candidates = np.unique(
+                np.clip(current_index + offsets, 0, len(path.points) - 1)
+            )
+        distances = np.linalg.norm(path.points[candidates] - self.position, axis=1)
+        selected = int(candidates[int(np.argmin(distances))])
+        return selected if closed else max(current_index, selected)
 
     def _publish_stop(self):
         self.steer_pub.publish(Float32(data=0.0))
         self.throttle_pub.publish(Float32(data=0.0))
         self.previous_control[:] = 0.0
+
+    def _startup_pure_pursuit_command(self):
+        self.normal_index = self._advance_path_index(
+            self.normal_path, self.normal_index, closed=True
+        )
+        arc = float(self.normal_path.arc[self.normal_index])
+        targets, _ = self.normal_path.sample(
+            arc, self.startup_pp_lookahead, 2
+        )
+        delta = targets[1] - self.position
+        cos_yaw = math.cos(-self.heading)
+        sin_yaw = math.sin(-self.heading)
+        vehicle_x = float(delta[0]) * cos_yaw - float(delta[1]) * sin_yaw
+        vehicle_y = float(delta[0]) * sin_yaw + float(delta[1]) * cos_yaw
+        alpha = math.atan2(vehicle_y, vehicle_x)
+        steering = math.atan2(
+            4.0 * self.model_wheelbase * math.sin(alpha),
+            self.startup_pp_lookahead,
+        )
+        steering = float(np.clip(steering, -self.max_steering, self.max_steering))
+        throttle = self.max_sim_throttle
+        if abs(steering) >= self.corner_steering:
+            throttle *= self.corner_throttle_scale
+        return throttle, steering
+
+    def _run_startup_pure_pursuit(self):
+        throttle, steering = self._startup_pure_pursuit_command()
+        model_pwm = throttle / max(self.pwm_to_sim_scale, 1e-6)
+        self.previous_control[:] = [model_pwm, steering]
+        self.model_history.append(
+            [
+                self.speed,
+                self.lateral_speed,
+                self.yaw_rate,
+                self.throttle_feedback,
+                self.steering_feedback,
+                model_pwm,
+                steering,
+            ]
+        )
+        self.startup_sample_count += 1
+        if len(self.model_history) == self.dynssm.horizon:
+            estimate = self.dynssm.infer_parameters(np.asarray(self.model_history))
+            self.startup_parameter_estimates.append(estimate)
+
+        self.throttle_pub.publish(Float32(data=float(throttle)))
+        self.steer_pub.publish(Float32(data=float(steering)))
+        self.mode_pub.publish(
+            String(data=f"PURE_PURSUIT_WARMUP_{self.startup_sample_count}/{self.startup_pp_samples}")
+        )
+        if self.startup_sample_count < self.startup_pp_samples:
+            return
+
+        learned = {
+            name: float(np.median([item[name] for item in self.startup_parameter_estimates]))
+            for name in self.startup_parameter_estimates[0]
+        }
+        self.nmpc = NominalLePAVDNMPC(
+            horizon=self.horizon,
+            sample_time=self.control_period,
+            steering_bounds=(-self.max_steering, self.max_steering),
+            max_steering_rate=self.max_steering_rate,
+            model_parameters=LePAVDParameters(**learned),
+            kinematic_wheelbase=self.model_wheelbase,
+        )
+        self.previous_control[:] = [model_pwm, steering]
+        self.dynssm_active = True
+        summary = ", ".join(
+            f"{name}={learned[name]:.5g}"
+            for name in ("Bf", "Df", "Br", "Dr", "Cm1", "Iz")
+        )
+        self.get_logger().info(
+            f"Completed {self.startup_pp_samples}-sample pure-pursuit warm-up; "
+            f"DynSSM model ACTIVE from {len(self.startup_parameter_estimates)} "
+            f"rolling inferences; NMPC taking control: {summary}"
+        )
 
     def control_loop(self):
         now = self.get_clock().now().nanoseconds * 1e-9
@@ -382,42 +505,40 @@ class DynSSMNMPCController(Node):
         if self.stopped:
             self._publish_stop()
             return
-        if (
-            self.dynssm is not None
-            and not self.dynssm_active
-            and self.speed >= self.dynssm_min_adaptation_speed
-        ):
-            self.model_history.append(
-                [
-                    self.speed,
-                    self.lateral_speed,
-                    self.yaw_rate,
-                    self.throttle_feedback,
-                    self.steering_feedback,
-                    self.previous_control[0],
-                    self.previous_control[1],
-                ]
-            )
-            if len(self.model_history) == self.dynssm.horizon:
-                learned = self.dynssm.infer_parameters(np.asarray(self.model_history))
-                self.nmpc = NominalLePAVDNMPC(
-                    horizon=self.horizon,
-                    sample_time=self.control_period,
-                    steering_bounds=(-self.max_steering, self.max_steering),
-                    max_steering_rate=self.max_steering_rate,
-                    model_parameters=LePAVDParameters(**learned),
-                    kinematic_wheelbase=self.model_wheelbase,
-                )
-                self.previous_control[:] = 0.0
-                self.dynssm_active = True
-                summary = ", ".join(
-                    f"{name}={learned[name]:.5g}"
-                    for name in ("Bf", "Df", "Br", "Dr", "Cm1", "Iz")
-                )
-                self.get_logger().info(f"DynSSM model ACTIVE; NMPC rebuilt: {summary}")
+        if self.dynssm is not None and not self.dynssm_active:
+            self._run_startup_pure_pursuit()
+            self.model_status_pub.publish(Bool(data=self.dynssm_active))
+            return
         self.model_status_pub.publish(Bool(data=self.dynssm_active))
+        if self.mode == self.ENGAGEMENT:
+            self.engagement_index = self._advance_path_index(
+                self.engagement_path, self.engagement_index, closed=False
+            )
         self._update_mode(now)
+        if self.mode == self.COMPLETE:
+            throttle, steering = self._startup_pure_pursuit_command()
+            self.previous_control[:] = [
+                throttle / max(self.pwm_to_sim_scale, 1e-6),
+                steering,
+            ]
+            self.throttle_pub.publish(Float32(data=float(throttle)))
+            self.steer_pub.publish(Float32(data=float(steering)))
+            self.mode_pub.publish(String(data="PURE_PURSUIT_FINISH"))
+            if now - self.last_log_time >= 1.0:
+                self.last_log_time = now
+                self.get_logger().info(
+                    f"mode=PURE_PURSUIT_FINISH speed={self.speed:.2f}m/s "
+                    f"cmd=({throttle:.3f},{steering:.3f})"
+                )
+            return
         path = self.engagement_path if self.mode == self.ENGAGEMENT else self.normal_path
+        if self.mode == self.ENGAGEMENT:
+            start_arc = float(self.engagement_path.arc[self.engagement_index])
+        else:
+            self.normal_index = self._advance_path_index(
+                self.normal_path, self.normal_index, closed=True
+            )
+            start_arc = float(self.normal_path.arc[self.normal_index])
         overtake_speed_active = (
             self.mode == self.ENGAGEMENT
             and self.engagement_start_time is not None
@@ -427,7 +548,7 @@ class DynSSMNMPCController(Node):
             self.speed_multiplier if overtake_speed_active else 1.0
         )
         points, headings = path.sample(
-            path.nearest_arc(self.position),
+            start_arc,
             desired_speed * self.control_period,
             self.horizon + 1,
         )
