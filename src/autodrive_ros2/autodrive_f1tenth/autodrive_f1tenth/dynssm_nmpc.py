@@ -112,12 +112,16 @@ class NominalLePAVDNMPC:
         max_steering_rate=2.5,
         model_parameters=None,
         kinematic_wheelbase=None,
+        track_half_width=None,
     ):
         self.horizon = int(horizon)
         self.sample_time = float(sample_time)
         self.pwm_bounds = pwm_bounds
         self.steering_bounds = steering_bounds
         self.max_steering_rate = float(max_steering_rate)
+        self.track_half_width = (
+            None if track_half_width is None else float(track_half_width)
+        )
         self.model = LePAVDDynamics(model_parameters, kinematic_wheelbase)
         self._last_solution = None
         self._build_solver()
@@ -144,6 +148,7 @@ class NominalLePAVDNMPC:
         objective = 0
         equality = [states[:, 0] - initial_state]
         inequality = []
+        track_inequality = []
 
         for index in range(horizon):
             error = states[:, index] - reference[:, index]
@@ -162,6 +167,15 @@ class NominalLePAVDNMPC:
                 - self.sample_time * derivative
             )
             inequality.append(control_delta[1])
+            if self.track_half_width is not None:
+                # Constrain the predicted next state. Constraining state zero
+                # can make the NLP infeasible because that state is fixed.
+                normal_x = -ca.sin(reference[2, index + 1])
+                normal_y = ca.cos(reference[2, index + 1])
+                track_inequality.append(
+                    normal_x * (states[0, index + 1] - reference[0, index + 1])
+                    + normal_y * (states[1, index + 1] - reference[1, index + 1])
+                )
 
         terminal_error = states[:, -1] - reference[:, -1]
         objective += ca.mtimes([terminal_error.T, terminal_q, terminal_error])
@@ -170,7 +184,7 @@ class NominalLePAVDNMPC:
             "x": decision,
             "p": parameters,
             "f": objective,
-            "g": ca.vertcat(*(equality + inequality)),
+            "g": ca.vertcat(*(equality + inequality + track_inequality)),
         }
         self._solver = ca.nlpsol(
             "lepavd_nmpc",
@@ -202,8 +216,15 @@ class NominalLePAVDNMPC:
         self._upper_g = np.concatenate(
             [np.zeros(equality_size), np.full(horizon, steering_step)]
         )
+        if self.track_half_width is not None:
+            self._lower_g = np.concatenate(
+                [self._lower_g, np.full(horizon, -self.track_half_width)]
+            )
+            self._upper_g = np.concatenate(
+                [self._upper_g, np.full(horizon, self.track_half_width)]
+            )
 
-    def solve(self, state, reference, previous_control):
+    def solve(self, state, reference, previous_control, track_margin=0.0):
         state = np.asarray(state, dtype=float).reshape(self.STATE_SIZE)
         reference = np.asarray(reference, dtype=float).reshape(
             self.STATE_SIZE, self.horizon + 1
@@ -228,13 +249,21 @@ class NominalLePAVDNMPC:
             )
         else:
             initial_guess = self._last_solution
+        lower_g = self._lower_g
+        upper_g = self._upper_g
+        if self.track_half_width is not None:
+            clearance = max(0.02, self.track_half_width - float(track_margin))
+            lower_g = self._lower_g.copy()
+            upper_g = self._upper_g.copy()
+            lower_g[-self.horizon :] = -clearance
+            upper_g[-self.horizon :] = clearance
         result = self._solver(
             x0=initial_guess,
             p=parameters,
             lbx=self._lower_x,
             ubx=self._upper_x,
-            lbg=self._lower_g,
-            ubg=self._upper_g,
+            lbg=lower_g,
+            ubg=upper_g,
         )
         solution = np.asarray(result["x"]).reshape(-1)
         status = str(self._solver.stats().get("return_status", "NMPC failed"))
