@@ -47,9 +47,12 @@ class EpmSysidCollector(Node):
         self.declare_parameter("steering_excitation_hz", [0.23, 0.31, 0.41])
         self.declare_parameter("throttle_excitation", [0.0, 0.004, 0.006])
         self.declare_parameter("throttle_excitation_hz", [0.13, 0.17, 0.19])
-        self.declare_parameter("validation_laps", [3, 6, 8])
+        self.declare_parameter("validation_laps", [3, 6])
+        self.declare_parameter("test_laps", [8])
         self.declare_parameter("max_abs_steering_rad", 0.54)
         self.declare_parameter("max_throttle", 0.16)
+        self.declare_parameter("corner_protection_steering_rad", 0.15)
+        self.declare_parameter("sync_tolerance_sec", 0.03)
 
         self.output_dir = Path(
             str(self.get_parameter("output_dir").value)
@@ -72,17 +75,28 @@ class EpmSysidCollector(Node):
         self.validation_laps = {
             int(value) for value in self.get_parameter("validation_laps").value
         }
+        self.test_laps = {
+            int(value) for value in self.get_parameter("test_laps").value
+        }
         self.max_abs_steering = float(
             self.get_parameter("max_abs_steering_rad").value
         )
         self.max_throttle = float(self.get_parameter("max_throttle").value)
+        self.corner_protection_steering = float(
+            self.get_parameter("corner_protection_steering_rad").value
+        )
+        self.sync_tolerance_ns = int(
+            float(self.get_parameter("sync_tolerance_sec").value) * 1e9
+        )
 
         if self.num_laps <= 0:
             raise ValueError("num_laps must be positive")
-        for lap in self.validation_laps:
+        if self.validation_laps & self.test_laps:
+            raise ValueError("validation_laps and test_laps must not overlap")
+        for lap in self.validation_laps | self.test_laps:
             if lap < 1 or lap > self.num_laps:
                 raise ValueError(
-                    f"validation lap {lap} is outside 1..{self.num_laps}"
+                    f"held-out lap {lap} is outside 1..{self.num_laps}"
                 )
 
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -95,6 +109,7 @@ class EpmSysidCollector(Node):
         self.writer.writerow(
             [
                 "sensor_timestamp_ns",
+                "odom_imu_timestamp_delta_ms",
                 "elapsed_sec",
                 "lap",
                 "dataset_split",
@@ -142,6 +157,7 @@ class EpmSysidCollector(Node):
         self.throttle_feedback = 0.0
         self.latest_ips: tuple[float, float, float] | None = None
         self.pending_odom: dict[int, Odometry] = {}
+        self.pending_imu: dict[int, Imu] = {}
         self.rows_written = 0
         self.finished = False
         self.shutdown_timer = None
@@ -176,7 +192,8 @@ class EpmSysidCollector(Node):
         self._write_metadata()
         self.get_logger().info(
             f"EPM system-ID collection ready: laps={self.num_laps}, "
-            f"validation_laps={sorted(self.validation_laps)}, output={self.output_path}"
+            f"validation_laps={sorted(self.validation_laps)}, "
+            f"test_laps={sorted(self.test_laps)}, output={self.output_path}"
         )
 
     def _array(self, name: str) -> tuple[float, ...]:
@@ -206,6 +223,7 @@ class EpmSysidCollector(Node):
             "direction": self.direction,
             "num_laps": self.num_laps,
             "validation_laps_1_based": sorted(self.validation_laps),
+            "test_laps_1_based": sorted(self.test_laps),
             "target_throttle_commands": self.target_throttles,
             "steering_gains": self.steering_gains,
             "steering_excitation_rad": self.steering_amplitudes,
@@ -217,7 +235,8 @@ class EpmSysidCollector(Node):
                 "model_vy_mps": "odom.twist.twist.linear.x (Unity lateral axis)",
                 "model_yaw_rate_radps": "imu.angular_velocity.z",
             },
-            "synchronization": "odom and imu rows matched by identical bundle timestamp",
+            "synchronization": "nearest odom/imu header stamps within bounded tolerance",
+            "sync_tolerance_ms": self.sync_tolerance_ns * 1e-6,
         }
         self.metadata_path.write_text(
             json.dumps(metadata, indent=2), encoding="utf-8"
@@ -240,15 +259,40 @@ class EpmSysidCollector(Node):
 
     def odom_cb(self, msg: Odometry) -> None:
         stamp = stamp_nanoseconds(msg)
+        imu_stamp = self._nearest_stamp(self.pending_imu, stamp)
+        if imu_stamp is not None:
+            imu = self.pending_imu.pop(imu_stamp)
+            self.log_synchronized_sample(
+                stamp, odom=msg, imu=imu, delta_ns=abs(stamp - imu_stamp)
+            )
+            return
         self.pending_odom[stamp] = msg
-        if len(self.pending_odom) > 100:
-            del self.pending_odom[min(self.pending_odom)]
+        self._trim_pending(self.pending_odom)
 
     def imu_cb(self, msg: Imu) -> None:
         stamp = stamp_nanoseconds(msg)
-        odom = self.pending_odom.pop(stamp, None)
-        if odom is not None:
-            self.log_synchronized_sample(stamp, odom, msg)
+        odom_stamp = self._nearest_stamp(self.pending_odom, stamp)
+        if odom_stamp is not None:
+            odom = self.pending_odom.pop(odom_stamp)
+            self.log_synchronized_sample(
+                odom_stamp, odom=odom, imu=msg, delta_ns=abs(stamp - odom_stamp)
+            )
+            return
+        self.pending_imu[stamp] = msg
+        self._trim_pending(self.pending_imu)
+
+    def _nearest_stamp(self, pending: dict[int, object], stamp: int) -> int | None:
+        if not pending:
+            return None
+        nearest = min(pending, key=lambda candidate: abs(candidate - stamp))
+        if abs(nearest - stamp) > self.sync_tolerance_ns:
+            return None
+        return nearest
+
+    @staticmethod
+    def _trim_pending(pending: dict[int, object]) -> None:
+        while len(pending) > 100:
+            del pending[min(pending)]
 
     def lap_cb(self, msg: Int32) -> None:
         completed_laps = int(msg.data)
@@ -285,12 +329,15 @@ class EpmSysidCollector(Node):
                 + 0.5 * phase
             )
         )
+        if abs(self.nominal_steering) >= self.corner_protection_steering:
+            steering_candidate = self.nominal_steering
+        else:
+            steering_candidate = (
+                profile["gain"] * self.nominal_steering + steering_excitation
+            )
         self.applied_steering = max(
             -self.max_abs_steering,
-            min(
-                self.max_abs_steering,
-                profile["gain"] * self.nominal_steering + steering_excitation,
-            ),
+            min(self.max_abs_steering, steering_candidate),
         )
 
         if abs(self.nominal_base_throttle) > 1e-9:
@@ -314,7 +361,11 @@ class EpmSysidCollector(Node):
         self.throttle_pub.publish(Float32(data=float(self.applied_throttle)))
 
     def log_synchronized_sample(
-        self, stamp: int, odom: Odometry, imu: Imu
+        self,
+        stamp: int,
+        odom: Odometry,
+        imu: Imu,
+        delta_ns: int,
     ) -> None:
         if self.finished or self.latest_ips is None:
             return
@@ -333,11 +384,17 @@ class EpmSysidCollector(Node):
         )
         profile = self._profile()
         lap = self.current_lap_index + 1
-        split = "validation" if lap in self.validation_laps else "train"
+        if lap in self.test_laps:
+            split = "test"
+        elif lap in self.validation_laps:
+            split = "validation"
+        else:
+            split = "train"
 
         self.writer.writerow(
             [
                 stamp,
+                f"{delta_ns * 1e-6:.6f}",
                 f"{(stamp - self.start_time_ns) * 1e-9:.9f}",
                 lap,
                 split,
@@ -374,7 +431,7 @@ class EpmSysidCollector(Node):
             ]
         )
         self.rows_written += 1
-        if self.rows_written % 100 == 0:
+        if self.rows_written % 20 == 0:
             self.csv_file.flush()
 
     def finish(self) -> None:

@@ -1,0 +1,79 @@
+{
+  "track": "ethz",
+  "direction": "forward",
+  "num_laps": 8,
+  "validation_laps_1_based": [
+    3,
+    6
+  ],
+  "test_laps_1_based": [
+    8
+  ],
+  "target_throttle_commands": [
+    0.1,
+    0.115,
+    0.13,
+    0.11,
+    0.125,
+    0.105,
+    0.135,
+    0.12
+  ],
+  "steering_gains": [
+    1.0,
+    0.99,
+    1.01,
+    1.0,
+    0.98,
+    1.02,
+    0.99,
+    1.01
+  ],
+  "steering_excitation_rad": [
+    0.0,
+    0.008,
+    0.01,
+    0.012,
+    0.008,
+    0.014,
+    0.01,
+    0.012
+  ],
+  "steering_excitation_hz": [
+    0.23,
+    0.31,
+    0.41,
+    0.29,
+    0.37,
+    0.19,
+    0.43,
+    0.27
+  ],
+  "throttle_excitation": [
+    0.0,
+    0.004,
+    0.006,
+    0.005,
+    0.007,
+    0.005,
+    0.006,
+    0.008
+  ],
+  "throttle_excitation_hz": [
+    0.13,
+    0.17,
+    0.19,
+    0.23,
+    0.11,
+    0.29,
+    0.21,
+    0.15
+  ],
+  "state_mapping": {
+    "model_vx_mps": "odom.twist.twist.linear.z (Unity forward axis)",
+    "model_vy_mps": "odom.twist.twist.linear.x (Unity lateral axis)",
+    "model_yaw_rate_radps": "imu.angular_velocity.z"
+  },
+  "synchronization": "nearest odom/imu header stamps within bounded tolerance",
+  "sync_tolerance_ms": 30.0
+}

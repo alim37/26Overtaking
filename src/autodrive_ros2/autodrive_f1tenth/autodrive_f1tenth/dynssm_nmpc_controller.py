@@ -9,6 +9,8 @@ from pathlib import Path
 
 import numpy as np
 import rclpy
+from scipy.ndimage import median_filter
+from scipy.spatial import cKDTree
 from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
 from rclpy.node import Node
@@ -37,6 +39,8 @@ class PathReference:
         )
         self.arc = np.concatenate([[0.0], np.cumsum(segment_lengths)])
         self.length = float(self.arc[-1])
+        self.left_clearance = None
+        self.right_clearance = None
 
     def nearest_arc(self, position):
         index = int(np.argmin(np.linalg.norm(self.points - position, axis=1)))
@@ -51,6 +55,28 @@ class PathReference:
         delta = np.gradient(points, axis=0)
         headings = np.unwrap(np.arctan2(delta[:, 1], delta[:, 0]))
         return points, headings
+
+    def set_clearance_profiles(self, left, right):
+        self.left_clearance = np.asarray(left, dtype=float)
+        self.right_clearance = np.asarray(right, dtype=float)
+
+    def sample_clearances(self, start_arc, spacing, count):
+        if self.left_clearance is None or self.right_clearance is None:
+            return None, None
+        query = start_arc + np.arange(count, dtype=float) * max(spacing, 0.03)
+        query = query % self.length if self.closed else np.clip(query, 0.0, self.length)
+        left_values = (
+            np.append(self.left_clearance, self.left_clearance[0])
+            if self.closed else self.left_clearance
+        )
+        right_values = (
+            np.append(self.right_clearance, self.right_clearance[0])
+            if self.closed else self.right_clearance
+        )
+        return (
+            np.interp(query, self.arc, left_values),
+            np.interp(query, self.arc, right_values),
+        )
 
 
 class DynSSMNMPCController(Node):
@@ -75,6 +101,10 @@ class DynSSMNMPCController(Node):
             "startup_hold_sec": 1.0,
             "track_name": "ethz",
             "num_path_points": 800,
+            "reference_centering_max_m": 0.0,
+            "reference_wall_mask_csv": str(
+                package_root / "output/slam_runs/slam_toolbox_boundary_wall_mask.csv"
+            ),
             "control_period": 0.10,
             "nmpc_horizon": 12,
             "nominal_velocity_mps": 3.25,
@@ -82,14 +112,35 @@ class DynSSMNMPCController(Node):
             "engagement_speed_delay_sec": 0.25,
             "pwm_to_sim_scale": 0.27,
             "max_sim_throttle": 0.22,
+            "minimum_sim_throttle": 0.04,
             "dynssm_min_adaptation_speed_mps": 0.50,
-            "model_wheelbase_m": 0.30,
+            "model_wheelbase_m": 0.33,
             "max_steering_rad": 0.75,
-            "max_steering_rate_rad_s": 5.0,
+            "max_steering_rate_rad_s": 1.3,
+            "max_throttle_rate_model_s": 2.0,
+            "speed_filter_tau_sec": 0.20,
+            "dynssm_parameter_filter_tau_sec": 0.40,
+            "use_fixed_longitudinal_control_parameters": False,
+            "epm_control_cm1": 32.7865,
+            "epm_control_cm2": 5.48578,
+            "epm_control_cr0": 6.13553,
+            "epm_control_cr2": 0.029496,
+            "throttle_rate_weight": 1.5,
+            "steering_rate_weight": 24.0,
+            "steering_acceleration_weight": 0.0,
+            "steering_actuator_gap_weight": 0.0,
+            "nmpc_heading_weight": 2.5,
+            "nmpc_yaw_rate_weight": 0.25,
+            "throttle_actuator_tau_sec": 0.14,
+            "steering_actuator_tau_sec": 0.14,
+            "steering_command_delay_steps": 0,
+            "steering_command_gain": 0.5234,
+            "collision_slack_weight": 4000.0,
             "corner_steering_rad": 0.175,
             "corner_throttle_scale": 0.65,
             "startup_pure_pursuit_samples": 15,
             "startup_pure_pursuit_lookahead_m": 2.5,
+            "startup_pure_pursuit_wheelbase_m": 0.30,
             "c_start_radius_m": 1.0,
             "c_end_radius_m": 0.8,
             "c_end_handoff_distance_m": 1.0,
@@ -101,15 +152,15 @@ class DynSSMNMPCController(Node):
             "require_dynssm_active": False,
             "dynssm_checkpoint": str(
                 package_root.parents[1]
-                / "DynSSM/output/DynSSM_ORCA/ssm_gru_tune_01/best_model_val_rmse.pth"
+                / "DynSSM/output/DynSSM_ORCA/unity_ethz_epm_v4/best_model_val_rmse.pth"
             ),
             "dynssm_config": str(
                 package_root.parents[1]
-                / "DynSSM/output/DynSSM_ORCA/ssm_gru_tune_01/config.json"
+                / "DynSSM/output/DynSSM_ORCA/unity_ethz_epm_v4/config.json"
             ),
             "dynssm_scaler": str(
                 package_root.parents[1]
-                / "DynSSM/output/DynSSM_ORCA/ssm_gru_tune_01/scaler.pkl"
+                / "DynSSM/output/DynSSM_ORCA/unity_ethz_epm_v4/scaler.pkl"
             ),
         }
         for name, value in defaults.items():
@@ -128,17 +179,52 @@ class DynSSMNMPCController(Node):
         self.speed_delay = float(value("engagement_speed_delay_sec"))
         self.pwm_to_sim_scale = float(value("pwm_to_sim_scale"))
         self.max_sim_throttle = float(value("max_sim_throttle"))
+        self.minimum_sim_throttle = float(value("minimum_sim_throttle"))
         self.dynssm_min_adaptation_speed = float(
             value("dynssm_min_adaptation_speed_mps")
         )
         self.model_wheelbase = float(value("model_wheelbase_m"))
         self.max_steering = float(value("max_steering_rad"))
         self.max_steering_rate = float(value("max_steering_rate_rad_s"))
+        self.max_throttle_rate = float(value("max_throttle_rate_model_s"))
+        self.speed_filter_tau = float(value("speed_filter_tau_sec"))
+        self.model_parameter_filter_tau = float(
+            value("dynssm_parameter_filter_tau_sec")
+        )
+        self.use_fixed_longitudinal_parameters = bool(
+            value("use_fixed_longitudinal_control_parameters")
+        )
+        self.control_longitudinal_parameters = {
+            "Cm1": float(value("epm_control_cm1")),
+            "Cm2": float(value("epm_control_cm2")),
+            "Cr0": float(value("epm_control_cr0")),
+            "Cr2": float(value("epm_control_cr2")),
+        }
+        self.throttle_rate_weight = float(value("throttle_rate_weight"))
+        self.steering_rate_weight = float(value("steering_rate_weight"))
+        self.steering_acceleration_weight = float(
+            value("steering_acceleration_weight")
+        )
+        self.steering_actuator_gap_weight = float(
+            value("steering_actuator_gap_weight")
+        )
+        self.nmpc_heading_weight = float(value("nmpc_heading_weight"))
+        self.nmpc_yaw_rate_weight = float(value("nmpc_yaw_rate_weight"))
+        self.throttle_actuator_tau = float(value("throttle_actuator_tau_sec"))
+        self.steering_actuator_tau = float(value("steering_actuator_tau_sec"))
+        self.steering_command_delay_steps = int(
+            value("steering_command_delay_steps")
+        )
+        self.steering_command_gain = float(value("steering_command_gain"))
+        self.collision_slack_weight = float(value("collision_slack_weight"))
         self.corner_steering = float(value("corner_steering_rad"))
         self.corner_throttle_scale = float(value("corner_throttle_scale"))
         self.startup_pp_samples = int(value("startup_pure_pursuit_samples"))
         self.startup_pp_lookahead = float(
             value("startup_pure_pursuit_lookahead_m")
+        )
+        self.startup_pp_wheelbase = float(
+            value("startup_pure_pursuit_wheelbase_m")
         )
         self.c_start_radius = float(value("c_start_radius_m"))
         self.c_end_radius = float(value("c_end_radius_m"))
@@ -153,16 +239,40 @@ class DynSSMNMPCController(Node):
         normal_points = load_manual_reference_line(
             int(value("num_path_points")), track_name=str(value("track_name"))
         )
+        normal_points = self._center_reference_line(
+            normal_points,
+            Path(str(value("reference_wall_mask_csv"))).expanduser(),
+            float(value("reference_centering_max_m")),
+        )
         self.path_csv = Path(str(value("path_csv"))).expanduser()
         engagement_points = self._load_path(self.path_csv)
         self.normal_path = PathReference(normal_points, closed=True)
         self.engagement_path = PathReference(engagement_points, closed=False)
+        wall_path = Path(str(value("reference_wall_mask_csv"))).expanduser()
+        for path in (self.normal_path, self.engagement_path):
+            clearances = self._boundary_clearance_profiles(
+                path.points, wall_path, path.closed
+            )
+            if clearances is not None:
+                path.set_clearance_profiles(*clearances)
         self.c_start, self.c_end = engagement_points[0], engagement_points[-1]
         self.nmpc = NominalLePAVDNMPC(
             horizon=self.horizon,
             sample_time=self.control_period,
             steering_bounds=(-self.max_steering, self.max_steering),
             max_steering_rate=self.max_steering_rate,
+            max_throttle_rate=self.max_throttle_rate,
+            throttle_rate_weight=self.throttle_rate_weight,
+            steering_rate_weight=self.steering_rate_weight,
+            steering_acceleration_weight=self.steering_acceleration_weight,
+            steering_actuator_gap_weight=self.steering_actuator_gap_weight,
+            heading_weight=self.nmpc_heading_weight,
+            yaw_rate_weight=self.nmpc_yaw_rate_weight,
+            throttle_actuator_tau=self.throttle_actuator_tau,
+            steering_actuator_tau=self.steering_actuator_tau,
+            steering_command_delay_steps=self.steering_command_delay_steps,
+            steering_command_gain=self.steering_command_gain,
+            collision_slack_weight=self.collision_slack_weight,
             model_parameters=LePAVDParameters(),
             kinematic_wheelbase=self.model_wheelbase,
         )
@@ -171,8 +281,14 @@ class DynSSMNMPCController(Node):
         self.dynssm = None
         self.dynssm_active = False
         self.model_history = deque(maxlen=5)
+
+        self.model_sensor_history = deque(maxlen=100)
+        self.last_model_inference_stamp = None
+        self.raw_model_parameters = None
+        self.current_model_parameters = None
         self.startup_sample_count = 0
         self.startup_parameter_estimates = []
+        self.last_warmup_wait_log = -math.inf
         if self.use_dynssm:
             self.dynssm = DynSSMRuntime(
                 Path(str(value("dynssm_checkpoint"))).expanduser(),
@@ -184,7 +300,9 @@ class DynSSMNMPCController(Node):
         self.position = None
         self.heading = None
         self.speed = 0.0
+        self.raw_odom_speed = 0.0
         self.odom_speed = 0.0
+        self.last_odom_stamp = None
         self.ips_speed = 0.0
         self.lateral_speed = 0.0
         self.yaw_rate = 0.0
@@ -266,6 +384,139 @@ class DynSSMNMPCController(Node):
             raise ValueError(f"Frenet path has fewer than three valid points: {path}")
         return np.asarray(points, dtype=float)
 
+    def _center_reference_line(self, points, wall_path, max_shift):
+        points = np.asarray(points, dtype=float)
+        max_shift = max(0.0, float(max_shift))
+        if max_shift == 0.0:
+            return points
+        if not wall_path.exists():
+            self.get_logger().warning(
+                f"Reference wall mask not found; centering disabled: {wall_path}"
+            )
+            return points
+
+        wall_points = []
+        with wall_path.open(newline="", encoding="utf-8") as stream:
+            for row in csv.DictReader(stream):
+                try:
+                    wall_points.append(
+                        (float(row["world_x_m"]), float(row["world_y_m"]))
+                    )
+                except (KeyError, TypeError, ValueError):
+                    continue
+        if not wall_points:
+            self.get_logger().warning("Reference wall mask contains no valid points")
+            return points
+        wall_points = np.asarray(wall_points, dtype=float)
+
+        tangent = np.roll(points, -1, axis=0) - np.roll(points, 1, axis=0)
+        tangent /= np.maximum(np.linalg.norm(tangent, axis=1)[:, None], 1.0e-9)
+        normals = np.column_stack((-tangent[:, 1], tangent[:, 0]))
+        _, path_indices = cKDTree(points).query(wall_points)
+        lateral = np.sum(
+            (wall_points - points[path_indices]) * normals[path_indices], axis=1
+        )
+        left_samples = [[] for _ in points]
+        right_samples = [[] for _ in points]
+        for path_index, distance in zip(path_indices, lateral):
+            if 0.15 < distance < 4.0:
+                left_samples[int(path_index)].append(float(distance))
+            elif -4.0 < distance < -0.15:
+                right_samples[int(path_index)].append(float(-distance))
+
+        def boundary_profile(samples):
+            profile = np.asarray([
+                np.percentile(values, 15.0) if values else np.nan
+                for values in samples
+            ])
+            valid = np.flatnonzero(np.isfinite(profile))
+            if len(valid) == 0:
+                return None
+            count = len(profile)
+            profile = np.interp(
+                np.arange(count),
+                np.concatenate((valid - count, valid, valid + count)),
+                np.concatenate((profile[valid], profile[valid], profile[valid])),
+            )
+            return median_filter(profile, size=9, mode="wrap")
+
+        left = boundary_profile(left_samples)
+        right = boundary_profile(right_samples)
+        if left is None or right is None:
+            self.get_logger().warning(
+                "Could not identify both track boundaries; centering disabled"
+            )
+            return points
+        shift = np.clip(0.5 * (left - right), -max_shift, max_shift)
+        shift = median_filter(shift, size=21, mode="wrap")
+        centered = points + shift[:, None] * normals
+        old_clearance = float(np.min(cKDTree(wall_points).query(points)[0]))
+        new_clearance = float(np.min(cKDTree(wall_points).query(centered)[0]))
+        self.get_logger().info(
+            f"Centered NMPC reference by at most {max_shift:.2f} m; "
+            f"minimum mapped clearance {old_clearance:.3f} -> {new_clearance:.3f} m"
+        )
+        return centered
+
+    def _boundary_clearance_profiles(self, points, wall_path, closed):
+        if not wall_path.exists():
+            return None
+        wall_points = []
+        with wall_path.open(newline="", encoding="utf-8") as stream:
+            for row in csv.DictReader(stream):
+                try:
+                    wall_points.append(
+                        (float(row["world_x_m"]), float(row["world_y_m"]))
+                    )
+                except (KeyError, TypeError, ValueError):
+                    continue
+        if not wall_points:
+            return None
+        points = np.asarray(points, dtype=float)
+        wall_points = np.asarray(wall_points, dtype=float)
+        tangent = (
+            np.roll(points, -1, axis=0) - np.roll(points, 1, axis=0)
+            if closed else np.gradient(points, axis=0)
+        )
+        tangent /= np.maximum(np.linalg.norm(tangent, axis=1)[:, None], 1.0e-9)
+        normals = np.column_stack((-tangent[:, 1], tangent[:, 0]))
+        _, path_indices = cKDTree(points).query(wall_points)
+        lateral = np.sum(
+            (wall_points - points[path_indices]) * normals[path_indices], axis=1
+        )
+
+        profiles = []
+        for direction in (1.0, -1.0):
+            samples = [[] for _ in points]
+            for path_index, distance in zip(path_indices, direction * lateral):
+                if 0.15 < distance < 4.0:
+                    samples[int(path_index)].append(float(distance))
+            profile = np.asarray([
+                np.percentile(values, 15.0) if values else np.nan
+                for values in samples
+            ])
+            valid = np.flatnonzero(np.isfinite(profile))
+            if len(valid) == 0:
+                return None
+            if closed:
+                count = len(profile)
+                profile = np.interp(
+                    np.arange(count),
+                    np.concatenate((valid - count, valid, valid + count)),
+                    np.concatenate((profile[valid], profile[valid], profile[valid])),
+                )
+                profile = median_filter(profile, size=9, mode="wrap")
+            else:
+                profile = np.interp(np.arange(len(profile)), valid, profile[valid])
+                profile = median_filter(profile, size=9, mode="nearest")
+            profiles.append(profile)
+        self.get_logger().info(
+            "Loaded SLAM boundary clearances: "
+            f"left={np.min(profiles[0]):.2f}-{np.max(profiles[0]):.2f}m, "
+            f"right={np.min(profiles[1]):.2f}-{np.max(profiles[1]):.2f}m"
+        )
+        return profiles[0], profiles[1]
+
     def ips_cb(self, msg):
         now = self.get_clock().now().nanoseconds * 1e-9
         current = np.array([float(msg.x), float(msg.y)], dtype=float)
@@ -287,7 +538,7 @@ class DynSSMNMPCController(Node):
             if distance > 0.005:
                 measured_heading = math.atan2(displacement[1], displacement[0])
                 delta_heading = wrap_angle(measured_heading - self.heading)
-                self.heading = wrap_angle(self.heading + 0.45 * delta_heading)
+                self.heading = measured_heading
                 if dt >= 0.03:
                     measured_rate = delta_heading / dt
                     if abs(measured_rate) <= 15.0:
@@ -309,7 +560,19 @@ class DynSSMNMPCController(Node):
 
     def odom_cb(self, msg):
         # The AutoDRIVE bridge uses body Z as forward velocity.
-        self.odom_speed = abs(float(msg.twist.twist.linear.z))
+        raw_speed = abs(float(msg.twist.twist.linear.z))
+        stamp = float(msg.header.stamp.sec) + float(msg.header.stamp.nanosec) * 1e-9
+        if self.last_odom_stamp is None:
+            self.odom_speed = raw_speed
+        else:
+            dt = stamp - self.last_odom_stamp
+            if 0.0 < dt <= 0.5:
+                alpha = dt / (self.speed_filter_tau + dt)
+                self.odom_speed += alpha * (raw_speed - self.odom_speed)
+            elif dt > 0.5:
+                self.odom_speed = raw_speed
+        self.last_odom_stamp = stamp
+        self.raw_odom_speed = raw_speed
         # Unity body X points right, opposite lePAVD's positive-left lateral axis.
         self.lateral_speed = -float(msg.twist.twist.linear.x)
         self.speed = self.odom_speed if self.odom_speed > 0.05 else self.ips_speed
@@ -318,6 +581,24 @@ class DynSSMNMPCController(Node):
         measured = float(msg.angular_velocity.z)
         if math.isfinite(measured) and abs(measured) > 1e-4:
             self.yaw_rate = measured
+        if self.dynssm is not None:
+            stamp = float(msg.header.stamp.sec) + float(msg.header.stamp.nanosec) * 1e-9
+            odom_is_current = (
+                self.last_odom_stamp is not None
+                and abs(stamp - self.last_odom_stamp) <= 0.5
+            )
+            model_speed = self.raw_odom_speed if odom_is_current else self.ips_speed
+            model_lateral_speed = self.lateral_speed if odom_is_current else 0.0
+            self.model_sensor_history.append(
+                (
+                    stamp,
+                    model_speed,
+                    model_lateral_speed,
+                    self.yaw_rate,
+                    self.throttle_feedback,
+                    self.steering_feedback,
+                )
+            )
 
     def throttle_feedback_cb(self, msg):
         self.throttle_feedback = float(msg.data) / max(self.pwm_to_sim_scale, 1e-6)
@@ -421,21 +702,26 @@ class DynSSMNMPCController(Node):
         self.previous_control[:] = 0.0
 
     def _startup_pure_pursuit_command(self):
+        # Keep progress anchored to the nearest forward path point. Advancing
+        # the stored index to the lookahead point on every control tick skips a
+        # full lookahead repeatedly and makes the vehicle turn too early.
         self.normal_index = self._advance_path_index(
             self.normal_path, self.normal_index, closed=True
         )
-        arc = float(self.normal_path.arc[self.normal_index])
-        targets, _ = self.normal_path.sample(
-            arc, self.startup_pp_lookahead, 2
-        )
-        delta = targets[1] - self.position
+        target_index = self.normal_index
+        for _ in range(len(self.normal_path.points)):
+            target = self.normal_path.points[target_index]
+            if np.linalg.norm(target - self.position) > self.startup_pp_lookahead:
+                break
+            target_index = (target_index + 1) % len(self.normal_path.points)
+        delta = target - self.position
         cos_yaw = math.cos(-self.heading)
         sin_yaw = math.sin(-self.heading)
         vehicle_x = float(delta[0]) * cos_yaw - float(delta[1]) * sin_yaw
         vehicle_y = float(delta[0]) * sin_yaw + float(delta[1]) * cos_yaw
         alpha = math.atan2(vehicle_y, vehicle_x)
         steering = math.atan2(
-            4.0 * self.model_wheelbase * math.sin(alpha),
+            4.0 * self.startup_pp_wheelbase * math.sin(alpha),
             self.startup_pp_lookahead,
         )
         steering = float(np.clip(steering, -self.max_steering, self.max_steering))
@@ -444,43 +730,108 @@ class DynSSMNMPCController(Node):
             throttle *= self.corner_throttle_scale
         return throttle, steering
 
+    def _update_dynssm_parameters(self):
+        if self.dynssm is None or len(self.model_sensor_history) < 2:
+            return False
+        samples = np.asarray(self.model_sensor_history, dtype=float)
+        sample_times, unique_indices = np.unique(samples[:, 0], return_index=True)
+        samples = samples[unique_indices]
+        required_span = (self.dynssm.horizon - 1) * self.dynssm.sample_time
+        if sample_times[-1] - sample_times[0] < required_span:
+            return False
+        if self.last_model_inference_stamp == sample_times[-1]:
+            return self.current_model_parameters is not None
+        query_times = sample_times[-1] - np.arange(
+            self.dynssm.horizon - 1, -1, -1, dtype=float
+        ) * self.dynssm.sample_time
+        history = np.zeros((self.dynssm.horizon, 7), dtype=float)
+        for column in range(5):
+            history[:, column] = np.interp(
+                query_times, sample_times, samples[:, column + 1]
+            )
+        raw_parameters = self.dynssm.infer_parameters(history)
+        self.raw_model_parameters = raw_parameters.copy()
+
+        # One-step training cannot uniquely identify all four correlated motor
+        # coefficients. Their raw combinations can reverse the throttle-force
+        # sign, which is invalid for control. Use the median calibration over
+        # the complete training set while DynSSM schedules the lateral EPM.
+        if self.use_fixed_longitudinal_parameters:
+            raw_parameters.update(self.control_longitudinal_parameters)
+        if self.current_model_parameters is None:
+            filtered = raw_parameters
+        else:
+            alpha = 1.0 - math.exp(
+                -self.control_period / max(self.model_parameter_filter_tau, 1e-6)
+            )
+            filtered = {
+                name: self.current_model_parameters[name]
+                + alpha * (value - self.current_model_parameters[name])
+                for name, value in raw_parameters.items()
+            }
+        self.current_model_parameters = filtered
+        self.last_model_inference_stamp = sample_times[-1]
+        return True
+
     def _run_startup_pure_pursuit(self):
         throttle, steering = self._startup_pure_pursuit_command()
         model_pwm = throttle / max(self.pwm_to_sim_scale, 1e-6)
         self.previous_control[:] = [model_pwm, steering]
-        self.model_history.append(
-            [
-                self.speed,
-                self.lateral_speed,
-                self.yaw_rate,
-                self.throttle_feedback,
-                self.steering_feedback,
-                model_pwm,
-                steering,
-            ]
-        )
         self.startup_sample_count += 1
-        if len(self.model_history) == self.dynssm.horizon:
-            estimate = self.dynssm.infer_parameters(np.asarray(self.model_history))
-            self.startup_parameter_estimates.append(estimate)
+        if self._update_dynssm_parameters():
+            self.startup_parameter_estimates.append(
+                self.current_model_parameters.copy()
+            )
 
         self.throttle_pub.publish(Float32(data=float(throttle)))
         self.steer_pub.publish(Float32(data=float(steering)))
         self.mode_pub.publish(
             String(data=f"PURE_PURSUIT_WARMUP_{self.startup_sample_count}/{self.startup_pp_samples}")
         )
-        if self.startup_sample_count < self.startup_pp_samples:
+        if (
+            self.startup_sample_count < self.startup_pp_samples
+            or not self.startup_parameter_estimates
+        ):
+            now = self.get_clock().now().nanoseconds * 1.0e-9
+            if (
+                self.startup_sample_count >= self.startup_pp_samples
+                and not self.startup_parameter_estimates
+                and now - self.last_warmup_wait_log >= 1.0
+            ):
+                self.last_warmup_wait_log = now
+                samples = list(self.model_sensor_history)
+                span = (
+                    float(samples[-1][0] - samples[0][0])
+                    if len(samples) >= 2 else 0.0
+                )
+                required = (
+                    (self.dynssm.horizon - 1) * self.dynssm.sample_time
+                    if self.dynssm is not None else 0.0
+                )
+                self.get_logger().warning(
+                    "Pure-pursuit warm-up waiting for DynSSM history: "
+                    f"samples={len(samples)}, span={span:.3f}s, "
+                    f"required={required:.3f}s, odom_ready={self.last_odom_stamp is not None}, "
+                    f"ips_speed={self.ips_speed:.3f}m/s"
+                )
             return
 
         learned = {
             name: float(np.median([item[name] for item in self.startup_parameter_estimates]))
             for name in self.startup_parameter_estimates[0]
         }
+        self.current_model_parameters = learned
         self.nmpc = NominalLePAVDNMPC(
             horizon=self.horizon,
             sample_time=self.control_period,
             steering_bounds=(-self.max_steering, self.max_steering),
             max_steering_rate=self.max_steering_rate,
+            max_throttle_rate=self.max_throttle_rate,
+            throttle_rate_weight=self.throttle_rate_weight,
+            throttle_actuator_tau=self.throttle_actuator_tau,
+            steering_actuator_tau=self.steering_actuator_tau,
+            steering_command_gain=self.steering_command_gain,
+            collision_slack_weight=self.collision_slack_weight,
             model_parameters=LePAVDParameters(**learned),
             kinematic_wheelbase=self.model_wheelbase,
         )
@@ -509,6 +860,7 @@ class DynSSMNMPCController(Node):
             self._run_startup_pure_pursuit()
             self.model_status_pub.publish(Bool(data=self.dynssm_active))
             return
+        self._update_dynssm_parameters()
         self.model_status_pub.publish(Bool(data=self.dynssm_active))
         if self.mode == self.ENGAGEMENT:
             self.engagement_index = self._advance_path_index(
@@ -563,16 +915,22 @@ class DynSSMNMPCController(Node):
             [*self.position, self.heading, self.speed, self.lateral_speed, self.yaw_rate],
             dtype=float,
         )
+        throttle_limit = self.max_sim_throttle * (
+            self.speed_multiplier if overtake_speed_active else 1.0
+        )
+        model_pwm_limit = throttle_limit / max(self.pwm_to_sim_scale, 1e-6)
         try:
             control, self.last_prediction, objective = self.nmpc.solve(
-                state, reference, self.previous_control
+                state,
+                reference,
+                self.previous_control,
+                actuator_state=[self.throttle_feedback, self.steering_feedback],
+                model_parameters=self.current_model_parameters,
+                pwm_upper_bound=model_pwm_limit,
             )
         except Exception as exc:
             self.get_logger().warning(
                 f"NMPC solve missed; holding previous command for this cycle: {exc}"
-            )
-            throttle_limit = self.max_sim_throttle * (
-                self.speed_multiplier if overtake_speed_active else 1.0
             )
             held_throttle = float(
                 np.clip(
@@ -585,11 +943,6 @@ class DynSSMNMPCController(Node):
             self.steer_pub.publish(Float32(data=float(self.previous_control[1])))
             return
         self.previous_control = control
-        throttle_limit = self.max_sim_throttle * (
-            self.speed_multiplier if overtake_speed_active else 1.0
-        )
-        if abs(float(control[1])) >= self.corner_steering:
-            throttle_limit *= self.corner_throttle_scale
         throttle = float(
             np.clip(control[0] * self.pwm_to_sim_scale, -0.1, throttle_limit)
         )

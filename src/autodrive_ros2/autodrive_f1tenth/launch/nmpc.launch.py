@@ -19,7 +19,7 @@ PURE_PURSUIT_THROTTLE_LIMIT = 0.13
 def generate_launch_description():
     package_root = Path(__file__).resolve().parents[1]
     workspace_src = package_root.parents[1]
-    model_dir = workspace_src / "DynSSM/output/DynSSM_ORCA/ssm_gru_tune_01"
+    model_dir = workspace_src / "DynSSM/output/DynSSM_ORCA/unity_ethz_epm_v4"
     overtake_path = (
         package_root
         / "output/engagement_zones_dynamic_frenet"

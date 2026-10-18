@@ -52,6 +52,9 @@ class DynSSMRuntime:
         self.scaler_mean = np.asarray(scaler.mean_, dtype=np.float32)
         self.scaler_scale = np.asarray(scaler.scale_, dtype=np.float32)
         self.horizon = int(self.config["MODEL"]["HORIZON"])
+        self.sample_time = float(
+            self.config["MODEL"].get("SAMPLE_TIME_SEC", 0.04)
+        )
 
         config = self.config
 
@@ -128,7 +131,31 @@ class DynSSMRuntime:
                 conditioned = self.physics_conditioner(torch.cat([fused, last], dim=1))
                 scale = float(config["MODEL"]["OPTIMIZATION"].get("PARAM_ADAPT_SCALE", 0.2))
                 values = self.param_defaults + scale * torch.tanh(self.param_head(conditioned)) * self.param_ranges
-                return torch.maximum(torch.minimum(values, self.param_maxes), self.param_mins)
+                values = torch.maximum(torch.minimum(values, self.param_maxes), self.param_mins)
+                constraints = config["MODEL"].get("CONTROL_CONSTRAINTS")
+                if constraints:
+                    indices = {
+                        name: index
+                        for index, name in enumerate(DynSSMRuntime.PARAMETER_NAMES)
+                    }
+                    cm1_index = indices["Cm1"]
+                    vmax = float(constraints["MAX_SPEED_MPS"])
+                    max_pwm = float(constraints["MAX_PWM"])
+                    min_force = float(constraints["MIN_DRIVE_FORCE_N"])
+                    required_cm1 = (
+                        values[:, indices["Cm2"]] * vmax
+                        + (
+                            values[:, indices["Cr0"]]
+                            + values[:, indices["Cr2"]] * vmax**2
+                            + min_force
+                        ) / max_pwm
+                    )
+                    values = values.clone()
+                    values[:, cm1_index] = torch.minimum(
+                        torch.maximum(values[:, cm1_index], required_cm1),
+                        self.param_maxes[cm1_index],
+                    )
+                return values
 
         self.model = ParameterNetwork().to(self.device)
         try:
