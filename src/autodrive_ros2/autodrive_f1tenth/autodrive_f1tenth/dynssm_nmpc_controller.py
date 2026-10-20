@@ -48,9 +48,17 @@ class PathReference:
 
     def sample(self, start_arc, spacing, count):
         query = start_arc + np.arange(count, dtype=float) * max(spacing, 0.03)
-        query = query % self.length if self.closed else np.clip(query, 0.0, self.length)
-        x = np.interp(query, self.arc, self.interpolation_points[:, 0])
-        y = np.interp(query, self.arc, self.interpolation_points[:, 1])
+        if self.closed:
+            query = query % self.length
+        interpolation_query = np.clip(query, 0.0, self.length)
+        x = np.interp(interpolation_query, self.arc, self.interpolation_points[:, 0])
+        y = np.interp(interpolation_query, self.arc, self.interpolation_points[:, 1])
+        if not self.closed and np.any(query > self.length):
+            final_delta = self.points[-1] - self.points[-2]
+            final_tangent = final_delta / max(np.linalg.norm(final_delta), 1.0e-9)
+            excess = np.maximum(query - self.length, 0.0)
+            x += excess * final_tangent[0]
+            y += excess * final_tangent[1]
         points = np.column_stack([x, y])
         delta = np.gradient(points, axis=0)
         headings = np.unwrap(np.arctan2(delta[:, 1], delta[:, 0]))

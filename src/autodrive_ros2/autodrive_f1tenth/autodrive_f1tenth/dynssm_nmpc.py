@@ -121,6 +121,72 @@ class LePAVDDynamics:
         )
 
 
+class KinematicBicycleDynamics:
+    """Fixed-parameter bicycle baseline with no learned EPM parameters."""
+
+    # Keep the NMPC parameter interface stable. Only the four fixed
+    # longitudinal coefficients are consumed by this model.
+    PARAMETER_NAMES = LePAVDDynamics.PARAMETER_NAMES
+
+    def __init__(self, parameters=None, wheelbase=0.33):
+        self.p = parameters or LePAVDParameters()
+        self.wheelbase = float(wheelbase)
+        self.rear_length = min(float(self.p.lr), self.wheelbase)
+        self.state_response_rate = 10.0
+
+    def parameter_vector(self, parameters=None):
+        if parameters is None:
+            parameters = self.p
+        if isinstance(parameters, dict):
+            defaults = LePAVDParameters()
+            return np.asarray(
+                [parameters.get(name, getattr(defaults, name))
+                 for name in self.PARAMETER_NAMES],
+                dtype=float,
+            )
+        if isinstance(parameters, LePAVDParameters):
+            return np.asarray(
+                [getattr(parameters, name) for name in self.PARAMETER_NAMES],
+                dtype=float,
+            )
+        return np.asarray(parameters, dtype=float).reshape(len(self.PARAMETER_NAMES))
+
+    def derivative(self, state, control, model_parameters=None):
+        if model_parameters is None:
+            model_parameters = self.parameter_vector()
+        values = {
+            name: model_parameters[index]
+            for index, name in enumerate(self.PARAMETER_NAMES)
+        }
+        yaw, vx_raw, vy, yaw_rate = state[2], state[3], state[4], state[5]
+        pwm, steering = control[0], control[1]
+        vx = ca.fmin(ca.fmax(vx_raw, 0.05), 10.0)
+
+        # The actuator model has already converted the requested steering
+        # command into the applied road-wheel angle before this call.
+        beta = ca.atan(
+            (self.rear_length / self.wheelbase) * ca.tan(steering)
+        )
+        desired_yaw_rate = (
+            vx * ca.cos(beta) * ca.tan(steering) / self.wheelbase
+        )
+        desired_lateral_speed = vx * ca.sin(beta)
+        force_x = (
+            (values["Cm1"] - values["Cm2"] * vx) * pwm
+            - values["Cr0"]
+            - values["Cr2"] * vx * vx
+        )
+
+        return ca.vertcat(
+            vx * ca.cos(yaw + beta),
+            vx * ca.sin(yaw + beta),
+            desired_yaw_rate,
+            force_x / self.p.mass,
+            self.state_response_rate * (desired_lateral_speed - vy),
+            self.state_response_rate * (desired_yaw_rate - yaw_rate),
+        )
+
+
 class NominalLePAVDNMPC:
     """Warm-started nonlinear MPC using the nominal lePAVD model."""
 
@@ -183,7 +249,11 @@ class NominalLePAVDNMPC:
         self.collision_slack_weight = max(float(collision_slack_weight), 0.0)
         self.enable_collision = bool(enable_collision)
         self.integration_substeps = max(1, int(integration_substeps))
-        self.model = LePAVDDynamics(model_parameters, kinematic_wheelbase)
+        self.model = (
+            KinematicBicycleDynamics(model_parameters, kinematic_wheelbase)
+            if kinematic_wheelbase is not None
+            else LePAVDDynamics(model_parameters)
+        )
         self._last_solution = None
         self.last_collision_slack = np.zeros(self.horizon, dtype=float)
         self.last_track_slack = np.zeros(self.horizon, dtype=float)

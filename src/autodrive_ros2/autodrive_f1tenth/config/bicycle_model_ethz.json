@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "model": "fixed_kinematic_bicycle",
+  "source_csv": "/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth/output/epm_sysid/epm_sysid_ethz_forward_20261012_122738.csv",
+  "fit_policy": {
+    "fit_split": "train",
+    "selection_split": "validation",
+    "final_report_split": "test",
+    "learned_model": false
+  },
+  "geometry": {
+    "wheelbase_m": 0.3845343921906465,
+    "rear_axle_to_cg_m": 0.17145,
+    "mass_kg": 3.47
+  },
+  "steering_actuator": {
+    "command_gain": 0.5250306893550933,
+    "time_constant_sec": 0.11061516454101018,
+    "command_delay_steps": 1
+  },
+  "longitudinal": {
+    "Cm1": 24.23081905294449,
+    "Cm2": 4.612560976,
+    "Cr0": 4.38404878,
+    "Cr2": 0.02962195122,
+    "pwm_to_sim_scale": 0.27,
+    "note": "Cm1 identified; correlated drag terms retained at nominal values."
+  },
+  "metrics": {
+    "yaw_rate_radps": {
+      "train": {
+        "samples": 2781,
+        "rmse": 0.015225914286301184,
+        "mae": 0.00573257347224375
+      },
+      "validation": {
+        "samples": 1135,
+        "rmse": 0.0178913637930698,
+        "mae": 0.006315264183474139
+      },
+      "test": {
+        "samples": 555,
+        "rmse": 0.015866022516844738,
+        "mae": 0.006026295136083455
+      }
+    },
+    "steering_feedback_rad": {
+      "train": {
+        "samples": 3117,
+        "rmse": 0.01274416253352246,
+        "mae": 0.003848860904512683
+      },
+      "validation": {
+        "samples": 1257,
+        "rmse": 0.01220786129956873,
+        "mae": 0.003834367073864467
+      },
+      "test": {
+        "samples": 619,
+        "rmse": 0.012442929874207255,
+        "mae": 0.0037185938780510404
+      }
+    },
+    "longitudinal_acceleration_mps2": {
+      "train": {
+        "samples": 3069,
+        "rmse": 0.22889616723093817,
+        "mae": 0.08431634504654954
+      },
+      "validation": {
+        "samples": 1239,
+        "rmse": 0.2389252718532214,
+        "mae": 0.10245372380492203
+      },
+      "test": {
+        "samples": 611,
+        "rmse": 0.28957024821933375,
+        "mae": 0.09395326058825673
+      }
+    }
+  }
+}

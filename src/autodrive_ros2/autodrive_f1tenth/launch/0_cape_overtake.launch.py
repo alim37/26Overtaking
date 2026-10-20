@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Launch the two-lap CAPE controller/model overtake benchmark."""
+"""Launch the one-lap CAPE controller/model overtake benchmark."""
 
 from pathlib import Path
 
@@ -7,6 +7,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 # Defaults can be edited here or overridden on the ros2 launch command line.
@@ -31,6 +32,9 @@ MAX_STEERING_RATE_RAD_S = 1.30
 MAX_STEERING_RAD = 0.45
 REFERENCE_CENTERING_MAX_M = 0.15
 TRACK_BASE_MARGIN_M = 0.03
+ADAPTIVE_PARAMETER_TRUST_FRACTION = 0.10
+PURE_PURSUIT_STEERING_GAIN = 4.5
+PURE_PURSUIT_MAX_STEERING_RAD = 0.50
 
 
 def generate_launch_description():
@@ -46,9 +50,14 @@ def generate_launch_description():
         / "engagement_zones_dynamic_frenet"
         / "engagement_zone_dynamic_frenet_one_lap_path.csv"
     )
+    bicycle_parameter_file = package_root / "config" / "bicycle_model_ethz.json"
     return LaunchDescription([
         DeclareLaunchArgument("controller", default_value=CONTROLLER),
         DeclareLaunchArgument("model", default_value=MODEL),
+        DeclareLaunchArgument(
+            "overtake_speed_multiplier",
+            default_value=str(OVERTAKE_SPEED_MULTIPLIER),
+        ),
         Node(
             package="autodrive_f1tenth",
             executable="0_cape_overtake_controller",
@@ -57,17 +66,25 @@ def generate_launch_description():
             parameters=[{
                 "controller": LaunchConfiguration("controller"),
                 "model": LaunchConfiguration("model"),
+                "bicycle_parameter_file": str(bicycle_parameter_file),
                 "path_csv": str(path_csv),
                 "car_id": 1,
                 "peer_car_id": 2,
                 "enable_overtake_path": True,
-                "overtake_start_lap": 1,
-                "stop_after_laps": 2,
+                "overtake_start_lap": 0,
+                "stop_after_laps": 0,
                 "wait_for_peer_ips": True,
                 "wait_for_startup_gate": False,
                 "nominal_velocity_mps": NOMINAL_VELOCITY_MPS,
                 "nmpc_horizon": NMPC_HORIZON,
-                "engagement_speed_multiplier": OVERTAKE_SPEED_MULTIPLIER,
+                "engagement_speed_multiplier": ParameterValue(
+                    LaunchConfiguration("overtake_speed_multiplier"),
+                    value_type=float,
+                ),
+                "experiment_overtake_speed_multiplier": ParameterValue(
+                    LaunchConfiguration("overtake_speed_multiplier"),
+                    value_type=float,
+                ),
                 "engagement_speed_delay_sec": OVERTAKE_SPEED_DELAY_SEC,
                 "max_sim_throttle": 0.13,
                 "minimum_vehicle_separation_m": MINIMUM_VEHICLE_SEPARATION_M,
@@ -85,6 +102,9 @@ def generate_launch_description():
                 "reference_centering_max_m": REFERENCE_CENTERING_MAX_M,
                 "robust_nominal_margin_m": TRACK_BASE_MARGIN_M,
                 "state_correction_gain": 0.80,
+                "adaptive_parameter_trust_fraction": ADAPTIVE_PARAMETER_TRUST_FRACTION,
+                "pure_pursuit_steering_gain": PURE_PURSUIT_STEERING_GAIN,
+                "pure_pursuit_max_steering_rad": PURE_PURSUIT_MAX_STEERING_RAD,
                 "use_dynssm_adaptation": True,
                 "use_fixed_longitudinal_control_parameters": False,
                 "require_dynssm_active": True,
@@ -102,17 +122,22 @@ def generate_launch_description():
             parameters=[{
                 "controller": LaunchConfiguration("controller"),
                 "model": LaunchConfiguration("model"),
+                "bicycle_parameter_file": str(bicycle_parameter_file),
                 "path_csv": str(path_csv),
                 "car_id": 2,
                 "peer_car_id": 1,
                 "enable_overtake_path": False,
-                "overtake_start_lap": 1,
-                "stop_after_laps": 2,
+                "overtake_start_lap": 0,
+                "stop_after_laps": 0,
                 "wait_for_peer_ips": True,
                 "wait_for_startup_gate": False,
                 "nominal_velocity_mps": NOMINAL_VELOCITY_MPS,
                 "nmpc_horizon": NMPC_HORIZON,
                 "engagement_speed_multiplier": 1.0,
+                "experiment_overtake_speed_multiplier": ParameterValue(
+                    LaunchConfiguration("overtake_speed_multiplier"),
+                    value_type=float,
+                ),
                 "max_sim_throttle": 0.13,
                 "minimum_vehicle_separation_m": MINIMUM_VEHICLE_SEPARATION_M,
                 "throttle_actuator_tau_sec": THROTTLE_ACTUATOR_TAU_SEC,
@@ -129,6 +154,9 @@ def generate_launch_description():
                 "reference_centering_max_m": REFERENCE_CENTERING_MAX_M,
                 "robust_nominal_margin_m": TRACK_BASE_MARGIN_M,
                 "state_correction_gain": 0.80,
+                "adaptive_parameter_trust_fraction": ADAPTIVE_PARAMETER_TRUST_FRACTION,
+                "pure_pursuit_steering_gain": PURE_PURSUIT_STEERING_GAIN,
+                "pure_pursuit_max_steering_rad": PURE_PURSUIT_MAX_STEERING_RAD,
                 "use_dynssm_adaptation": True,
                 "use_fixed_longitudinal_control_parameters": False,
                 "require_dynssm_active": True,
