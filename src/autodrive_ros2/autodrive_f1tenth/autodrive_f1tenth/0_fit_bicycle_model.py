@@ -182,7 +182,7 @@ def main():
         type=Path,
         default=(
             package_root / "output/epm_sysid"
-            / "epm_sysid_ethz_forward_20261012_122738.csv"
+            / "epm_sysid_ethz_forward_20261117_015020.csv"
         ),
     )
     parser.add_argument(

@@ -1,0 +1,158 @@
+{
+  "dataset": "src/DynSSM/dataset/unity_ethz_epm_control_dt100_h5_r12_v2.npz",
+  "windows": 3650,
+  "sample_time_sec": 0.1,
+  "command_feature_semantics": "desired_actuator_commands",
+  "split_laps": {
+    "test": [
+      8
+    ],
+    "train": [
+      1,
+      2,
+      4,
+      5,
+      7
+    ],
+    "validation": [
+      3,
+      6
+    ]
+  },
+  "features": {
+    "VX": {
+      "train": {
+        "min": 1.6833555827953097e-07,
+        "p01": 1.6039097877212058,
+        "median": 2.6504303743547912,
+        "p99": 3.5131087825033527,
+        "max": 3.5205891709553354
+      },
+      "train_std": 0.5648893026266553,
+      "runtime": {
+        "min": 0.0009962816256341368,
+        "p01": 0.0013207847836978273,
+        "median": 1.5862898776465566,
+        "p99": 2.8459076972520494,
+        "max": 2.8926051508314696
+      },
+      "runtime_outside_train_p001_p999_percent": 0.0
+    },
+    "VY": {
+      "train": {
+        "min": -0.22760320481772073,
+        "p01": -0.21415894520400575,
+        "median": -0.023414181410493763,
+        "p99": 0.1825838082343018,
+        "max": 0.19601294172511236
+      },
+      "train_std": 0.09214568631802454,
+      "runtime": {
+        "min": 0.0,
+        "p01": 0.0,
+        "median": 0.0,
+        "p99": 0.0,
+        "max": 0.0
+      },
+      "runtime_outside_train_p001_p999_percent": 0.0
+    },
+    "YAW_RATE": {
+      "train": {
+        "min": -1.2099815730783297,
+        "p01": -1.1090233410054793,
+        "median": 0.1540546078084634,
+        "p99": 1.33758210881589,
+        "max": 1.50889121816989
+      },
+      "train_std": 0.5746086022346613,
+      "runtime": {
+        "min": -1.3932,
+        "p01": -1.392288,
+        "median": -0.0002,
+        "p99": 2.2372759999999947,
+        "max": 2.9763
+      },
+      "runtime_outside_train_p001_p999_percent": 9.090909090909092
+    },
+    "THROTTLE_FB": {
+      "train": {
+        "min": 0.0,
+        "p01": 0.24074073333333332,
+        "median": 0.39259258888888887,
+        "p99": 0.5222222333333334,
+        "max": 0.5222222333333334
+      },
+      "train_std": 0.08343099960314854,
+      "runtime": {
+        "min": 0.0,
+        "p01": 0.0,
+        "median": 0.24074073191042297,
+        "p99": 0.48148146382084595,
+        "max": 0.48148146382084595
+      },
+      "runtime_outside_train_p001_p999_percent": 0.0
+    },
+    "STEERING_FB": {
+      "train": {
+        "min": -0.2250668876443199,
+        "p01": -0.217299998,
+        "median": 0.022304712401297656,
+        "p99": 0.2339737230398207,
+        "max": 0.23459971975278562
+      },
+      "train_std": 0.10789347052716894,
+      "runtime": {
+        "min": -0.16599999368190765,
+        "p01": -0.16599999368190765,
+        "median": 0.1256999969482422,
+        "p99": 0.4189000129699707,
+        "max": 0.4189000129699707
+      },
+      "runtime_outside_train_p001_p999_percent": 41.55844155844156
+    },
+    "THROTTLE_CMD": {
+      "train": {
+        "min": 0.0,
+        "p01": 0.24074074074074073,
+        "median": 0.39223455112205485,
+        "p99": 0.5211323309770577,
+        "max": 0.5221937473109994
+      },
+      "train_std": 0.08259113165675114,
+      "runtime": {
+        "min": -9.995505986364515e-09,
+        "p01": -9.993997272163719e-09,
+        "median": 0.12148164536602214,
+        "p99": 0.4814814913785836,
+        "max": 0.48148149143040536
+      },
+      "runtime_outside_train_p001_p999_percent": 35.064935064935064
+    },
+    "STEERING_CMD": {
+      "train": {
+        "min": -0.4293477323395261,
+        "p01": -0.41516279581928284,
+        "median": 0.04308394024472381,
+        "p99": 0.4468906726301714,
+        "max": 0.4475182240079573
+      },
+      "train_std": 0.2067601500832179,
+      "runtime": {
+        "min": -0.3167326027648904,
+        "p01": -0.3167325768878572,
+        "median": 0.2832674345806427,
+        "p99": 0.8000000099770597,
+        "max": 0.800000009978491
+      },
+      "runtime_outside_train_p001_p999_percent": 44.15584415584416
+    }
+  },
+  "warnings": [
+    "YAW_RATE: 9.1% of runtime samples are outside the central training support.",
+    "STEERING_FB: 41.6% of runtime samples are outside the central training support.",
+    "THROTTLE_CMD: 35.1% of runtime samples are outside the central training support.",
+    "STEERING_CMD: 44.2% of runtime samples are outside the central training support.",
+    "Training steering feedback does not cover 0.30 rad; collect stronger safe corner excitation.",
+    "Training yaw-rate support is below 1.75 rad/s; high-curvature prediction is extrapolative."
+  ]
+}

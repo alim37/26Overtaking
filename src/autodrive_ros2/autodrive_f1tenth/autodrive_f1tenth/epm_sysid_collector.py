@@ -52,6 +52,7 @@ class EpmSysidCollector(Node):
         self.declare_parameter("max_abs_steering_rad", 0.54)
         self.declare_parameter("max_throttle", 0.16)
         self.declare_parameter("corner_protection_steering_rad", 0.15)
+        self.declare_parameter("corner_excitation_scale", 0.35)
         self.declare_parameter("sync_tolerance_sec", 0.03)
 
         self.output_dir = Path(
@@ -84,6 +85,9 @@ class EpmSysidCollector(Node):
         self.max_throttle = float(self.get_parameter("max_throttle").value)
         self.corner_protection_steering = float(
             self.get_parameter("corner_protection_steering_rad").value
+        )
+        self.corner_excitation_scale = float(
+            self.get_parameter("corner_excitation_scale").value
         )
         self.sync_tolerance_ns = int(
             float(self.get_parameter("sync_tolerance_sec").value) * 1e9
@@ -156,9 +160,11 @@ class EpmSysidCollector(Node):
         self.steering_feedback = 0.0
         self.throttle_feedback = 0.0
         self.latest_ips: tuple[float, float, float] | None = None
-        self.pending_odom: dict[int, Odometry] = {}
-        self.pending_imu: dict[int, Imu] = {}
+        self.latest_odom: Odometry | None = None
+        self.latest_odom_arrival_ns: int | None = None
+        self.last_logged_odom_stamp_ns: int | None = None
         self.rows_written = 0
+        self.zero_sample_warning_sent = False
         self.finished = False
         self.shutdown_timer = None
 
@@ -188,6 +194,7 @@ class EpmSysidCollector(Node):
             Int32, f"{prefix}/pure_pursuit/lap_count", self.lap_cb, 10
         )
         self.create_timer(self.command_period_sec, self.publish_command)
+        self.create_timer(2.0, self.check_recording)
 
         self._write_metadata()
         self.get_logger().info(
@@ -230,12 +237,16 @@ class EpmSysidCollector(Node):
             "steering_excitation_hz": self.steering_frequencies,
             "throttle_excitation": self.throttle_amplitudes,
             "throttle_excitation_hz": self.throttle_frequencies,
+            "corner_excitation_scale": self.corner_excitation_scale,
             "state_mapping": {
                 "model_vx_mps": "odom.twist.twist.linear.z (Unity forward axis)",
                 "model_vy_mps": "odom.twist.twist.linear.x (Unity lateral axis)",
                 "model_yaw_rate_radps": "imu.angular_velocity.z",
             },
-            "synchronization": "nearest odom/imu header stamps within bounded tolerance",
+            "synchronization": (
+                "IMU callback paired to the immediately preceding odometry "
+                "message by ROS callback arrival time"
+            ),
             "sync_tolerance_ms": self.sync_tolerance_ns * 1e-6,
         }
         self.metadata_path.write_text(
@@ -258,41 +269,28 @@ class EpmSysidCollector(Node):
         self.latest_ips = (float(msg.x), float(msg.y), float(msg.z))
 
     def odom_cb(self, msg: Odometry) -> None:
-        stamp = stamp_nanoseconds(msg)
-        imu_stamp = self._nearest_stamp(self.pending_imu, stamp)
-        if imu_stamp is not None:
-            imu = self.pending_imu.pop(imu_stamp)
-            self.log_synchronized_sample(
-                stamp, odom=msg, imu=imu, delta_ns=abs(stamp - imu_stamp)
-            )
-            return
-        self.pending_odom[stamp] = msg
-        self._trim_pending(self.pending_odom)
+        self.latest_odom = msg
+        self.latest_odom_arrival_ns = self.get_clock().now().nanoseconds
 
     def imu_cb(self, msg: Imu) -> None:
-        stamp = stamp_nanoseconds(msg)
-        odom_stamp = self._nearest_stamp(self.pending_odom, stamp)
-        if odom_stamp is not None:
-            odom = self.pending_odom.pop(odom_stamp)
-            self.log_synchronized_sample(
-                odom_stamp, odom=odom, imu=msg, delta_ns=abs(stamp - odom_stamp)
-            )
+        if self.latest_odom is None or self.latest_odom_arrival_ns is None:
             return
-        self.pending_imu[stamp] = msg
-        self._trim_pending(self.pending_imu)
 
-    def _nearest_stamp(self, pending: dict[int, object], stamp: int) -> int | None:
-        if not pending:
-            return None
-        nearest = min(pending, key=lambda candidate: abs(candidate - stamp))
-        if abs(nearest - stamp) > self.sync_tolerance_ns:
-            return None
-        return nearest
+        arrival_ns = self.get_clock().now().nanoseconds
+        age_ns = max(0, arrival_ns - self.latest_odom_arrival_ns)
+        odom_stamp_ns = stamp_nanoseconds(self.latest_odom)
+        if age_ns > self.sync_tolerance_ns:
+            return
+        if odom_stamp_ns == self.last_logged_odom_stamp_ns:
+            return
 
-    @staticmethod
-    def _trim_pending(pending: dict[int, object]) -> None:
-        while len(pending) > 100:
-            del pending[min(pending)]
+        self.log_synchronized_sample(
+            odom_stamp_ns,
+            odom=self.latest_odom,
+            imu=msg,
+            delta_ns=age_ns,
+        )
+        self.last_logged_odom_stamp_ns = odom_stamp_ns
 
     def lap_cb(self, msg: Int32) -> None:
         completed_laps = int(msg.data)
@@ -307,6 +305,22 @@ class EpmSysidCollector(Node):
             f"steer_amp={profile['steer_amp']:.4f}, "
             f"throttle_amp={profile['throttle_amp']:.4f}"
         )
+
+    def check_recording(self) -> None:
+        if (
+            not self.finished
+            and self.experiment_start_sec is not None
+            and not self.zero_sample_warning_sent
+            and self.rows_written == 0
+            and self.get_clock().now().nanoseconds * 1e-9
+            - self.experiment_start_sec
+            >= 3.0
+        ):
+            self.zero_sample_warning_sent = True
+            self.get_logger().error(
+                "No synchronized odom/IMU samples after 3 seconds; stop the "
+                "run instead of collecting an empty eight-lap dataset."
+            )
 
     def publish_command(self) -> None:
         if self.finished:
@@ -329,12 +343,15 @@ class EpmSysidCollector(Node):
                 + 0.5 * phase
             )
         )
-        if abs(self.nominal_steering) >= self.corner_protection_steering:
-            steering_candidate = self.nominal_steering
-        else:
-            steering_candidate = (
-                profile["gain"] * self.nominal_steering + steering_excitation
-            )
+        excitation_scale = (
+            self.corner_excitation_scale
+            if abs(self.nominal_steering) >= self.corner_protection_steering
+            else 1.0
+        )
+        steering_candidate = (
+            profile["gain"] * self.nominal_steering
+            + excitation_scale * steering_excitation
+        )
         self.applied_steering = max(
             -self.max_abs_steering,
             min(self.max_abs_steering, steering_candidate),
@@ -433,6 +450,11 @@ class EpmSysidCollector(Node):
         self.rows_written += 1
         if self.rows_written % 20 == 0:
             self.csv_file.flush()
+        if self.rows_written % 100 == 0:
+            self.get_logger().info(
+                f"Recorded {self.rows_written} synchronized samples "
+                f"(latest callback delta={delta_ns * 1e-6:.2f} ms)"
+            )
 
     def finish(self) -> None:
         if self.finished:
@@ -445,6 +467,8 @@ class EpmSysidCollector(Node):
             f"Completed {self.num_laps} laps; saved {self.rows_written} "
             f"synchronized samples to {self.output_path}"
         )
+        if self.rows_written == 0:
+            self.get_logger().error("System-ID run completed with an empty CSV.")
         self.shutdown_timer = self.create_timer(0.5, self.request_shutdown)
 
     def close_file(self) -> None:

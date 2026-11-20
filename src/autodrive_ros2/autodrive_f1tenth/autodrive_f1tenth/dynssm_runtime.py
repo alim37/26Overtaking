@@ -47,11 +47,16 @@ class DynSSMRuntime:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         with Path(config_path).open(encoding="utf-8") as stream:
             self.config = json.load(stream)
+        if "model" in self.config:
+            self._initialize_aixvr_baseline(checkpoint, scaler_path, nn)
+            return
         with Path(scaler_path).open("rb") as stream:
             scaler = _ScalerUnpickler(stream).load()
         self.scaler_mean = np.asarray(scaler.mean_, dtype=np.float32)
         self.scaler_scale = np.asarray(scaler.scale_, dtype=np.float32)
         self.horizon = int(self.config["MODEL"]["HORIZON"])
+        self.feature_count = 7
+        self.parameter_names = self.PARAMETER_NAMES
         self.sample_time = float(
             self.config["MODEL"].get("SAMPLE_TIME_SEC", 0.04)
         )
@@ -170,12 +175,144 @@ class DynSSMRuntime:
             raise RuntimeError(f"DynSSM checkpoint is incompatible; missing keys: {critical[:5]}")
         self.model.eval()
 
+    def _initialize_aixvr_baseline(self, checkpoint, normalization_path, nn):
+        model_name = str(self.config["model"]).lower()
+        if model_name not in {"ddm", "dpm"}:
+            raise ValueError(
+                f"AIxVR runtime does not support {model_name.upper()}"
+            )
+        self.runtime_model_name = model_name
+        normalization = np.load(normalization_path)
+        self.scaler_mean = np.asarray(normalization["mean"], dtype=np.float32)
+        self.scaler_scale = np.asarray(normalization["scale"], dtype=np.float32)
+        self.horizon = int(self.config["history"])
+        self.sample_time = float(self.config["sample_time_sec"])
+        self.feature_count = len(self.config["feature_names"])
+        self.uses_command_history = (
+            self.config.get("command_feature_semantics")
+            == "desired_actuator_commands"
+        )
+        network_parameter_names = tuple(
+            item["name"] for item in self.config["parameters"]
+        )
+        self.parameter_names = (
+            network_parameter_names
+            if model_name == "ddm"
+            else network_parameter_names[:-1] + ("Frx_bias", "Frx_gain")
+        )
+
+        torch = self.torch
+        config = self.config
+
+        class DDMParameterNetwork(nn.Module):
+            def __init__(self):
+                super().__init__()
+                input_dim = len(config["feature_names"])
+                parameter_count = len(config["parameters"])
+                self.gru = nn.GRU(input_dim, 64, batch_first=True)
+                self.head = nn.Sequential(
+                    nn.Linear(64 + input_dim, 128),
+                    nn.GELU(),
+                    nn.LayerNorm(128),
+                    nn.Dropout(0.1),
+                    nn.Linear(128, 96),
+                    nn.GELU(),
+                    nn.Linear(96, parameter_count),
+                )
+                self.register_buffer(
+                    "defaults",
+                    torch.tensor(
+                        [item["default"] for item in config["parameters"]],
+                        dtype=torch.float32,
+                    ),
+                )
+                self.register_buffer(
+                    "mins",
+                    torch.tensor(
+                        [item["min"] for item in config["parameters"]],
+                        dtype=torch.float32,
+                    ),
+                )
+                self.register_buffer(
+                    "maxes",
+                    torch.tensor(
+                        [item["max"] for item in config["parameters"]],
+                        dtype=torch.float32,
+                    ),
+                )
+
+            def forward(self, normalized):
+                encoded, _ = self.gru(normalized)
+                raw = self.head(
+                    torch.cat([encoded[:, -1], normalized[:, -1]], dim=1)
+                )
+                values = self.defaults + 0.5 * torch.tanh(raw) * (
+                    self.maxes - self.mins
+                )
+                return torch.maximum(
+                    torch.minimum(values, self.maxes), self.mins
+                )
+
+        self.model = DDMParameterNetwork().to(self.device)
+        try:
+            state = torch.load(checkpoint, map_location=self.device, weights_only=True)
+        except TypeError:
+            state = torch.load(checkpoint, map_location=self.device)
+        state = state.get("state_dict", state) if isinstance(state, dict) else state
+        missing, unexpected = self.model.load_state_dict(state, strict=False)
+        critical_missing = [
+            key for key in missing
+            if key.startswith(("gru", "head", "defaults", "mins", "maxes"))
+        ]
+        critical_unexpected = [
+            key for key in unexpected
+            if key not in {"scaler_mean", "scaler_scale"}
+        ]
+        if critical_missing or critical_unexpected:
+            raise RuntimeError(
+                "AIxVR checkpoint mismatch: "
+                f"missing={critical_missing[:5]}, unexpected={critical_unexpected[:5]}"
+            )
+        self.model.eval()
+
     def infer_parameters(self, history):
         history = np.asarray(history, dtype=np.float32)
-        if history.shape != (self.horizon, 7):
-            raise ValueError(f"Expected DynSSM history {(self.horizon, 7)}, got {history.shape}")
+        expected_shape = (self.horizon, self.feature_count)
+        if history.shape != expected_shape:
+            raise ValueError(
+                f"Expected model history {expected_shape}, got {history.shape}"
+            )
         normalized = (history - self.scaler_mean) / np.maximum(self.scaler_scale, 1e-8)
         tensor = self.torch.from_numpy(normalized[None]).to(self.device)
         with self.torch.no_grad():
             values = self.model(tensor)[0].detach().cpu().numpy()
-        return dict(zip(self.PARAMETER_NAMES, values.astype(float)))
+            if getattr(self, "runtime_model_name", "epm") == "dpm":
+                minimum_pwm = 0.0
+                maximum_pwm = 0.13 / 0.27
+                low_history = history.copy()
+                high_history = history.copy()
+                low_history[-1, 3] = minimum_pwm
+                high_history[-1, 3] = maximum_pwm
+                low_normalized = (
+                    low_history - self.scaler_mean
+                ) / np.maximum(self.scaler_scale, 1e-8)
+                high_normalized = (
+                    high_history - self.scaler_mean
+                ) / np.maximum(self.scaler_scale, 1e-8)
+                low_values = self.model(
+                    self.torch.from_numpy(low_normalized[None]).to(self.device)
+                )[0].detach().cpu().numpy()
+                high_values = self.model(
+                    self.torch.from_numpy(high_normalized[None]).to(self.device)
+                )[0].detach().cpu().numpy()
+                force_bias = float(low_values[-1])
+                force_gain = float(
+                    (high_values[-1] - low_values[-1])
+                    / (maximum_pwm - minimum_pwm)
+                )
+                return {
+                    **dict(zip(self.parameter_names[:-2], values[:-1].astype(float))),
+                    "Frx_bias": force_bias,
+                    "Frx_gain": force_gain,
+                }
+        return dict(zip(self.parameter_names, values.astype(float)))

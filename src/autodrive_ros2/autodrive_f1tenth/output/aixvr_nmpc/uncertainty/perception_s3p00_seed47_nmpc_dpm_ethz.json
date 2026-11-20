@@ -1,0 +1,19 @@
+{
+  "experiment": "perception",
+  "severity": 3.0,
+  "seed": 47,
+  "measurement_noise_fraction": 0.03,
+  "position_noise_std_m": 0.03,
+  "position_bias_walk_m_sqrt_s": 0.006,
+  "yaw_rate_bias_walk_rad_s_sqrt_s": 0.0015,
+  "throttle_delay_sec": 0.0,
+  "steering_delay_sec": 0.0,
+  "actuation_noise_fraction": 0.0,
+  "throttle_response_tau_sec": 0.0,
+  "steering_response_tau_sec": 0.0,
+  "throttle_effectiveness": 1.0,
+  "steering_effectiveness": 1.0,
+  "dynamics_proxy_note": "Effectiveness and response constants perturb the external plant interface; they are not claimed as direct Unity mass or tire-friction edits.",
+  "clean_pure_pursuit_warmup": true,
+  "vehicle_width_m": 0.3
+}

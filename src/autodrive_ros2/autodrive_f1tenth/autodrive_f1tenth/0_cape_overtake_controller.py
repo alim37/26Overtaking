@@ -18,7 +18,7 @@ from autodrive_f1tenth.dynssm_nmpc_controller import DynSSMNMPCController
 
 
 class CAPEOvertakeController(DynSSMNMPCController):
-    """Pure pursuit/NMPC/adaptive/robust control with EPM or bicycle state propagation."""
+    """Pure pursuit/NMPC/adaptive/robust control with learned or bicycle dynamics."""
 
     COMPLETE = "COMPLETED_LAP"
 
@@ -37,6 +37,11 @@ class CAPEOvertakeController(DynSSMNMPCController):
             "robust_max_margin_m": 0.30,
             "robust_track_half_width_m": 0.50,
             "robust_track_slack_weight": 1.0e6,
+            "track_slack_linear_weight": 1.0e5,
+            "vehicle_length_m": 0.55,
+            "vehicle_width_m": 0.30,
+            "enforce_track_boundaries": False,
+            "track_boundary_margin_m": 0.18,
             "state_correction_gain": 0.80,
             "minimum_vehicle_separation_m": 0.65,
             "pure_pursuit_speed_kp": 0.025,
@@ -45,16 +50,21 @@ class CAPEOvertakeController(DynSSMNMPCController):
             "experiment_overtake_speed_multiplier": -1.0,
             "bicycle_parameter_file": "",
             "benchmark_output_dir": "",
+            "benchmark_file_stem": "",
+            "benchmark_model_label": "",
+            "single_lap_benchmark": False,
         }
         for name, default in defaults.items():
             self.declare_parameter(name, default)
         get = lambda name: self.get_parameter(name).value
         self.controller = str(get("controller")).lower()
         self.model_name = str(get("model")).lower()
+        configured_model_label = str(get("benchmark_model_label")).strip()
+        self.benchmark_model_label = configured_model_label or self.model_name
         if self.controller not in {"pure_pursuit", "nmpc", "adaptive", "robust"}:
             raise ValueError("controller must be pure_pursuit, nmpc, adaptive, or robust")
-        if self.model_name not in {"epm", "bicycle"}:
-            raise ValueError("model must be epm or bicycle")
+        if self.model_name not in {"epm", "ddm", "dpm", "bicycle"}:
+            raise ValueError("model must be epm, ddm, dpm, or bicycle")
         if self.controller == "adaptive" and self.model_name != "epm":
             raise ValueError(
                 "adaptive control requires model:=epm; no validated online "
@@ -85,6 +95,15 @@ class CAPEOvertakeController(DynSSMNMPCController):
         self.robust_max_margin = float(get("robust_max_margin_m"))
         self.robust_track_half_width = float(get("robust_track_half_width_m"))
         self.robust_track_slack_weight = float(get("robust_track_slack_weight"))
+        self.track_slack_linear_weight = float(
+            get("track_slack_linear_weight")
+        )
+        self.vehicle_length = float(get("vehicle_length_m"))
+        self.vehicle_width = float(get("vehicle_width_m"))
+        self.enforce_track_boundaries = bool(get("enforce_track_boundaries"))
+        self.track_boundary_margin = max(
+            0.0, float(get("track_boundary_margin_m"))
+        )
         self.correction_gain = float(get("state_correction_gain"))
         self.minimum_vehicle_separation = float(
             get("minimum_vehicle_separation_m")
@@ -103,6 +122,7 @@ class CAPEOvertakeController(DynSSMNMPCController):
             configured_experiment_speed
             if configured_experiment_speed > 0.0 else self.speed_multiplier
         )
+        self.single_lap_benchmark = bool(get("single_lap_benchmark"))
         self.robust_margin = self.robust_m0
         self.model_mismatch = 0.0
         self.adaptation_step = 0
@@ -125,6 +145,8 @@ class CAPEOvertakeController(DynSSMNMPCController):
         self.predicted_min_separation_m = math.nan
         self.control_dt = math.nan
         self.last_control_time = None
+        self.last_logged_speed = None
+        self.last_acceleration_time = None
         self.epm_warmup_applied = False
         self.peer_position = None
         self.peer_velocity = np.zeros(2, dtype=float)
@@ -141,10 +163,18 @@ class CAPEOvertakeController(DynSSMNMPCController):
         root = Path(output_dir) if output_dir else Path(__file__).resolve().parents[1] / "output/cape_overtake"
         root.mkdir(parents=True, exist_ok=True)
         speed_label = f"{self.experiment_speed_multiplier:.2f}"
-        suffix = "" if self.enable_overtake_path else "_target"
-        self.output_csv = root / (
-            f"{self.controller}_overtake_{self.model_name}_{speed_label}{suffix}.csv"
-        )
+        configured_stem = str(get("benchmark_file_stem")).strip()
+        if configured_stem:
+            safe_stem = "".join(
+                char if char.isalnum() or char in {"-", "_", "."} else "_"
+                for char in configured_stem
+            )
+            self.output_csv = root / f"{safe_stem}.csv"
+        else:
+            suffix = "" if self.enable_overtake_path else "_target"
+            self.output_csv = root / (
+                f"{self.controller}_overtake_{self.model_name}_{speed_label}{suffix}.csv"
+            )
         self.csv_file = self.output_csv.open("w", newline="", encoding="utf-8")
         fields = [
             "time_sec", "elapsed_time_s", "completion_time_s", "completed",
@@ -163,13 +193,18 @@ class CAPEOvertakeController(DynSSMNMPCController):
             "predicted_yaw_rate_rad_s", "solver_success",
             "predicted_min_separation_m", "collision_slack_m2", "track_slack_m",
             "adaptive_update_count", "robust_dynamic_error", "solver_status",
+            "solver_raw_status", "solver_converged", "solver_accepted",
+            "solver_iterations", "solver_constraint_violation",
             "epm_Bf", "epm_Df", "epm_Br", "epm_Dr", "epm_Cm1", "epm_Cm2",
             "epm_Cr0", "epm_Cr2", "epm_Iz",
             "raw_epm_Bf", "raw_epm_Df", "raw_epm_Br", "raw_epm_Dr",
             "raw_epm_Cm1", "raw_epm_Cm2", "raw_epm_Cr0", "raw_epm_Cr2",
             "raw_epm_Iz",
+            "dpm_Frx_bias", "dpm_Frx_gain",
             "epm_drive_gain", "target_reference_speed_mps",
             "control_dt_sec", "odom_age_sec",
+            "longitudinal_error_m", "lateral_error_m", "position_error_m",
+            "longitudinal_acceleration_mps2",
         ]
         self.writer = csv.DictWriter(self.csv_file, fieldnames=fields)
         self.writer.writeheader()
@@ -189,7 +224,12 @@ class CAPEOvertakeController(DynSSMNMPCController):
             )
         self.get_logger().info(
             f"CAPE ready: controller={self.controller}, model={self.model_name}, "
-            f"overtake_lap={self.overtake_start_lap + 1}, output={self.output_csv}"
+            f"overtake_lap={self.overtake_start_lap + 1}, "
+            f"track_boundaries={self.enforce_track_boundaries}, "
+            f"track_margin={self.track_boundary_margin:.2f}m, "
+            f"footprint={self.vehicle_length:.2f}x{self.vehicle_width:.2f}m, "
+            f"minimum_speed={self.nmpc_minimum_speed:.2f}m/s, "
+            f"output={self.output_csv}"
         )
 
     def _load_bicycle_parameters(self, configured_path):
@@ -243,6 +283,10 @@ class CAPEOvertakeController(DynSSMNMPCController):
             and self.bicycle_parameters is not None
             else parameters
         )
+        if self.model_name in {"epm", "ddm"} and isinstance(
+            selected_parameters, dict
+        ):
+            selected_parameters = LePAVDParameters(**selected_parameters)
         self.nmpc = NominalLePAVDNMPC(
             horizon=self.horizon,
             sample_time=self.control_period,
@@ -256,12 +300,20 @@ class CAPEOvertakeController(DynSSMNMPCController):
             max_steering_rate=self.max_steering_rate,
             max_throttle_rate=self.max_throttle_rate,
             throttle_rate_weight=self.throttle_rate_weight,
+            throttle_reference_weight=self.throttle_reference_weight,
+            throttle_acceleration_weight=self.throttle_acceleration_weight,
+            longitudinal_speed_gain=self.longitudinal_speed_gain,
+            longitudinal_speed_tau=self.longitudinal_speed_tau,
             steering_rate_weight=self.steering_rate_weight,
             steering_acceleration_weight=self.steering_acceleration_weight,
             steering_actuator_gap_weight=self.steering_actuator_gap_weight,
             heading_weight=self.nmpc_heading_weight,
+            speed_weight=self.nmpc_speed_weight,
             yaw_rate_weight=self.nmpc_yaw_rate_weight,
+            minimum_speed=self.nmpc_minimum_speed,
+            minimum_speed_weight=self.nmpc_minimum_speed_weight,
             throttle_actuator_tau=self.throttle_actuator_tau,
+            throttle_command_delay_steps=self.throttle_command_delay_steps,
             steering_actuator_tau=self.steering_actuator_tau,
             steering_command_delay_steps=self.steering_command_delay_steps,
             steering_command_gain=self.steering_command_gain,
@@ -270,12 +322,16 @@ class CAPEOvertakeController(DynSSMNMPCController):
             enable_collision=self.enable_overtake_path,
             model_parameters=selected_parameters,
             kinematic_wheelbase=wheelbase,
+            dynamics_model=self.model_name,
             track_half_width=(
                 self.robust_track_half_width
-                if self.controller == "robust"
+                if self.controller == "robust" or self.enforce_track_boundaries
                 else None
             ),
             track_slack_weight=self.robust_track_slack_weight,
+            track_slack_linear_weight=self.track_slack_linear_weight,
+            vehicle_length=self.vehicle_length,
+            vehicle_width=self.vehicle_width,
         )
 
     def _update_mode(self, now):
@@ -313,11 +369,12 @@ class CAPEOvertakeController(DynSSMNMPCController):
             now - self.experiment_start_time
             if self.experiment_start_time is not None else math.nan
         )
-        message = (
-            "COMPLETED LAP at final overtake-reference sample"
-            if self.enable_overtake_path
-            else "Ego completed lap; stopping target"
-        )
+        if self.single_lap_benchmark:
+            message = "COMPLETED single-lap benchmark"
+        elif self.enable_overtake_path:
+            message = "COMPLETED LAP at final overtake-reference sample"
+        else:
+            message = "Ego completed lap; stopping target"
         self.get_logger().info(
             f"{message}; completion_time={self.completion_time:.3f}s"
         )
@@ -506,6 +563,23 @@ class CAPEOvertakeController(DynSSMNMPCController):
             next_point[0] - previous_point[0],
         )
         cross_track_error = float(path_distances[reference_index])
+        position_delta = self.position - reference_point
+        cosine = math.cos(reference_heading)
+        sine = math.sin(reference_heading)
+        longitudinal_error = float(
+            cosine * position_delta[0] + sine * position_delta[1]
+        )
+        lateral_error = float(
+            -sine * position_delta[0] + cosine * position_delta[1]
+        )
+        position_error = float(np.linalg.norm(position_delta))
+        acceleration = math.nan
+        if self.last_acceleration_time is not None and self.last_logged_speed is not None:
+            acceleration_dt = now - self.last_acceleration_time
+            if 1.0e-3 <= acceleration_dt <= 0.5:
+                acceleration = (self.speed - self.last_logged_speed) / acceleration_dt
+        self.last_acceleration_time = now
+        self.last_logged_speed = self.speed
         elapsed = (
             now - self.experiment_start_time
             if self.experiment_start_time is not None else 0.0
@@ -518,15 +592,14 @@ class CAPEOvertakeController(DynSSMNMPCController):
             else np.full(6, math.nan)
         )
         solver_status = str(self.nmpc.last_status)
-        solver_success = int(solver_status in {
-            "Solve_Succeeded", "Solved_To_Acceptable_Level"
-        })
+        solver_success = int(bool(self.nmpc.last_accepted))
         self.writer.writerow({
             "time_sec": f"{now:.6f}", "elapsed_time_s": elapsed,
             "completion_time_s": self.completion_time,
             "completed": int(self.engagement_complete),
             "car_id": self.car_id, "controller": self.controller,
-            "model": self.model_name, "lap": self.lap_count + 1, "mode": self.mode,
+            "model": self.benchmark_model_label,
+            "lap": self.lap_count + 1, "mode": self.mode,
             "overtake_speed_multiplier": self.experiment_speed_multiplier,
             "x_m": self.position[0], "y_m": self.position[1],
             "estimated_x_m": self.estimated_position[0],
@@ -564,6 +637,11 @@ class CAPEOvertakeController(DynSSMNMPCController):
             "adaptive_update_count": self.adaptive_update_count,
             "robust_dynamic_error": self.robust_dynamic_error,
             "solver_status": solver_status,
+            "solver_raw_status": self.nmpc.last_raw_status,
+            "solver_converged": int(self.nmpc.last_converged),
+            "solver_accepted": int(self.nmpc.last_accepted),
+            "solver_iterations": self.nmpc.last_iteration_count,
+            "solver_constraint_violation": self.nmpc.last_constraint_violation,
             "epm_Bf": epm.get("Bf", math.nan),
             "epm_Df": epm.get("Df", math.nan),
             "epm_Br": epm.get("Br", math.nan),
@@ -582,6 +660,8 @@ class CAPEOvertakeController(DynSSMNMPCController):
             "raw_epm_Cr0": raw_epm.get("Cr0", math.nan),
             "raw_epm_Cr2": raw_epm.get("Cr2", math.nan),
             "raw_epm_Iz": raw_epm.get("Iz", math.nan),
+            "dpm_Frx_bias": epm.get("Frx_bias", math.nan),
+            "dpm_Frx_gain": epm.get("Frx_gain", math.nan),
             "epm_drive_gain": (
                 epm.get("Cm1", math.nan)
                 - epm.get("Cm2", math.nan) * self.speed
@@ -592,6 +672,10 @@ class CAPEOvertakeController(DynSSMNMPCController):
                 now - self.last_odom_stamp
                 if self.last_odom_stamp is not None else math.nan
             ),
+            "longitudinal_error_m": longitudinal_error,
+            "lateral_error_m": lateral_error,
+            "position_error_m": position_error,
+            "longitudinal_acceleration_mps2": acceleration,
         })
         self.csv_file.flush()
 
@@ -608,6 +692,22 @@ class CAPEOvertakeController(DynSSMNMPCController):
             self.experiment_start_time = now
         if self.external_completion_requested and not self.engagement_complete:
             self._complete_experiment(now)
+        if (
+            self.stopped
+            and self.single_lap_benchmark
+            and self.stop_after_laps > 0
+            and self.lap_count >= self.stop_after_laps
+            and not self.engagement_complete
+        ):
+            # The parent lap detector stops the car from the IPS callback. Log
+            # one final synchronized sample before leaving the node idle.
+            self.stopped = False
+            self._complete_experiment(now)
+            self._publish(0.0, 0.0)
+            self._estimate_pose(now)
+            self._log(now)
+            self.stopped = True
+            return
         if self.stopped:
             self._publish_stop()
             return
@@ -641,7 +741,9 @@ class CAPEOvertakeController(DynSSMNMPCController):
             self.model_status_pub.publish(Bool(data=self.dynssm_active))
             return
         if self.dynssm_active and not self.epm_warmup_applied:
-            self._rebuild_nmpc(self.nmpc.model.p)
+            self._rebuild_nmpc(
+                self.current_model_parameters or self.nmpc.model.p
+            )
             self.epm_warmup_applied = True
         if self.controller == "adaptive":
             self._update_adaptive_parameters()
@@ -704,7 +806,7 @@ class CAPEOvertakeController(DynSSMNMPCController):
             float(path.arc[index]), reference_spacing, self.horizon + 1
         )
         track_left = track_right = None
-        if self.controller == "robust":
+        if self.controller == "robust" or self.enforce_track_boundaries:
             track_left, track_right = path.sample_clearances(
                 float(path.arc[index]), reference_spacing, self.horizon + 1
             )
@@ -746,7 +848,11 @@ class CAPEOvertakeController(DynSSMNMPCController):
                 model_parameters=self.current_model_parameters,
                 peer_reference=peer_reference,
                 track_margin=(
-                    self.robust_margin if self.controller == "robust" else 0.0
+                    self.robust_margin
+                    if self.controller == "robust"
+                    else self.track_boundary_margin
+                    if self.enforce_track_boundaries
+                    else 0.0
                 ),
                 track_left_clearance=(
                     track_left[1:] if track_left is not None else None
@@ -782,8 +888,10 @@ class CAPEOvertakeController(DynSSMNMPCController):
             self.solve_ms = (time.perf_counter() - started) * 1000.0
             if not rclpy.ok():
                 return
+            self.nmpc.reset_warm_start()
             self.get_logger().warning(
-                f"CAPE solve missed; holding previous feasible NMPC command: {exc}"
+                "CAPE solve missed; holding the previous feasible NMPC command "
+                f"for this cycle and resetting the solver warm start: {exc}"
             )
             self._publish(
                 self.previous_control[0] * self.pwm_to_sim_scale,

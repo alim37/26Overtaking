@@ -6,6 +6,7 @@ State: [x, y, yaw, vx, vy, yaw_rate]. Control: [pwm, steering].
 """
 
 from dataclasses import dataclass
+import math
 
 import casadi as ca
 import numpy as np
@@ -45,9 +46,14 @@ class LePAVDDynamics:
         "Cm2", "Cr0", "Cr2", "Iz", "Shf", "Svf", "Shr", "Svr",
     )
 
-    def __init__(self, parameters=None, kinematic_wheelbase=None):
+    def __init__(
+        self, parameters=None, kinematic_wheelbase=None,
+        longitudinal_speed_gain=0.0, longitudinal_speed_tau=0.0,
+    ):
         self.p = parameters or LePAVDParameters()
         self.kinematic_wheelbase = kinematic_wheelbase
+        self.longitudinal_speed_gain = max(float(longitudinal_speed_gain), 0.0)
+        self.longitudinal_speed_tau = max(float(longitudinal_speed_tau), 0.0)
 
     def parameter_vector(self, parameters=None):
         if parameters is None:
@@ -61,6 +67,17 @@ class LePAVDDynamics:
                 [getattr(parameters, name) for name in self.PARAMETER_NAMES], dtype=float
             )
         return np.asarray(parameters, dtype=float).reshape(len(self.PARAMETER_NAMES))
+
+    def equilibrium_throttle(self, speed, model_parameters):
+        """PWM that balances identified drag at a constant target speed."""
+        if self.longitudinal_speed_gain > 0.0:
+            return speed / self.longitudinal_speed_gain
+        cm1 = model_parameters[self.PARAMETER_NAMES.index("Cm1")]
+        cm2 = model_parameters[self.PARAMETER_NAMES.index("Cm2")]
+        cr0 = model_parameters[self.PARAMETER_NAMES.index("Cr0")]
+        cr2 = model_parameters[self.PARAMETER_NAMES.index("Cr2")]
+        denominator = ca.fmax(cm1 - cm2 * speed, 1.0e-3)
+        return (cr0 + cr2 * speed * speed) / denominator
 
     def derivative(self, state, control, model_parameters=None):
         p = self.p
@@ -97,7 +114,12 @@ class LePAVDDynamics:
         force_f = Svf + Df * ca.sin(Cf * theta_f)
         force_r = Svr + Dr * ca.sin(Cr * theta_r)
 
-        accel_x = force_x / p.mass
+        if self.longitudinal_speed_gain > 0.0:
+            accel_x = (
+                self.longitudinal_speed_gain * pwm - vx
+            ) / max(self.longitudinal_speed_tau, 1.0e-3)
+        else:
+            accel_x = force_x / p.mass
         axle_length = p.lf + p.lr
         load_f = ca.fmax(
             1e-3,
@@ -115,9 +137,152 @@ class LePAVDDynamics:
             vx * ca.cos(yaw) - vy * ca.sin(yaw),
             vx * ca.sin(yaw) + vy * ca.cos(yaw),
             yaw_rate,
-            (force_x - force_f * ca.sin(steering)) / p.mass + vy * yaw_rate,
+            (
+                accel_x
+                if self.longitudinal_speed_gain > 0.0
+                else (force_x - force_f * ca.sin(steering)) / p.mass
+                + vy * yaw_rate
+            ),
             (force_r + force_f * ca.cos(steering)) / p.mass - vx * yaw_rate,
             (force_f * p.lf * ca.cos(steering) - force_r * p.lr) / Iz,
+        )
+
+
+class DDMDynamics(LePAVDDynamics):
+    """Dynamic bicycle equations used by the trained AIxVR DDM baseline."""
+
+    def derivative(self, state, control, model_parameters=None):
+        p = self.p
+        if model_parameters is None:
+            model_parameters = self.parameter_vector()
+        (
+            Bf, Cf, Df, Ef, Br, Cr, Dr, Er, Cm1, Cm2, Cr0, Cr2, Iz,
+            Shf, Svf, Shr, Svr,
+        ) = [model_parameters[index] for index in range(len(self.PARAMETER_NAMES))]
+        yaw, vx_raw, vy_raw, yaw_rate_raw = state[2], state[3], state[4], state[5]
+        pwm, steering = control[0], control[1]
+        vx = ca.fmin(ca.fmax(vx_raw, 0.05), 10.0)
+        vy = ca.if_else(vx_raw < 0.05, 0.0, vy_raw)
+        yaw_rate = ca.if_else(vx_raw < 0.05, 0.0, yaw_rate_raw)
+        force_x = (Cm1 - Cm2 * vx) * pwm - Cr0 - Cr2 * vx * vx
+        alpha_f = steering - ca.atan2(p.lf * yaw_rate + vy, vx) + Shf
+        alpha_r = ca.atan2(p.lr * yaw_rate - vy, vx) + Shr
+        bf_alpha = Bf * alpha_f
+        br_alpha = Br * alpha_r
+        theta_f = ca.atan(bf_alpha - Ef * (bf_alpha - ca.atan(bf_alpha)))
+        theta_r = ca.atan(br_alpha - Er * (br_alpha - ca.atan(br_alpha)))
+        force_f = Svf + Df * ca.sin(Cf * theta_f)
+        force_r = Svr + Dr * ca.sin(Cr * theta_r)
+        longitudinal_acceleration = (
+            (self.longitudinal_speed_gain * pwm - vx)
+            / max(self.longitudinal_speed_tau, 1.0e-3)
+            if self.longitudinal_speed_gain > 0.0
+            else (force_x - force_f * ca.sin(steering)) / p.mass
+            + vy * yaw_rate
+        )
+        return ca.vertcat(
+            vx * ca.cos(yaw) - vy * ca.sin(yaw),
+            vx * ca.sin(yaw) + vy * ca.cos(yaw),
+            yaw_rate,
+            longitudinal_acceleration,
+            (force_r + force_f * ca.cos(steering)) / p.mass - vx * yaw_rate,
+            (force_f * p.lf * ca.cos(steering) - force_r * p.lr) / Iz,
+        )
+
+
+class DPMDynamics(LePAVDDynamics):
+    """Deep Pacejka dynamics with a locally learned direct-force PWM map."""
+
+    PARAMETER_NAMES = (
+        "Bf", "Cf", "Df", "Ef", "Br", "Cr", "Dr", "Er",
+        "Frx_bias", "Frx_gain",
+    )
+
+    def __init__(
+        self, parameters=None, longitudinal_speed_gain=0.0,
+        longitudinal_speed_tau=0.0,
+    ):
+        # Vehicle geometry is fixed; learned DPM values enter symbolically
+        # through model_parameters on every NMPC solve.
+        super().__init__(
+            LePAVDParameters(),
+            longitudinal_speed_gain=longitudinal_speed_gain,
+            longitudinal_speed_tau=longitudinal_speed_tau,
+        )
+        self.initial_parameters = parameters
+
+    def parameter_vector(self, parameters=None):
+        defaults = {
+            "Bf": 5.579, "Cf": 1.2, "Df": 16.2497561, "Ef": -0.083,
+            "Br": 5.3852, "Cr": 1.2691, "Dr": 14.70095122, "Er": -0.019,
+            "Frx_bias": -4.38404878, "Frx_gain": 24.29,
+        }
+        if parameters is None:
+            parameters = self.initial_parameters or defaults
+        if isinstance(parameters, dict):
+            return np.asarray(
+                [parameters.get(name, defaults[name]) for name in self.PARAMETER_NAMES],
+                dtype=float,
+            )
+        if isinstance(parameters, LePAVDParameters):
+            values = {
+                name: getattr(parameters, name)
+                for name in self.PARAMETER_NAMES[:8]
+            }
+            values.update({
+                "Frx_bias": -parameters.Cr0,
+                "Frx_gain": parameters.Cm1,
+            })
+            return np.asarray(
+                [values[name] for name in self.PARAMETER_NAMES], dtype=float
+            )
+        return np.asarray(parameters, dtype=float).reshape(len(self.PARAMETER_NAMES))
+
+    def equilibrium_throttle(self, speed, model_parameters):
+        """PWM that produces zero net longitudinal force in the DPM."""
+        if self.longitudinal_speed_gain > 0.0:
+            return speed / self.longitudinal_speed_gain
+        del speed
+        force_bias = model_parameters[self.PARAMETER_NAMES.index("Frx_bias")]
+        force_gain = model_parameters[self.PARAMETER_NAMES.index("Frx_gain")]
+        safe_gain = ca.fmax(force_gain, 1.0e-3)
+        return -force_bias / safe_gain
+
+    def derivative(self, state, control, model_parameters=None):
+        p = self.p
+        if model_parameters is None:
+            model_parameters = self.parameter_vector()
+        (
+            Bf, Cf, Df, Ef, Br, Cr, Dr, Er, force_bias, force_gain,
+        ) = [model_parameters[index] for index in range(len(self.PARAMETER_NAMES))]
+        yaw, vx_raw, vy_raw, yaw_rate_raw = state[2], state[3], state[4], state[5]
+        pwm, steering = control[0], control[1]
+        vx = ca.fmin(ca.fmax(vx_raw, 0.05), 10.0)
+        vy = ca.if_else(vx_raw < 0.05, 0.0, vy_raw)
+        yaw_rate = ca.if_else(vx_raw < 0.05, 0.0, yaw_rate_raw)
+        force_x = force_bias + force_gain * pwm
+        alpha_f = steering - ca.atan2(p.lf * yaw_rate + vy, vx)
+        alpha_r = ca.atan2(p.lr * yaw_rate - vy, vx)
+        bf_alpha = Bf * alpha_f
+        br_alpha = Br * alpha_r
+        theta_f = ca.atan(bf_alpha - Ef * (bf_alpha - ca.atan(bf_alpha)))
+        theta_r = ca.atan(br_alpha - Er * (br_alpha - ca.atan(br_alpha)))
+        force_f = Df * ca.sin(Cf * theta_f)
+        force_r = Dr * ca.sin(Cr * theta_r)
+        longitudinal_acceleration = (
+            (self.longitudinal_speed_gain * pwm - vx)
+            / max(self.longitudinal_speed_tau, 1.0e-3)
+            if self.longitudinal_speed_gain > 0.0
+            else (force_x - force_f * ca.sin(steering)) / p.mass
+            + vy * yaw_rate
+        )
+        return ca.vertcat(
+            vx * ca.cos(yaw) - vy * ca.sin(yaw),
+            vx * ca.sin(yaw) + vy * ca.cos(yaw),
+            yaw_rate,
+            longitudinal_acceleration,
+            (force_r + force_f * ca.cos(steering)) / p.mass - vx * yaw_rate,
+            (force_f * p.lf * ca.cos(steering) - force_r * p.lr) / p.Iz,
         )
 
 
@@ -128,11 +293,16 @@ class KinematicBicycleDynamics:
     # longitudinal coefficients are consumed by this model.
     PARAMETER_NAMES = LePAVDDynamics.PARAMETER_NAMES
 
-    def __init__(self, parameters=None, wheelbase=0.33):
+    def __init__(
+        self, parameters=None, wheelbase=0.33,
+        longitudinal_speed_gain=0.0, longitudinal_speed_tau=0.0,
+    ):
         self.p = parameters or LePAVDParameters()
         self.wheelbase = float(wheelbase)
         self.rear_length = min(float(self.p.lr), self.wheelbase)
         self.state_response_rate = 10.0
+        self.longitudinal_speed_gain = max(float(longitudinal_speed_gain), 0.0)
+        self.longitudinal_speed_tau = max(float(longitudinal_speed_tau), 0.0)
 
     def parameter_vector(self, parameters=None):
         if parameters is None:
@@ -150,6 +320,17 @@ class KinematicBicycleDynamics:
                 dtype=float,
             )
         return np.asarray(parameters, dtype=float).reshape(len(self.PARAMETER_NAMES))
+
+    def equilibrium_throttle(self, speed, model_parameters):
+        """PWM that balances identified drag at a constant target speed."""
+        if self.longitudinal_speed_gain > 0.0:
+            return speed / self.longitudinal_speed_gain
+        cm1 = model_parameters[self.PARAMETER_NAMES.index("Cm1")]
+        cm2 = model_parameters[self.PARAMETER_NAMES.index("Cm2")]
+        cr0 = model_parameters[self.PARAMETER_NAMES.index("Cr0")]
+        cr2 = model_parameters[self.PARAMETER_NAMES.index("Cr2")]
+        denominator = ca.fmax(cm1 - cm2 * speed, 1.0e-3)
+        return (cr0 + cr2 * speed * speed) / denominator
 
     def derivative(self, state, control, model_parameters=None):
         if model_parameters is None:
@@ -177,11 +358,17 @@ class KinematicBicycleDynamics:
             - values["Cr2"] * vx * vx
         )
 
+        longitudinal_acceleration = (
+            (self.longitudinal_speed_gain * pwm - vx)
+            / max(self.longitudinal_speed_tau, 1.0e-3)
+            if self.longitudinal_speed_gain > 0.0
+            else force_x / self.p.mass
+        )
         return ca.vertcat(
             vx * ca.cos(yaw + beta),
             vx * ca.sin(yaw + beta),
             desired_yaw_rate,
-            force_x / self.p.mass,
+            longitudinal_acceleration,
             self.state_response_rate * (desired_lateral_speed - vy),
             self.state_response_rate * (desired_yaw_rate - yaw_rate),
         )
@@ -203,23 +390,36 @@ class NominalLePAVDNMPC:
         max_steering_rate=2.5,
         max_throttle_rate=2.0,
         throttle_rate_weight=0.25,
+        throttle_reference_weight=0.0,
+        throttle_acceleration_weight=0.0,
         steering_rate_weight=8.0,
         steering_acceleration_weight=0.0,
         steering_actuator_gap_weight=0.0,
         heading_weight=2.5,
+        speed_weight=2.0,
         yaw_rate_weight=0.25,
+        minimum_speed=0.0,
+        minimum_speed_weight=0.0,
         model_parameters=None,
         kinematic_wheelbase=None,
         track_half_width=None,
         track_slack_weight=1.0e6,
+        track_slack_linear_weight=0.0,
+        vehicle_length=0.55,
+        vehicle_width=0.30,
         throttle_actuator_tau=0.14,
+        throttle_command_delay_steps=0,
         steering_actuator_tau=0.14,
         steering_command_delay_steps=0,
         steering_command_gain=0.5234,
+        max_iteration_acceptance_tolerance=1.0e-3,
         collision_distance=0.65,
         collision_slack_weight=4000.0,
         enable_collision=False,
         integration_substeps=5,
+        dynamics_model="epm",
+        longitudinal_speed_gain=0.0,
+        longitudinal_speed_tau=0.0,
     ):
         self.horizon = int(horizon)
         self.sample_time = float(sample_time)
@@ -228,32 +428,79 @@ class NominalLePAVDNMPC:
         self.max_steering_rate = float(max_steering_rate)
         self.max_throttle_rate = float(max_throttle_rate)
         self.throttle_rate_weight = float(throttle_rate_weight)
+        self.throttle_reference_weight = max(
+            float(throttle_reference_weight), 0.0
+        )
+        self.throttle_acceleration_weight = max(
+            float(throttle_acceleration_weight), 0.0
+        )
         self.steering_rate_weight = float(steering_rate_weight)
         self.steering_acceleration_weight = float(
             steering_acceleration_weight
         )
         self.steering_actuator_gap_weight = float(steering_actuator_gap_weight)
         self.heading_weight = float(heading_weight)
+        self.speed_weight = max(float(speed_weight), 0.0)
         self.yaw_rate_weight = float(yaw_rate_weight)
+        self.minimum_speed = max(float(minimum_speed), 0.0)
+        self.minimum_speed_weight = max(float(minimum_speed_weight), 0.0)
         self.track_half_width = (
             None if track_half_width is None else float(track_half_width)
         )
         self.track_slack_weight = max(float(track_slack_weight), 0.0)
+        self.track_slack_linear_weight = max(
+            float(track_slack_linear_weight), 0.0
+        )
+        self.vehicle_half_length = 0.5 * max(float(vehicle_length), 0.0)
+        self.vehicle_half_width = 0.5 * max(float(vehicle_width), 0.0)
+        self.vehicle_radius = float(np.hypot(
+            self.vehicle_half_length, self.vehicle_half_width
+        ))
         self.throttle_actuator_tau = max(float(throttle_actuator_tau), 1.0e-3)
+        self.throttle_command_delay_steps = int(throttle_command_delay_steps)
         self.steering_actuator_tau = max(float(steering_actuator_tau), 1.0e-3)
         self.steering_command_delay_steps = int(steering_command_delay_steps)
-        if self.steering_command_delay_steps not in (0, 1):
-            raise ValueError("steering_command_delay_steps must be 0 or 1")
+        if self.throttle_command_delay_steps not in (0, 1, 2, 3):
+            raise ValueError("throttle_command_delay_steps must be 0, 1, 2, or 3")
+        if self.steering_command_delay_steps not in (0, 1, 2, 3):
+            raise ValueError("steering_command_delay_steps must be 0, 1, 2, or 3")
         self.steering_command_gain = float(steering_command_gain)
+        self.max_iteration_acceptance_tolerance = max(
+            0.0, float(max_iteration_acceptance_tolerance)
+        )
+        self.last_converged = False
+        self.last_accepted = False
+        self.last_constraint_violation = math.inf
+        self.last_iteration_count = 0
+        self.last_raw_status = "NOT_RUN"
         self.collision_distance = max(float(collision_distance), 0.0)
         self.collision_slack_weight = max(float(collision_slack_weight), 0.0)
         self.enable_collision = bool(enable_collision)
         self.integration_substeps = max(1, int(integration_substeps))
-        self.model = (
-            KinematicBicycleDynamics(model_parameters, kinematic_wheelbase)
-            if kinematic_wheelbase is not None
-            else LePAVDDynamics(model_parameters)
-        )
+        if kinematic_wheelbase is not None:
+            self.model = KinematicBicycleDynamics(
+                model_parameters, kinematic_wheelbase,
+                longitudinal_speed_gain, longitudinal_speed_tau,
+            )
+        elif dynamics_model == "ddm":
+            self.model = DDMDynamics(
+                model_parameters,
+                longitudinal_speed_gain=longitudinal_speed_gain,
+                longitudinal_speed_tau=longitudinal_speed_tau,
+            )
+        elif dynamics_model == "dpm":
+            self.model = DPMDynamics(
+                model_parameters, longitudinal_speed_gain,
+                longitudinal_speed_tau,
+            )
+        elif dynamics_model == "epm":
+            self.model = LePAVDDynamics(
+                model_parameters,
+                longitudinal_speed_gain=longitudinal_speed_gain,
+                longitudinal_speed_tau=longitudinal_speed_tau,
+            )
+        else:
+            raise ValueError(f"Unsupported NMPC dynamics model: {dynamics_model}")
         self._last_solution = None
         self.last_collision_slack = np.zeros(self.horizon, dtype=float)
         self.last_track_slack = np.zeros(self.horizon, dtype=float)
@@ -283,7 +530,7 @@ class NominalLePAVDNMPC:
         model_parameter_size = len(self.model.PARAMETER_NAMES)
         parameters = ca.SX.sym(
             "parameters",
-            n + reference_size + m + m + m + model_parameter_size
+            n + reference_size + m + m + m + m + model_parameter_size
             + peer_size + int(self.enable_collision),
         )
         initial_state = parameters[:n]
@@ -295,7 +542,10 @@ class NominalLePAVDNMPC:
         previous_previous_control = parameters[
             reference_end + m : reference_end + 2 * m
         ]
-        actuator_start = reference_end + 2 * m
+        previous_previous_previous_control = parameters[
+            reference_end + 2 * m : reference_end + 3 * m
+        ]
+        actuator_start = reference_end + 3 * m
         applied_control = parameters[actuator_start : actuator_start + m]
         model_start = actuator_start + m
         dynamic_parameters = parameters[
@@ -308,7 +558,7 @@ class NominalLePAVDNMPC:
             )
             collision_active = parameters[-1]
         q = ca.diag(ca.DM([
-            18.0, 18.0, self.heading_weight, 2.0, 0.15,
+            18.0, 18.0, self.heading_weight, self.speed_weight, 0.15,
             self.yaw_rate_weight,
         ]))
         terminal_q = 5.0 * q
@@ -330,22 +580,59 @@ class NominalLePAVDNMPC:
                 previous_control if index == 0 else controls[:, index - 1]
             )
             control_acceleration = control_delta - previous_control_delta
+            equilibrium_throttle = self.model.equilibrium_throttle(
+                reference[3, index], dynamic_parameters
+            )
+            equilibrium_throttle = ca.fmin(
+                ca.fmax(equilibrium_throttle, self.pwm_bounds[0]),
+                self.pwm_bounds[1],
+            )
             objective += (
                 ca.mtimes([error.T, q, error])
                 + ca.mtimes([control_delta.T, rate_r, control_delta])
                 + ca.mtimes([controls[:, index].T, input_r, controls[:, index]])
+                + self.throttle_reference_weight
+                * (controls[0, index] - equilibrium_throttle) ** 2
+                + self.throttle_acceleration_weight
+                * control_acceleration[0] ** 2
                 + self.steering_acceleration_weight
                 * control_acceleration[1] ** 2
             )
+            speed_deficit = ca.fmax(
+                self.minimum_speed - states[3, index + 1], 0.0
+            )
+            objective += self.minimum_speed_weight * speed_deficit**2
             previous_control_delta = control_delta
-            steering_command = controls[1, index]
-            if self.steering_command_delay_steps == 1:
-                steering_command = (
-                    previous_control[1]
-                    if index == 0 else controls[1, index - 1]
-                )
+            def delayed_command(input_index, delay_steps):
+                if delay_steps == 0:
+                    return controls[input_index, index]
+                if delay_steps == 1:
+                    return (
+                        previous_control[input_index]
+                        if index == 0 else controls[input_index, index - 1]
+                    )
+                if delay_steps == 2:
+                    if index == 0:
+                        return previous_previous_control[input_index]
+                    if index == 1:
+                        return previous_control[input_index]
+                    return controls[input_index, index - 2]
+                if index == 0:
+                    return previous_previous_previous_control[input_index]
+                if index == 1:
+                    return previous_previous_control[input_index]
+                if index == 2:
+                    return previous_control[input_index]
+                return controls[input_index, index - 3]
+
+            throttle_command = delayed_command(
+                0, self.throttle_command_delay_steps
+            )
+            steering_command = delayed_command(
+                1, self.steering_command_delay_steps
+            )
             target_control = ca.vertcat(
-                controls[0, index], self.steering_command_gain * steering_command
+                throttle_command, self.steering_command_gain * steering_command
             )
             response = ca.DM([
                 1.0 - np.exp(-self.sample_time / self.throttle_actuator_tau),
@@ -387,11 +674,18 @@ class NominalLePAVDNMPC:
                     normal_x * (states[0, index + 1] - reference[0, index + 1])
                     + normal_y * (states[1, index + 1] - reference[1, index + 1])
                 )
+                # A circumscribed footprint is conservative through curved
+                # walls, where a normal-only rectangle projection can miss a
+                # front corner crossing the boundary between cross-sections.
+                footprint_half_width = self.vehicle_radius
                 track_inequality.extend([
-                    lateral_error - track_slack[index],
-                    -lateral_error - track_slack[index],
+                    lateral_error + footprint_half_width - track_slack[index],
+                    -lateral_error + footprint_half_width - track_slack[index],
                 ])
-                objective += self.track_slack_weight * track_slack[index] ** 2
+                objective += (
+                    self.track_slack_weight * track_slack[index] ** 2
+                    + self.track_slack_linear_weight * track_slack[index]
+                )
 
         terminal_error = states[:, -1] - reference[:, -1]
         objective += ca.mtimes([terminal_error.T, terminal_q, terminal_error])
@@ -495,6 +789,10 @@ class NominalLePAVDNMPC:
         previous_previous_control = getattr(
             self, "_previous_control_argument", previous_control
         )
+        previous_previous_previous_control = getattr(
+            self, "_previous_previous_control_argument",
+            previous_previous_control,
+        )
         actuator_state = np.asarray(actuator_state, dtype=float).reshape(self.INPUT_SIZE)
         model_parameters = self.model.parameter_vector(model_parameters)
         parameter_parts = [
@@ -502,6 +800,7 @@ class NominalLePAVDNMPC:
             reference.reshape(-1, order="F"),
             previous_control,
             previous_previous_control,
+            previous_previous_previous_control,
             actuator_state,
             model_parameters,
         ]
@@ -522,8 +821,32 @@ class NominalLePAVDNMPC:
             control_seed = np.array([0.65, previous_control[1]], dtype=float)
             state_guess[:, 0] = state
             for index in range(self.horizon):
+                def delayed_seed(input_index, delay_steps):
+                    if delay_steps == 0:
+                        return control_seed[input_index]
+                    if delay_steps == 1:
+                        return (
+                            previous_control[input_index]
+                            if index == 0 else control_seed[input_index]
+                        )
+                    if delay_steps == 2:
+                        if index == 0:
+                            return previous_previous_control[input_index]
+                        if index == 1:
+                            return previous_control[input_index]
+                        return control_seed[input_index]
+                    if index == 0:
+                        return previous_previous_previous_control[input_index]
+                    if index == 1:
+                        return previous_previous_control[input_index]
+                    if index == 2:
+                        return previous_control[input_index]
+                    return control_seed[input_index]
+
                 target_control = np.array([
-                    control_seed[0], self.steering_command_gain * control_seed[1]
+                    delayed_seed(0, self.throttle_command_delay_steps),
+                    self.steering_command_gain
+                    * delayed_seed(1, self.steering_command_delay_steps),
                 ])
                 response = np.array([
                     1.0 - np.exp(-self.sample_time / self.throttle_actuator_tau),
@@ -593,12 +916,46 @@ class NominalLePAVDNMPC:
             ubg=upper_g,
         )
         solution = np.asarray(result["x"]).reshape(-1)
-        status = str(self._solver.stats().get("return_status", "NMPC failed"))
-        self.last_status = status
-        if (
-            not bool(self._solver.stats().get("success", False))
-        ) or not np.all(np.isfinite(solution)):
-            raise RuntimeError(status)
+        stats = self._solver.stats()
+        status = str(stats.get("return_status", "NMPC failed"))
+        constraints = np.asarray(result["g"]).reshape(-1)
+        finite_solution = bool(
+            np.all(np.isfinite(solution))
+            and np.all(np.isfinite(constraints))
+            and math.isfinite(float(result["f"]))
+        )
+
+        def maximum_violation(values, lower, upper):
+            lower_error = np.maximum(np.asarray(lower) - values, 0.0)
+            upper_error = np.maximum(values - np.asarray(upper), 0.0)
+            finite_errors = np.concatenate([
+                lower_error[np.isfinite(lower_error)],
+                upper_error[np.isfinite(upper_error)],
+            ])
+            return float(np.max(finite_errors)) if len(finite_errors) else 0.0
+
+        constraint_violation = max(
+            maximum_violation(constraints, lower_g, upper_g),
+            maximum_violation(solution, self._lower_x, upper_x),
+        ) if finite_solution else math.inf
+        converged = bool(stats.get("success", False)) and finite_solution
+        accepted_max_iterations = bool(
+            status == "Maximum_Iterations_Exceeded"
+            and finite_solution
+            and constraint_violation <= self.max_iteration_acceptance_tolerance
+        )
+        self.last_raw_status = status
+        self.last_converged = converged
+        self.last_accepted = converged or accepted_max_iterations
+        self.last_constraint_violation = constraint_violation
+        self.last_iteration_count = int(stats.get("iter_count", 0))
+        self.last_status = (
+            "Accepted_Max_Iterations" if accepted_max_iterations else status
+        )
+        if not self.last_accepted:
+            raise RuntimeError(
+                f"{status}; max_constraint_violation={constraint_violation:.3e}"
+            )
         state_count = self.STATE_SIZE * (self.horizon + 1)
         prediction = solution[:state_count].reshape(
             self.STATE_SIZE, self.horizon + 1, order="F"
@@ -637,5 +994,16 @@ class NominalLePAVDNMPC:
                 self.last_track_slack[1:], self.last_track_slack[-1:]
             ]))
         self._last_solution = np.concatenate(warm_parts)
+        self._previous_previous_control_argument = (
+            previous_previous_control.copy()
+        )
         self._previous_control_argument = previous_control.copy()
         return controls[:, 0], prediction, float(result["f"])
+
+    def reset_warm_start(self):
+        """Discard a stale NLP trajectory after a failed solve."""
+        self._last_solution = None
+        if hasattr(self, "_previous_control_argument"):
+            del self._previous_control_argument
+        if hasattr(self, "_previous_previous_control_argument"):
+            del self._previous_previous_control_argument

@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 import yaml
-from scipy.interpolate import CubicSpline
+from scipy.interpolate import CubicSpline, splprep, splev
 
 import rclpy
 from geometry_msgs.msg import Point
@@ -169,6 +169,44 @@ def load_manual_reference_line(
     return catmull_rom_chain(
         get_track_waypoints(track_name), num_points=num_points
     )
+
+
+def load_nmpc_reference_line(
+    num_points: int = 800,
+    track_name: str = "ethz",
+    smoothing: float = 0.5,
+) -> np.ndarray:
+    """Build a closed, uniformly sampled reference without cubic overshoot."""
+    waypoints = get_track_waypoints(track_name)
+    closed = np.vstack([waypoints, waypoints[0]])
+    waypoint_arc = np.concatenate([
+        [0.0], np.cumsum(np.linalg.norm(np.diff(closed, axis=0), axis=1))
+    ])
+    normalized_arc = waypoint_arc / max(waypoint_arc[-1], 1.0e-9)
+    spline, _ = splprep(
+        [closed[:, 0], closed[:, 1]],
+        u=normalized_arc,
+        s=max(0.0, float(smoothing)),
+        per=True,
+        k=min(3, len(waypoints) - 1),
+    )
+    samples = np.asarray(
+        splev(np.linspace(0.0, 1.0, num_points, endpoint=False), spline)
+    ).T
+
+    # Reparameterize by distance so each NMPC step advances consistently.
+    for _ in range(2):
+        closed_samples = np.vstack([samples, samples[0]])
+        sample_arc = np.concatenate([
+            [0.0],
+            np.cumsum(np.linalg.norm(np.diff(closed_samples, axis=0), axis=1)),
+        ])
+        query = np.linspace(0.0, sample_arc[-1], num_points, endpoint=False)
+        samples = np.column_stack([
+            np.interp(query, sample_arc, closed_samples[:, axis])
+            for axis in range(2)
+        ])
+    return samples
 
 
 class RunLogger:

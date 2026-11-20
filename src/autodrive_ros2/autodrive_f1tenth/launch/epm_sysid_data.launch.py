@@ -12,11 +12,11 @@ from launch_ros.actions import Node
 
 # One profile is selected per lap. Lap 1 is an unexcited baseline; later laps
 # vary throttle setpoint, steering gain, and reproducible bounded excitation.
-TARGET_THROTTLE_COMMANDS = [0.10, 0.115, 0.13, 0.11, 0.125, 0.105, 0.135, 0.12]
-STEERING_GAINS = [1.00, 0.99, 1.01, 1.00, 0.98, 1.02, 0.99, 1.01]
-STEERING_EXCITATION_RAD = [0.0, 0.008, 0.010, 0.012, 0.008, 0.014, 0.010, 0.012]
+TARGET_THROTTLE_COMMANDS = [0.115, 0.120, 0.125, 0.130, 0.120, 0.125, 0.130, 0.120]
+STEERING_GAINS = [1.00, 0.99, 1.01, 1.02, 0.99, 1.03, 1.00, 1.02]
+STEERING_EXCITATION_RAD = [0.0, 0.008, 0.010, 0.012, 0.010, 0.014, 0.012, 0.014]
 STEERING_EXCITATION_HZ = [0.23, 0.31, 0.41, 0.29, 0.37, 0.19, 0.43, 0.27]
-THROTTLE_EXCITATION = [0.0, 0.004, 0.006, 0.005, 0.007, 0.005, 0.006, 0.008]
+THROTTLE_EXCITATION = [0.0, 0.003, 0.004, 0.004, 0.005, 0.004, 0.003, 0.005]
 THROTTLE_EXCITATION_HZ = [0.13, 0.17, 0.19, 0.23, 0.11, 0.29, 0.21, 0.15]
 VALIDATION_LAPS = [3, 6]
 TEST_LAPS = [8]
@@ -84,7 +84,8 @@ def generate_launch_description() -> LaunchDescription:
                 "max_abs_steering_rad": 0.54,
                 "max_throttle": 0.16,
                 "corner_protection_steering_rad": 0.15,
-                "sync_tolerance_sec": 0.03,
+                "corner_excitation_scale": 0.35,
+                "sync_tolerance_sec": 0.08,
             }
         ],
     )

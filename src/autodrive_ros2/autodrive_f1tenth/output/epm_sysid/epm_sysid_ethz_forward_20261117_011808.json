@@ -1,0 +1,89 @@
+{
+  "track": "ethz",
+  "direction": "forward",
+  "num_laps": 8,
+  "validation_laps_1_based": [
+    3,
+    6
+  ],
+  "test_laps_1_based": [
+    8
+  ],
+  "target_throttle_commands": [
+    0.09,
+    0.105,
+    0.12,
+    0.135,
+    0.1,
+    0.125,
+    0.14,
+    0.115
+  ],
+  "steering_gains": [
+    1.0,
+    0.94,
+    1.06,
+    1.15,
+    0.9,
+    1.25,
+    0.98,
+    1.2
+  ],
+  "steering_excitation_rad": [
+    0.0,
+    0.015,
+    0.02,
+    0.025,
+    0.03,
+    0.035,
+    0.025,
+    0.04
+  ],
+  "steering_excitation_hz": [
+    0.23,
+    0.31,
+    0.41,
+    0.29,
+    0.37,
+    0.19,
+    0.43,
+    0.27
+  ],
+  "throttle_excitation": [
+    0.0,
+    0.01,
+    0.014,
+    0.018,
+    0.02,
+    0.015,
+    0.012,
+    0.022
+  ],
+  "throttle_excitation_hz": [
+    0.13,
+    0.17,
+    0.19,
+    0.23,
+    0.11,
+    0.29,
+    0.21,
+    0.15
+  ],
+  "corner_excitation_scale": 0.35,
+  "state_mapping": {
+    "model_vx_mps": "odom.twist.twist.linear.z (Unity forward axis)",
+    "model_vy_mps": "odom.twist.twist.linear.x (Unity lateral axis)",
+    "model_yaw_rate_radps": "imu.angular_velocity.z"
+  },
+  "synchronization": "nearest odom/imu header stamps within bounded tolerance",
+  "sync_tolerance_ms": 80.0,
+  "safety": {
+    "enabled": true,
+    "warning_distance_m": 0.9,
+    "emergency_distance_m": 0.42,
+    "front_half_angle_deg": 28.0,
+    "side_angle_deg": 75.0,
+    "min_steering_rad": 0.46,
+    "safe_throttle": 0.055
+  }
+}

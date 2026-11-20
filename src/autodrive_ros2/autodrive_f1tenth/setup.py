@@ -1,7 +1,7 @@
 import os
 from glob import glob
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 package_name = "autodrive_f1tenth"
@@ -10,7 +10,7 @@ package_name = "autodrive_f1tenth"
 setup(
     name="autodrive-f1tenth",
     version="0.1.0",
-    packages=[package_name],
+    packages=find_packages(include=[package_name, f"{package_name}.*"]),
     data_files=[
         ("share/ament_index/resource_index/packages", [f"resource/{package_name}"]),
         (f"share/{package_name}", ["package.xml"]),
@@ -42,6 +42,10 @@ setup(
             "ethz_all_data_logger = autodrive_f1tenth.ethz_all_data_logger:main",
             "epm_sysid_collector = autodrive_f1tenth.epm_sysid_collector:main",
             "0_fit_bicycle_model = autodrive_f1tenth.0_fit_bicycle_model:main",
+            "aixvr_audit_training_data = autodrive_f1tenth.aixvr.audit_training_data:main",
+            "aixvr_plot_nmpc_comparison = autodrive_f1tenth.aixvr.plot_nmpc_comparison:main",
+            "aixvr_uncertainty_bridge = autodrive_f1tenth.aixvr.uncertainty_bridge:main",
+            "aixvr_summarize_uncertainty = autodrive_f1tenth.aixvr.summarize_uncertainty:main",
             "safety = autodrive_f1tenth.safety:main",
             "slam = autodrive_f1tenth.slam:main",
             "slam_tf_logger = autodrive_f1tenth.slam_tf_logger:main",

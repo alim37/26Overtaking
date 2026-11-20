@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model": "fixed_kinematic_bicycle",
-  "source_csv": "/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth/output/epm_sysid/epm_sysid_ethz_forward_20261012_122738.csv",
+  "source_csv": "/home/malik/ros2_ws/src/autodrive_ros2/autodrive_f1tenth/output/epm_sysid/epm_sysid_ethz_forward_20261117_015020.csv",
   "fit_policy": {
     "fit_split": "train",
     "selection_split": "validation",
@@ -9,17 +9,17 @@
     "learned_model": false
   },
   "geometry": {
-    "wheelbase_m": 0.3845343921906465,
+    "wheelbase_m": 0.3837609591572862,
     "rear_axle_to_cg_m": 0.17145,
     "mass_kg": 3.47
   },
   "steering_actuator": {
-    "command_gain": 0.5250306893550933,
-    "time_constant_sec": 0.11061516454101018,
+    "command_gain": 0.526790663819309,
+    "time_constant_sec": 0.13294176029556332,
     "command_delay_steps": 1
   },
   "longitudinal": {
-    "Cm1": 24.23081905294449,
+    "Cm1": 24.341577321077864,
     "Cm2": 4.612560976,
     "Cr0": 4.38404878,
     "Cr2": 0.02962195122,
@@ -29,53 +29,53 @@
   "metrics": {
     "yaw_rate_radps": {
       "train": {
-        "samples": 2781,
-        "rmse": 0.015225914286301184,
-        "mae": 0.00573257347224375
+        "samples": 2132,
+        "rmse": 0.020771260242801178,
+        "mae": 0.0076435499471415175
       },
       "validation": {
-        "samples": 1135,
-        "rmse": 0.0178913637930698,
-        "mae": 0.006315264183474139
+        "samples": 838,
+        "rmse": 0.021897870442766816,
+        "mae": 0.008120233046130913
       },
       "test": {
-        "samples": 555,
-        "rmse": 0.015866022516844738,
-        "mae": 0.006026295136083455
+        "samples": 441,
+        "rmse": 0.020044081475820902,
+        "mae": 0.007620208444835285
       }
     },
     "steering_feedback_rad": {
       "train": {
-        "samples": 3117,
-        "rmse": 0.01274416253352246,
-        "mae": 0.003848860904512683
+        "samples": 2453,
+        "rmse": 0.014545869882303854,
+        "mae": 0.003857158419730275
       },
       "validation": {
-        "samples": 1257,
-        "rmse": 0.01220786129956873,
-        "mae": 0.003834367073864467
+        "samples": 953,
+        "rmse": 0.014241471788977906,
+        "mae": 0.0038202537278099174
       },
       "test": {
-        "samples": 619,
-        "rmse": 0.012442929874207255,
-        "mae": 0.0037185938780510404
+        "samples": 495,
+        "rmse": 0.013100227735382683,
+        "mae": 0.0034618230986587332
       }
     },
     "longitudinal_acceleration_mps2": {
       "train": {
-        "samples": 3069,
-        "rmse": 0.22889616723093817,
-        "mae": 0.08431634504654954
+        "samples": 2377,
+        "rmse": 0.12232596117274264,
+        "mae": 0.049293813262141065
       },
       "validation": {
-        "samples": 1239,
-        "rmse": 0.2389252718532214,
-        "mae": 0.10245372380492203
+        "samples": 929,
+        "rmse": 0.1276932960247743,
+        "mae": 0.052754829931168375
       },
       "test": {
-        "samples": 611,
-        "rmse": 0.28957024821933375,
-        "mae": 0.09395326058825673
+        "samples": 483,
+        "rmse": 0.09399553030464129,
+        "mae": 0.04014280500719596
       }
     }
   }
